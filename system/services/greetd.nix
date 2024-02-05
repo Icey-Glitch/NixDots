@@ -7,7 +7,7 @@
   services.greetd = let
     session = {
       command = "${lib.getExe config.programs.hyprland.package}";
-      user = "mihai";
+      user = "icey";
     };
   in {
     enable = true;

@@ -37,7 +37,7 @@
 
           {
             home-manager = {
-              users.mihai.imports = homeImports."mihai@io";
+              users.icey.imports = homeImports."icey@io";
               extraSpecialArgs = specialArgs;
             };
           }
@@ -52,6 +52,22 @@
         ];
     };
 
+    thinkpad = nixosSystem {
+       inherit specialArgs;
+       modules =
+         laptop
+         ++ [
+           ./thinkpad
+           "${mod}/core/lanzaboote.nix"
+
+           "${mod}/programs/gamemode.nix"
+           "${mod}/network/spotify.nix"
+           "${mod}/programs/hyprland.nix"
+           
+           {home-manager.users.icey.imports = homeImports."icey@thinkpad";}
+         ];
+     };
+
     # rog = nixosSystem {
     #   inherit specialArgs;
     #   modules =
@@ -65,7 +81,7 @@
     #       "${mod}/programs/steam.nix"
 
     #       "${mod}/services/kmonad"
-    #       {home-manager.users.mihai.imports = homeImports."mihai@rog";}
+    #       {home-manager.users.icey.imports = homeImports."icey@rog";}
     #     ];
     # };
 
@@ -75,7 +91,7 @@
     #     desktop
     #     ++ [
     #       ./kiiro
-    #       {home-manager.users.mihai.imports = homeImports.server;}
+    #       {home-manager.users.icey.imports = homeImports.server;}
     #     ];
     # };
   };

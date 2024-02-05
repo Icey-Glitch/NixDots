@@ -15,6 +15,8 @@
 
     # DNS resolver
     resolved.enable = true;
+    
+    mullvad-vpn.enable = true;
   };
 
   # Don't wait for network startup

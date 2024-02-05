@@ -4,7 +4,7 @@
   ];
 
   # nh default flake
-  environment.variables.FLAKE = "/home/mihai/Documents/code/dotfiles";
+  environment.variables.FLAKE = "/home/icey/Documents/code/dotfiles";
 
   nh = {
     enable = true;

@@ -39,7 +39,7 @@
     buildMachines = lib.filter (x: x.hostName != config.networking.hostName) [
       {
         system = "aarch64-linux";
-        sshUser = "mihai";
+        sshUser = "icey";
         sshKey = "/etc/ssh/ssh_host_ed25519_key";
         maxJobs = 4;
         hostName = "alpha";

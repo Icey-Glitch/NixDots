@@ -8,7 +8,7 @@
 
   age.secrets.spotify = {
     file = "${self}/secrets/spotify.age";
-    owner = "mihai";
+    owner = "icey";
     group = "users";
   };
 

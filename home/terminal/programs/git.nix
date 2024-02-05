@@ -52,6 +52,6 @@
     extraConfig.gpg.format = "ssh";
 
     userEmail = "fufexan@protonmail.com";
-    userName = "Mihai Fufezan";
+    userName = "icey Fufezan";
   };
 }
