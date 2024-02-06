@@ -6,7 +6,6 @@
     ];
 
     overlays = [
-      inputs.nur.overlay
       (final: prev: {
         lib =
           prev.lib
