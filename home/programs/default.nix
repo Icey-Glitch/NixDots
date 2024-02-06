@@ -6,7 +6,6 @@
     ./media
     ./gtk.nix
     ./office
-    ./waybar
   ];
 
   home.packages = with pkgs; [
