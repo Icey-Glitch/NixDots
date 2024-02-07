@@ -9,8 +9,6 @@
   imports = [./hardware-configuration.nix];
 
   boot = {
-    # use latest kernel
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
     kernelParams = [
       "quiet"
