@@ -20,8 +20,6 @@
     ];
   };
 
-  environment.systemPackages = [config.boot.kernelPackages.cpupower];
-
   networking.hostName = "thinkpad";
 
   programs = {
