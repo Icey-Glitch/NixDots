@@ -60,11 +60,18 @@
            ./thinkpad
            "${mod}/core/lanzaboote.nix"
 
+          {
+            home-manager = {
+              users.icey.imports = homeImports."icey@thinkpad";
+              extraSpecialArgs = specialArgs;
+            };
+          }
+
            "${mod}/programs/gamemode.nix"
            "${mod}/network/spotify.nix"
            "${mod}/programs/hyprland.nix"
            
-           {home-manager.users.icey.imports = homeImports."icey@thinkpad";}
+           inputs.agenix.nixosModules.default
          ];
      };
 
