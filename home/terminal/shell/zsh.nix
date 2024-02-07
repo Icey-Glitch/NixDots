@@ -11,7 +11,7 @@
       dl = "$HOME/Downloads";
       docs = "$HOME/Documents";
       code = "$HOME/Documents/code";
-      dots = "$HOME/Documents/code/dotfiles";
+      dots = "$HOME/Git/newdots/NixDots";
       pics = "$HOME/Pictures";
       vids = "$HOME/Videos";
       nixpkgs = "$HOME/Documents/code/git/nixpkgs";
