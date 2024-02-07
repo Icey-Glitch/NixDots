@@ -20,11 +20,6 @@
 
   networking.hostName = "thinkpad";
 
-  programs = {
-    # enable hyprland and required options
-    hyprland.enable = true;
-  };
-
   security.tpm2.enable = true;
 
   services = {

@@ -14,7 +14,7 @@
 
     # system services
     ../../services/system/polkit-agent.nix
-    ../../services/system/power-monitor.nix
+    ../../services/system/power-profiles.nix
     ../../services/system/udiskie.nix
 
     # wayland-specific

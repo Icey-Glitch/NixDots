@@ -11,11 +11,8 @@
       roboto
       (google-fonts.override {fonts = ["Inter"];})
 
-      # monospace fonts
-      jetbrains-mono
-
       # nerdfonts
-      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
+      (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
     ];
 
     # causes more issues than it solves
@@ -27,7 +24,7 @@
     fontconfig.defaultFonts = {
       serif = ["Noto Serif" "Noto Color Emoji"];
       sansSerif = ["Inter" "Noto Color Emoji"];
-      monospace = ["JetBrains Mono" "Noto Color Emoji"];
+      monospace = ["JetBrainsMono Nerd Font" "Noto Color Emoji"];
       emoji = ["Noto Color Emoji"];
     };
   };
