@@ -22,6 +22,7 @@ let
 
       ./services/backlight.nix
       ./services/power.nix
+      ./services/power-profiles.nix
     ];
 in {
   inherit desktop laptop;
