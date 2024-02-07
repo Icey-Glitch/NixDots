@@ -10,7 +10,7 @@
     ../../programs/wayland
 
     # services
-    ../../services/ags
+    ../../services/waybar
     ../../services/cinny.nix
 
     # media services
@@ -30,7 +30,7 @@
     ../../services/wayland/swayidle.nix
 
     # terminal emulators
-    ../../terminal/emulators/foot.nix
+    ../../terminal/emulators/alacritty.nix
   ];
 
   wayland.windowManager.hyprland.settings = let
