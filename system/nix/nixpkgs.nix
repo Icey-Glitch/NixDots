@@ -1,4 +1,4 @@
-{self, ...}: {
+{self, inputs, ...}: {
   nixpkgs = {
     config.allowUnfree = true;
     config.permittedInsecurePackages = [
@@ -6,6 +6,7 @@
     ];
 
     overlays = [
+      inputs.nur.overlay
       (final: prev: {
         lib =
           prev.lib
