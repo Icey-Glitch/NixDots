@@ -22,7 +22,7 @@
     ../../services/wayland/swayidle.nix
 
     # terminal emulators
-    ../../terminal/emulators/alacritty.nix
+    ../../terminal/emulators/foot.nix
   ];
 
   wayland.windowManager.hyprland.settings = let
