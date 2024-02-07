@@ -60,6 +60,7 @@
            ./thinkpad
            "${mod}/core/lanzaboote.nix"
            "${mod}/services/location.nix"
+           "${mod}/services/gnome-services.nix"
 
           {
             home-manager = {
