@@ -15,7 +15,7 @@
 
     # DNS resolver
     resolved.enable = true;
-    
+
     mullvad-vpn.enable = true;
   };
 

@@ -58,7 +58,7 @@
     };
 
     anyrun.url = "github:fufexan/anyrun";
-    
+
     nur.url = github:nix-community/NUR;
 
     fu.url = "github:numtide/flake-utils";

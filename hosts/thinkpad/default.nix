@@ -9,7 +9,6 @@
   imports = [./hardware-configuration.nix];
 
   boot = {
-
     kernelParams = [
       "quiet"
       "loglevel=3"
