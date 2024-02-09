@@ -50,7 +50,7 @@ in {
       # Max allowed temperature before throttling
       Trip_Temp_C: 85
       # Set cTDP to normal=0, down=1 or up=2 (EXPERIMENTAL)
-      cTDP: 0
+      cTDP: 1
       # Disable BDPROCHOT (EXPERIMENTAL)
       Disable_BDPROCHOT: False
 
