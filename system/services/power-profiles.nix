@@ -76,7 +76,7 @@ in {
       # Disable BDPROCHOT (EXPERIMENTAL)
       Disable_BDPROCHOT: False
 
-      # All voltage values are expressed in mV and *MUST* be negative (i.e. undervolt)! 
+      # All voltage values are expressed in mV and *MUST* be negative (i.e. undervolt)!
       [UNDERVOLT.BATTERY]
       # CPU core voltage offset (mV)
       CORE: -105
@@ -103,28 +103,27 @@ in {
       ANALOGIO: 0
       # [ICCMAX.AC]
       # # CPU core max current (A)
-      # CORE: 
+      # CORE:
       # # Integrated GPU max current (A)
-      # GPU: 
+      # GPU:
       # # CPU cache max current (A)
-      # CACHE: 
+      # CACHE:
       # [ICCMAX.BATTERY]
       # # CPU core max current (A)
-      # CORE: 
+      # CORE:
       # # Integrated GPU max current (A)
-      # GPU: 
+      # GPU:
       # # CPU cache max current (A)
-      # CACHE: 
+      # CACHE:
     '';
   };
-  
+
   powerManagement.powertop.enable = true;
   services.tlp = {
-      enable = true;
-      extraConfig = ''
-        CPU_SCALING_GOVERNOR_ON_AC=performance
-        CPU_SCALING_GOVERNOR_ON_BAT=powersave
-      '';
+    enable = true;
+    extraConfig = ''
+      CPU_SCALING_GOVERNOR_ON_AC=performance
+      CPU_SCALING_GOVERNOR_ON_BAT=powersave
+    '';
   };
-
 }
