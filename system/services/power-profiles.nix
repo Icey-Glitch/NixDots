@@ -25,14 +25,12 @@ let
   '';
 in {
   powerManagement.powertop.enable = true;
-  services.auto-cpufreq.settings = {
-    battery = {
-      governor = "powersave";
-      turbo = "never";
-    };
-    charger = {
-      governor = "performance";
-      turbo = "auto";
-    };
+  services.tlp = {
+      enable = true;
+      extraConfig = ''
+        CPU_SCALING_GOVERNOR_ON_AC=performance
+        CPU_SCALING_GOVERNOR_ON_BAT=powersave
+      '';
   };
+
 }
