@@ -4,6 +4,7 @@
   ];
 
   home.packages = with pkgs; [
+    betterbird
     libreoffice
     obsidian
     xournalpp
