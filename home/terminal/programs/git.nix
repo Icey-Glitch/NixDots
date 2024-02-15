@@ -51,7 +51,7 @@
 
     extraConfig.gpg.format = "ssh";
 
-    userEmail = "fufexan@protonmail.com";
-    userName = "icey Fufezan";
+    userEmail = "Icey-Glitch@riseup.net";
+    userName = "Icey-Glitch";
   };
 }
