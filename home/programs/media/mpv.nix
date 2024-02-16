@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  environment.variables.LIBVA_DRIVER_NAME = "iHD";
+  
   programs.mpv = {
     enable = true;
     defaultProfiles = ["gpu-hq"];

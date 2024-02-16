@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   # graphics drivers / HW accel
+  environment.variables.LIBVA_DRIVER_NAME = "iHD";
   hardware.opengl = {
     enable = true;
 
