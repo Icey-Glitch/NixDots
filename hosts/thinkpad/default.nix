@@ -17,6 +17,10 @@
     ];
   };
 
+  hardware = {
+    enableRedistributableFirmware = true;
+  };
+
   networking.hostName = "thinkpad";
 
   security.tpm2.enable = true;
