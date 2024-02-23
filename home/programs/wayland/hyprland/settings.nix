@@ -14,7 +14,7 @@ in {
       "hyprctl setcursor ${pointer.name} ${toString pointer.size}"
       "systemctl --user start clight"
       "waybar"
-      "swaylock"
+      "hyprlock"
     ];
 
     general = {

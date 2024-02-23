@@ -10,6 +10,8 @@
     inputs.nur.hmModules.nur
     inputs.matugen.nixosModules.default
     inputs.nix-index-db.hmModules.nix-index
+    inputs.hyprlock.homeManagerModules.default
+    inputs.hypridle.homeManagerModules.default
     self.nixosModules.theme
   ];
 
