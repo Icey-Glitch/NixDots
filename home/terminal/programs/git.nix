@@ -4,7 +4,6 @@
   ...
 }: {
   home.packages = [pkgs.gh];
-  ssh.startAgent = true;
 
   # enable scrolling in git diff
   home.sessionVariables.DELTA_PAGER = "less -R";
