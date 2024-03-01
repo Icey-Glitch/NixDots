@@ -15,6 +15,10 @@
       ../.
       ./thinkpad
     ];
+    "icey@desktop" = [
+      ../.
+      ./desktop
+    ];
     "icey@rog" = [
       ../.
       ./rog
@@ -41,6 +45,10 @@ in {
 
       "icey_thinkpad" = homeManagerConfiguration {
         modules = homeImports."icey@thinkpad";
+        inherit pkgs extraSpecialArgs;
+      };
+      "icey_desktop" = homeManagerConfiguration {
+        modules = homeImports."icey@desktop";
         inherit pkgs extraSpecialArgs;
       };
 
