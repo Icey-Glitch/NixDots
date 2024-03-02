@@ -89,7 +89,7 @@
 
           {
             home-manager = {
-              users.icey.imports = homeImports."icey@thinkpad";
+              users.icey.imports = homeImports."icey@desktop";
               extraSpecialArgs = specialArgs;
             };
           }
