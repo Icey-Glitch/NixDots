@@ -74,7 +74,7 @@
           }
         ];
     };
-    desktopM = nixosSystem {
+    desktopm = nixosSystem {
       inherit specialArgs;
       modules =
         desktop
@@ -89,7 +89,7 @@
 
           {
             home-manager = {
-              users.icey.imports = homeImports."icey@desktop";
+              users.icey.imports = homeImports."icey@desktopm";
               extraSpecialArgs = specialArgs;
             };
           }

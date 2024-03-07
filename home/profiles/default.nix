@@ -15,7 +15,7 @@
       ../.
       ./thinkpad
     ];
-    "icey@desktop" = [
+    "icey@desktopm" = [
       ../.
       ./desktop
     ];
@@ -47,8 +47,8 @@ in {
         modules = homeImports."icey@thinkpad";
         inherit pkgs extraSpecialArgs;
       };
-      "icey_desktop" = homeManagerConfiguration {
-        modules = homeImports."icey@desktop";
+      "icey_desktopm" = homeManagerConfiguration {
+        modules = homeImports."icey@desktopm";
         inherit pkgs extraSpecialArgs;
       };
 

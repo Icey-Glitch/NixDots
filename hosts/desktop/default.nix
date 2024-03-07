@@ -41,6 +41,10 @@
     };
   };
 
+  environment.sessionVariables = rec {
+    WLR_NO_HARDWARE_CURSORS=1
+  };
+
   networking.hostName = "desktop";
 
   security.tpm2.enable = true;
