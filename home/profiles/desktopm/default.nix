@@ -22,7 +22,6 @@
 
     # terminal emulators
     ../../terminal/emulators/foot.nix
-    ../../terminal/emulators/wezterm.nix
   ];
   wayland.windowManager.hyprland.settings = {
     monitor = [
