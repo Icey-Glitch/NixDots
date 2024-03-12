@@ -79,11 +79,11 @@
       modules =
         desktop
         ++ [
-          ./desktop
+          ./desktopm
           "${mod}/programs/gamemode.nix"
           "${mod}/network/spotify.nix"
           "${mod}/programs/hyprland.nix"
-          "${mod}/core/lanzaboote.nix"
+          # "${mod}/core/lanzaboote.nix"
           "${mod}/services/location.nix"
           "${mod}/services/gnome-services.nix"
 
@@ -93,6 +93,11 @@
               extraSpecialArgs = specialArgs;
             };
           }
+
+          inputs.nixos-hardware.nixosModules.common-pc
+          inputs.nixos-hardware.nixosModules.common-pc-ssd
+          inputs.nixos-hardware.nixosModules.common-cpu-intel
+          inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
         ];
     };
 

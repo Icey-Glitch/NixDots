@@ -59,7 +59,7 @@
 
     anyrun.url = "github:fufexan/anyrun";
 
-    nur.url = github:nix-community/NUR;
+    nur.url = "github:nix-community/NUR";
 
     chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
 
@@ -86,6 +86,8 @@
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";

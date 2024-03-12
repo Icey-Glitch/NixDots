@@ -1,6 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   # graphics drivers / HW accel
-  environment.variables.LIBVA_DRIVER_NAME = "iHD";
+  environment.variables.LIBVA_DRIVER_NAME = lib.mkDefault "iHD";
   hardware.opengl = {
     enable = true;
 

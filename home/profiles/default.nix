@@ -17,7 +17,7 @@
     ];
     "icey@desktopm" = [
       ../.
-      ./desktop
+      ./desktopm
     ];
     "icey@rog" = [
       ../.
