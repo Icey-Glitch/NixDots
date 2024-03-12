@@ -15,10 +15,9 @@
 
     # media services
     ../../services/media/playerctl.nix
-    ../../services/media/spotifyd.nix
+    # ../../services/media/spotifyd.nix
 
     # system services
-    ../../services/system/dunst.nix
     ../../services/system/kdeconnect.nix
     ../../services/system/polkit-agent.nix
     ../../services/system/power-monitor.nix
@@ -32,6 +31,9 @@
     # terminal emulators
     ../../terminal/emulators/foot.nix
     ../../terminal/emulators/wezterm.nix
+
+    # school
+    ../../programs/school.nix
   ];
 
   wayland.windowManager.hyprland.settings = let
