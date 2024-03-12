@@ -20,6 +20,8 @@
     blacklistedKernelModules = ["nouveau"];
   };
 
+  services.xserver.videoDrivers = ["nvidia"];
+
   hardware = {
     cpu.intel.updateMicrocode = true;
 
