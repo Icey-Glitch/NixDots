@@ -2,6 +2,7 @@
   self,
   inputs,
   homeImports,
+  config,
   ...
 }: {
   flake.nixosConfigurations = let
@@ -89,6 +90,7 @@
           "${mod}/programs/steam.nix"
           "${mod}/services/location.nix"
           "${mod}/services/gnome-services.nix"
+          "${mod}/hardware/nvidia-fixes.nix"
 
           {
             home-manager = {

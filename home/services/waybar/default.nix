@@ -4,43 +4,10 @@
   lib,
   inputs,
   ...
-}: let
-  dependencies = with pkgs; [
-    cfg.package
-    inputs.gross.packages.${pkgs.system}.gross
-    config.wayland.windowManager.hyprland.package
-    bash
-    blueberry
-    bluez
-    brillo
-    coreutils
-    dbus
-    findutils
-    gawk
-    gnome.gnome-control-center
-    gnused
-    imagemagick
-    jaq
-    jc
-    libnotify
-    networkmanager
-    pavucontrol
-    playerctl
-    procps
-    pulseaudio
-    ripgrep
-    socat
-    udev
-    upower
-    util-linux
-    wget
-    wireplumber
-    wlogout
-  ];
-  cfg = config.programs.waybar;
-in {
+}: {
   programs.waybar = {
     enable = true;
+    # Use the heredoc syntax for better readability
     style = ''
       * {
         border: none;
@@ -50,18 +17,16 @@ in {
         min-height: 0;
         margin: 0px;
       }
-      nix {
-        padding: 10px;
-      }
 
       window#waybar {
         background : #24273a;
         color: #cad3f5;
       }
 
-      #window {
-        color: #e4e4e4;
-        font-weight: bold;
+      #window, #clock, #battery, #cpu, #memory, #network,
+      #pulseaudio, #custom-spotify, #tray, #mode {
+        padding: 0 3px;
+        margin: 0 2px;
       }
 
       #workspaces {
@@ -99,29 +64,12 @@ in {
         color: #1b1d1e;
       }
 
-      #mode {
-        background: #af005f;
-        color: #1b1d1e;
-      }
-
-      #clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #tray, #mode {
-        padding: 0 3px;
-        margin: 0 2px;
-      }
-
-      #clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #tray, #mode {
-        padding: 0 3px;
-        margin: 0 2px;
-      }
-
-      @keyframes blink {
-        to {
-          background-color: #af005f;
-        }
+      #mode, #battery.critical:not(.charging),
+      #network.disconnected, #custom-spotify {
+        color: white;
       }
 
       #battery.critical:not(.charging) {
-        color: white;
         animation-name: blink;
         animation-duration: 0.5s;
         animation-timing-function: linear;
@@ -132,20 +80,14 @@ in {
       #network.disconnected {
         background: #f53c3c;
       }
-
-      #pulseaudio.muted {
-      }
-
-      #custom-spotify {
-        color: rgb(102, 220, 105);
-      }
-
     '';
+
     settings = {
       mainBar = {
         modules-left = ["hyprland/workspaces" "hyprland/submap"];
         modules-right = ["temperature" "cpu" "memory" "network" "pulseaudio" "clock" "battery" "tray"];
 
+        # Define module settings as separate attributes for clarity
         "hyprland/submap" = {
           format = "{}";
         };

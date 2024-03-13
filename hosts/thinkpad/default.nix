@@ -25,6 +25,8 @@
 
   security.tpm2.enable = true;
 
+  environment.variables.LIBVA_DRIVER_NAME = "iHD";
+
   services = {
     # for SSD/NVME
     fstrim.enable = true;
