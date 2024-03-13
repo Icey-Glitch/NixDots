@@ -72,6 +72,8 @@
               extraSpecialArgs = specialArgs;
             };
           }
+
+          inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
         ];
     };
     desktopm = nixosSystem {
