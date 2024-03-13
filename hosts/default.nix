@@ -83,7 +83,8 @@
           "${mod}/programs/gamemode.nix"
           "${mod}/network/spotify.nix"
           "${mod}/programs/hyprland.nix"
-          # "${mod}/core/lanzaboote.nix"
+
+          "${mod}/programs/steam.nix"
           "${mod}/services/location.nix"
           "${mod}/services/gnome-services.nix"
 
