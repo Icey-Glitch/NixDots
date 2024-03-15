@@ -47,6 +47,8 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
+    inputs.nixos-vfio.url = "github:j-brn/nixos-vfio";
+
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
