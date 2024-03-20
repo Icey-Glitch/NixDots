@@ -48,6 +48,7 @@
     };
 
     #inputs.nixos-vfio.url = "github:j-brn/nixos-vfio";
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
     agenix = {
       url = "github:ryantm/agenix";
