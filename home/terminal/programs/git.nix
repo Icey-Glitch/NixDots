@@ -2,7 +2,10 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  cfg = config.programs.git;
+  key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOjRbqTrh6+HfoCy6kwBQFJLcLawY8beWhUWsvcaoDhr Icey";
+in {
   home.packages = [pkgs.gh];
 
   # enable scrolling in git diff
@@ -49,9 +52,20 @@
       signByDefault = true;
     };
 
-    extraConfig.gpg.format = "ssh";
+    extraConfig = {
+      gpg = {
+        format = "ssh";
+        ssh.allowedSignersFile = config.home.homeDirectory + "/" + config.xdg.configFile."git/allowed_signers".target;
+      };
+
+      pull.rebase = true;
+    };
 
     userEmail = "Icey-Glitch@riseup.net";
     userName = "Icey-Glitch";
   };
+
+  xdg.configFile."git/allowed_signers".text = ''
+    ${cfg.userEmail} namespaces="git" ${key}
+  '';
 }
