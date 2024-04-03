@@ -24,9 +24,6 @@ in {
         extramaker "betterfox"
         // {
           isDefault = true;
-          betterfox = {
-            enable = false;
-          };
           extensions = with firefoxExtensions; [
             nur.repos.rycee.firefox-addons.ublock-origin
           ];
