@@ -6,7 +6,10 @@
   cfg = config.programs.git;
   key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOjRbqTrh6+HfoCy6kwBQFJLcLawY8beWhUWsvcaoDhr Icey";
 in {
-  home.packages = [pkgs.gh];
+  home.packages = [
+    pkgs.gh
+    pkgs.gnupg
+  ];
 
   # enable scrolling in git diff
   home.sessionVariables.DELTA_PAGER = "less -R";

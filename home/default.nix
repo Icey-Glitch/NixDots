@@ -8,7 +8,7 @@
     ./specialisations.nix
     ./terminal
     inputs.nur.hmModules.nur
-    inputs.betterfox.hmModules.default
+    #inputs.betterfox.hmModules.default
     inputs.matugen.nixosModules.default
     inputs.nix-index-db.hmModules.nix-index
     inputs.hyprlock.homeManagerModules.default
