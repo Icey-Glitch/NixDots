@@ -17,8 +17,40 @@
       perSystem = {
         config,
         pkgs,
+        nix-vscode-extensions,
         ...
-      }: {
+      }: let
+        extensions = nix-vscode-extensions.extensions.${pkgs.system};
+        inherit (pkgs) vscode-with-extensions vscodium;
+
+        packages.default = vscode-with-extensions.override {
+          vscode = vscodium;
+          vscodeExtensions = with extensions; [
+            open-vsx.catppuccin.catppuccin-vsc
+            open-vsx.jnoortheen.nix-ide
+          ];
+          userSettings = {
+            "nix.enableLanguageServer" = true;
+            "nix.serverPath" = "nil";
+            "nix.serverSettings" = {
+              # settings for 'nil' LSP
+              "nil" = {
+                "diagnostics" = {
+                  "ignored" = [
+                    "unused_binding"
+                    "unused_with"
+                  ];
+                };
+                "formatting" = {
+                  "command" = [
+                    "alejandra"
+                  ];
+                };
+              };
+            };
+          };
+        };
+      in {
         devShells.default = pkgs.mkShell {
           packages = [
             pkgs.alejandra
@@ -27,6 +59,7 @@
             pkgs.nodePackages.prettier
             config.packages.repl
           ];
+
           name = "dots";
           DIRENV_LOG_FORMAT = "";
           shellHook = ''
@@ -49,6 +82,8 @@
 
     #inputs.nixos-vfio.url = "github:j-brn/nixos-vfio";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
+    #betterfox.url = "github:e-tho/betterfox-nixos";
 
     agenix = {
       url = "github:ryantm/agenix";

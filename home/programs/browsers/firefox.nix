@@ -14,16 +14,35 @@
 in {
   programs.firefox = {
     enable = true;
+    #betterfox = {
+    #  enable = true;
+    #  version = "master";
+    #};
 
     profiles = {
       betterfox =
         extramaker "betterfox"
         // {
+          isDefault = true;
+          betterfox = {
+            enable = false;
+          };
           extensions = with firefoxExtensions; [
             nur.repos.rycee.firefox-addons.ublock-origin
           ];
           # someOption = "value";
         };
+      # test = {
+      #   id = 1;
+      #  betterfox = {
+      #   enable = true;
+      #};
+      #name = "test";
+      #betterfox = {
+      #"FASTFOX".enable = true;
+      #"smoothfox".enable = true;
+      #};
+      #};
     };
   };
 }

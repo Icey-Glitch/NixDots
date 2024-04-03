@@ -11,5 +11,7 @@
     prismlauncher
     # (lutris.override {extraPkgs = p: [p.libnghttp2];})
     winetricks
+    lutris
+    protontricks
   ];
 }
