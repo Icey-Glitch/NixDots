@@ -42,6 +42,6 @@
 
   programs.matugen = {
     enable = false;
-    wallpaper = config.theme.wallpaper;
+    inherit (config.theme) wallpaper;
   };
 }

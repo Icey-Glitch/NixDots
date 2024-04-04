@@ -1,9 +1,13 @@
-{ lib, config, pkgs, nixos-vfio, ... }:
-with lib;
-let
-  cfg = config.custom.virtualisation.vfio;
-in
 {
+  lib,
+  config,
+  pkgs,
+  nixos-vfio,
+  ...
+}:
+with lib; let
+  cfg = config.custom.virtualisation.vfio;
+in {
   imports = [
     nixos-vfio.nixosModules.default
   ];
@@ -11,7 +15,7 @@ in
     enable = mkEnableOption "Enable VFIO";
     vfioDevices = mkOption {
       type = types.listOf types.str;
-      default = [ "10de:1e81" "10de:10f8" "10de:1ad8" "10de:1ad9" "1002:164e" ];
+      default = ["10de:1e81" "10de:10f8" "10de:1ad8" "10de:1ad9" "1002:164e"];
     };
     blacklistNvidia = mkOption {
       type = types.bool;
@@ -19,20 +23,19 @@ in
     };
   };
 
-  config = mkIf cfg.enable
+  config =
+    mkIf cfg.enable
     {
       virtualisation.vfio = {
         enable = true;
         IOMMUType = "intel";
-        blacklistNvidia = cfg.blacklistNvidia;
+        inherit (cfg) blacklistNvidia;
         ignoreMSRs = false;
         devices = cfg.vfioDevices;
       };
 
-
-
       users.users.qemu-libvirtd.group = "qemu-libvirtd";
-      users.groups.qemu-libvirtd = { };
+      users.groups.qemu-libvirtd = {};
 
       # Add virt-amanger, Looking Glass client and Moonlight
       users.users.icey = {
@@ -63,13 +66,14 @@ in
               (pkgs.OVMFFull.override {
                 secureBoot = true;
                 tpmSupport = true;
-              }).fd
+              })
+              .fd
             ];
           };
         };
       };
 
-      # Add three kvmfr devices 
+      # Add three kvmfr devices
       virtualisation.kvmfr = {
         enable = true;
 
@@ -123,6 +127,6 @@ in
           mode = "666";
         };
       };
-      users.users.icey.extraGroups = [ "libvirtd" "kvm" "input" ];
+      users.users.icey.extraGroups = ["libvirtd" "kvm" "input"];
     };
 }

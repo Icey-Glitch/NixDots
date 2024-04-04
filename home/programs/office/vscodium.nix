@@ -11,6 +11,7 @@ in {
     package = pkgs.vscodium;
     extensions = with extensions; [
       open-vsx.catppuccin.catppuccin-vsc
+      open-vsx.jnoortheen.nix-ide
     ];
     userSettings = {
       # Workbench
@@ -29,6 +30,26 @@ in {
       "editor.formatOnSave" = true;
 
       "workbench.colorTheme" = "Catppuccin Macchiato";
+
+      # for nix
+      "nix.enableLanguageServer" = true;
+      "nix.serverPath" = "nixd";
+      "nix.serverSettings" = {
+        # settings for 'nixd' LSP
+        "nixd" = {
+          "diagnostics" = {
+            "ignored" = [
+              "unused_binding"
+              "unused_with"
+            ];
+          };
+          "formatting" = {
+            "command" = [
+              "alejandra"
+            ];
+          };
+        };
+      };
     };
   };
 }

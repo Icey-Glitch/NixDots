@@ -17,47 +17,17 @@
       perSystem = {
         config,
         pkgs,
-        nix-vscode-extensions,
         ...
-      }: let
-        extensions = nix-vscode-extensions.extensions.${pkgs.system};
-        inherit (pkgs) vscode-with-extensions vscodium;
-
-        packages.default = vscode-with-extensions.override {
-          vscode = vscodium;
-          vscodeExtensions = with extensions; [
-            open-vsx.catppuccin.catppuccin-vsc
-            open-vsx.jnoortheen.nix-ide
-          ];
-          userSettings = {
-            "nix.enableLanguageServer" = true;
-            "nix.serverPath" = "nil";
-            "nix.serverSettings" = {
-              # settings for 'nil' LSP
-              "nil" = {
-                "diagnostics" = {
-                  "ignored" = [
-                    "unused_binding"
-                    "unused_with"
-                  ];
-                };
-                "formatting" = {
-                  "command" = [
-                    "alejandra"
-                  ];
-                };
-              };
-            };
-          };
-        };
-      in {
+      }: {
         devShells.default = pkgs.mkShell {
           packages = [
             pkgs.alejandra
             pkgs.git
             pkgs.nil
+            pkgs.nixd
             pkgs.nodePackages.prettier
             config.packages.repl
+            pkgs.statix
           ];
 
           name = "dots";
