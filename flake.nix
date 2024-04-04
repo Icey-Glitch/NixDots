@@ -24,7 +24,6 @@
             pkgs.alejandra
             pkgs.git
             pkgs.nil
-            pkgs.nixd
             pkgs.nodePackages.prettier
             config.packages.repl
             pkgs.statix

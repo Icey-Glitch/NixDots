@@ -33,10 +33,10 @@ in {
 
       # for nix
       "nix.enableLanguageServer" = true;
-      "nix.serverPath" = "nixd";
+      "nix.serverPath" = "nil";
       "nix.serverSettings" = {
         # settings for 'nixd' LSP
-        "nixd" = {
+        "nil" = {
           "diagnostics" = {
             "ignored" = [
               "unused_binding"
