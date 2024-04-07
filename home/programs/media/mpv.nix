@@ -21,9 +21,9 @@ in {
       WHEEL_UP = "seek 10";
       WHEEL_DOWN = "seek -10";
       "Alt+0" = "set window-scale 0.5";
-      "Ctrl+F" = "script-binding quality_menu/video_formats_toggle  Stream Quality > Video";
-      "Alt+f" = "script-binding quality_menu/audio_formats_toggle  Stream Quality > Audio";
-      "Ctrl+R" = "script-binding reload/reload #@press";
+      "Ctrl+F" = "script-binding quality_menu/video_formats_toggle";
+      "Alt+f" = "script-binding quality_menu/audio_formats_toggle";
+      "Ctrl+R" = "script-binding reload/reload";
       "Ctrl+Shift+7" = "no-osd change-list glsl-shaders set \"${mpvShaders.FSR}\"; show-text \"FSR: ON\"";
       "Ctrl+Shift+8" = "no-osd change-list glsl-shaders set \"${mpvShaders.SSimDownscaler}\"; show-text \"SSimDown: ON\"";
       "Ctrl+Shift+\\" = "no-osd change-list glsl-shaders clr \"\"; show-text \"GLSL shaders cleared\"";
@@ -71,9 +71,10 @@ in {
       # Use "gpu" for a more stable output driver instead
       # Keep in mind that some options won't work with "gpu"
       # See: https://github.com/mpv-player/mpv/wiki/GPU-Next-vs-GPU
-      vo = "gpu";
+      vo = "gpu-next";
 
       # // GPU API
+      gpu-api = "vulkan";
       hwdec = "auto";
 
       dither-depth = "auto";
@@ -101,13 +102,7 @@ in {
       cscale = "lanczos";
 
       # Cache Settings
-      cache-default = 8192;
-      cache-file = "auto";
-      cache-file-size = 2048;
-      cache-seek-min = 10;
-      cache-backbuffer = 100;
-      cache-pause = true;
-      cache-segments = 8;
+      demuxer-max-back-bytes = "100MiB";
       demuxer-max-bytes = 104857600;
     };
     scripts = [
@@ -116,6 +111,7 @@ in {
       pkgs.mpvScripts.thumbfast
       pkgs.mpvScripts.sponsorblock
       pkgs.mpvScripts.quality-menu
+      pkgs.mpvScripts.webtorrent-mpv-hook
     ];
   };
 }

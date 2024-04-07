@@ -8,7 +8,6 @@
 in {
   home.packages = [
     pkgs.gh
-    pkgs.gnupg
   ];
 
   # enable scrolling in git diff
@@ -51,15 +50,19 @@ in {
     ignores = ["*~" "*.swp" "*result*" ".direnv" "node_modules"];
 
     signing = {
-      key = "${config.home.homeDirectory}/.ssh/id_ed25519";
+      key = "A984A90CB698A0B5";
       signByDefault = true;
     };
 
     extraConfig = {
       gpg = {
-        format = "ssh";
-        ssh.allowedSignersFile = config.home.homeDirectory + "/" + config.xdg.configFile."git/allowed_signers".target;
+        #format = "ssh";
+        #ssh.allowedSignersFile = config.home.homeDirectory + "/" + config.xdg.configFile."git/allowed_signers".target;
       };
+
+      credential.helper = "${
+        pkgs.git.override {withLibsecret = true;}
+      }/bin/git-credential-libsecret";
 
       pull.rebase = true;
     };

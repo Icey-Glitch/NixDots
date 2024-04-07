@@ -5,6 +5,7 @@ let
 
     ./hardware/opengl.nix
     ./hardware/fwupd.nix
+    ./hardware/yubikey-gpg.nix
 
     ./network/avahi.nix
     ./network/default.nix
