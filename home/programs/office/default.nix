@@ -6,6 +6,7 @@
 
   home.packages = with pkgs; [
     keepassxc
+    streamlink-twitch-gui-bin
     betterbird
     libreoffice
     obsidian
