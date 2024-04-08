@@ -15,6 +15,10 @@
     # audio
     amberol
 
+    # Twitch
+    streamlink-twitch-gui-bin
+    chatterino2
+
     # images
     loupe
 
