@@ -28,7 +28,6 @@
   environment.variables.LIBVA_DRIVER_NAME = "iHD";
 
   services = {
-    fwupd.enable = true;
     # for SSD/NVME
     fstrim.enable = true;
   };

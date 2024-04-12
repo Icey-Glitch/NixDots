@@ -42,7 +42,6 @@
   services = {
     pcscd.enable = true;
 
-    fwupd.enable = true;
     # for SSD/NVME
     fstrim.enable = true;
   };
