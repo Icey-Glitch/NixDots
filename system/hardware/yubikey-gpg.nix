@@ -6,8 +6,6 @@
 }: {
   programs.ssh.startAgent = false;
 
-  services.pcscd.enable = true;
-
   environment.systemPackages = with pkgs; [
     gnupg
     yubikey-personalization
@@ -18,9 +16,12 @@
     export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
   '';
 
-  services.udev.packages = with pkgs; [
-    yubikey-personalization
-  ];
+  services = {
+    udev.packages = with pkgs; [
+      yubikey-personalization
+    ];
+    pcscd.enable = true;
+  };
 
   programs.gnupg.agent = {
     enable = true;

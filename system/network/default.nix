@@ -1,6 +1,10 @@
 {lib, ...}:
 # networking configuration
 {
+  imports = [
+    ./optimize.nix
+  ];
+
   networking.networkmanager = {
     enable = true;
     dns = "systemd-resolved";
