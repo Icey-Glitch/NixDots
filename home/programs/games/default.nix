@@ -5,6 +5,7 @@
 }:
 # games
 {
+  programs.mangohud.enable = true;
   home.packages = with pkgs; [
     inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin
     gamescope
