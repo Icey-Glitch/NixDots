@@ -1,8 +1,17 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    inputs.nix-gaming.nixosModules.platformOptimizations
+  ];
   programs.steam = {
     enable = true;
+    platformOptimizations.enable = true;
 
     extraCompatPackages = [
+      inputs.nix-gaming.packages.${pkgs.system}.northstar-proton
       pkgs.proton-ge-bin
     ];
 
@@ -10,6 +19,8 @@
     package = pkgs.steam.override {
       extraPkgs = pkgs:
         with pkgs; [
+          gamescope
+          mangohud
           keyutils
           libkrb5
           libpng
