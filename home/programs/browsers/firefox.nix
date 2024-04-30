@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   firefoxExtensions = pkgs;
   Firefox-custom = pkgs.wrapFirefox (pkgs.firefox-unwrapped_nightly) {};
 in {
@@ -9,6 +13,44 @@ in {
     #  enable = true;
     #  version = "master";
     #};
+    policies = let
+      Lists = [
+        "https://big.oisd.nl/"
+        "https://github.com/DandelionSprout/adfilt/raw/master/LegitimateURLShortener.txt"
+      ];
+    in {
+      "3rdparty".Extensions = {
+        # https://github.com/gorhill/uBlock/blob/master/platform/common/managed_storage.json
+        "uBlock0@raymondhill.net".adminSettings = {
+          userSettings = {
+            uiTheme = "dark";
+            uiAccentCustom = true;
+            cloudStorageEnabled = lib.mkForce false; # Security liability?
+            importedLists = Lists;
+            externalLists = lib.concatStringsSep "\n" Lists;
+          };
+          selectedFilterLists =
+            Lists
+            ++ [
+              "CZE-0"
+              "adguard-generic"
+              "adguard-annoyance"
+              "adguard-social"
+              "adguard-spyware-url"
+              "easylist"
+              "easyprivacy"
+              "plowe-0"
+              "ublock-abuse"
+              "ublock-badware"
+              "ublock-filters"
+              "ublock-privacy"
+              "ublock-quick-fixes"
+              "ublock-unbreak"
+              "urlhaus-1"
+            ];
+        };
+      };
+    };
 
     profiles = {
       betterfox =
@@ -16,8 +58,17 @@ in {
           isDefault = true;
           extensions = with firefoxExtensions; [
             nur.repos.rycee.firefox-addons.ublock-origin
+            nur.repos.rycee.firefox-addons.sponsorblock
+            nur.repos.rycee.firefox-addons.clearurls
           ];
           # someOption = "value";
+          settings = {
+            "media.ffmpeg.vaapi.enabled" = true;
+            "media.ffvpx.enabled" = false;
+            "media.av1.enabled" = false;
+            "gfx.webrender.all" = true;
+            "media.hardware-video-decoding.force-enabled" = true;
+          };
         }
         // (
           let
