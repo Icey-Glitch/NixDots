@@ -1,15 +1,4 @@
-{
-  config,
-  inputs,
-  pkgs,
-  self,
-  lib,
-  ...
-}: let
-  extramaker = _profileName: {
-    extraConfig = lib.readFile (toString "${self}/home/programs/browsers/${_profileName}.js");
-  };
-
+{pkgs, ...}: let
   firefoxExtensions = pkgs;
 in {
   programs.firefox = {
@@ -30,7 +19,6 @@ in {
         }
         // (
           let
-            inherit (inputs.ludovico-nixpkgs.packages.${pkgs.system}) firefox-gnome-theme;
             betterfox = pkgs.fetchFromGitHub {
               owner = "yokoffing";
               repo = "Betterfox";

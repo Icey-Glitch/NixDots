@@ -35,7 +35,7 @@
 
   nixpkgs.overlays = [
     inputs.nur.overlay
-    (final: prev: {
+    (_final: prev: {
       lib = prev.lib // {colors = import "${self}/lib/colors" lib;};
     })
   ];

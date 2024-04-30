@@ -1,10 +1,6 @@
 {
-  config,
   pkgs,
-  self,
   lib,
-  inputs,
-  default,
   ...
 }: {
   imports = [./hardware-configuration.nix];

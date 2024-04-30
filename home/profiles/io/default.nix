@@ -36,9 +36,7 @@
     ../../programs/school.nix
   ];
 
-  wayland.windowManager.hyprland.settings = let
-    accelpoints = "0.21 0.000 0.040 0.080 0.140 0.200 0.261 0.326 0.418 0.509 0.601 0.692 0.784 0.875 0.966 1.058 1.149 1.241 1.332 1.424 1.613";
-  in {
+  wayland.windowManager.hyprland.settings = {
     monitor = [
       "DP-1, preferred, -1920x0, auto"
       "DP-2, preferred, -1920x0, auto"

@@ -1,10 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  inputs,
-  ...
-}: {
+_: {
   programs.waybar = {
     enable = true;
     # Use the heredoc syntax for better readability
