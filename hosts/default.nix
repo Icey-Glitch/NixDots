@@ -73,7 +73,7 @@
               extraSpecialArgs = specialArgs;
             };
           }
-
+          inputs.chaotic.nixosModules.default
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
         ];
     };

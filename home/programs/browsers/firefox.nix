@@ -1,8 +1,10 @@
 {pkgs, ...}: let
   firefoxExtensions = pkgs;
+  Firefox-custom = pkgs.wrapFirefox (pkgs.firefox-unwrapped_nightly) {};
 in {
   programs.firefox = {
     enable = true;
+    package = Firefox-custom;
     #betterfox = {
     #  enable = true;
     #  version = "master";
