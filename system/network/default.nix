@@ -2,7 +2,7 @@
 # networking configuration
 {
   imports = [
-    #./optimize.nix
+    ./optimize.nix
   ];
 
   networking.networkmanager = {
