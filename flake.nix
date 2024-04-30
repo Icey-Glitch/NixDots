@@ -79,7 +79,7 @@
       inputs.flake-parts.follows = "flake-parts";
     };
 
-    helix.url = "github:helix-editor/helix";
+    helix.url = "github:SoraTenshi/helix/new-daily-driver";
 
     hm = {
       url = "github:nix-community/home-manager";
@@ -105,11 +105,6 @@
     hyprlock.url = "github:hyprwm/hyprlock";
 
     hyprpaper.url = "github:hyprwm/hyprpaper";
-
-    kmonad = {
-      url = "github:kmonad/kmonad?dir=nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     lanzaboote.url = "github:nix-community/lanzaboote";
 
@@ -137,11 +132,6 @@
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "fu";
-    };
-
-    spicetify-nix = {
-      url = "github:the-argus/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     yazi.url = "github:sxyazi/yazi";
