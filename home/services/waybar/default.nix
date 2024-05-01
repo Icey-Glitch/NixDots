@@ -82,8 +82,17 @@ _: {
         modules-right = ["temperature" "cpu" "memory" "network" "pulseaudio" "clock" "battery" "tray"];
 
         # Define module settings as separate attributes for clarity
-        "hyprland/submap" = {
-          format = "{}";
+        "hyprland/workspaces" = {
+          format = "{name}: {icon}";
+          format-icons = {
+            "1" = "";
+            "2" = "";
+            "3" = "";
+            "4" = "";
+            "5" = "";
+            "active" = "";
+            "default" = "";
+          };
         };
 
         "custom/nix" = {

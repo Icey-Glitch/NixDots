@@ -1,4 +1,4 @@
-{...}:
+_:
 # run certain commands depending whether the system is on AC or on battery
 {
   services.throttled = {

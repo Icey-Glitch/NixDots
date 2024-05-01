@@ -4,7 +4,7 @@
   ...
 }: let
   firefoxExtensions = pkgs;
-  Firefox-custom = pkgs.wrapFirefox (pkgs.firefox-unwrapped_nightly) {};
+  Firefox-custom = pkgs.wrapFirefox pkgs.firefox-unwrapped_nightly {};
 in {
   programs.firefox = {
     enable = true;
