@@ -69,8 +69,10 @@
 
     nur.url = "github:nix-community/NUR";
 
-    chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
-
+    chaotic = {
+      url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
+      inputs.home-manager.follows = "hm";
+    };
     fu.url = "github:numtide/flake-utils";
 
     gross = {
