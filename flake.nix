@@ -50,7 +50,16 @@
     };
 
     #inputs.nixos-vfio.url = "github:j-brn/nixos-vfio";
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.flake-utils.follows = "fu";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    arrpc = {
+      url = "github:notashelf/arrpc-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     #betterfox.url = "github:e-tho/betterfox-nixos";
 
