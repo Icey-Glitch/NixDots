@@ -15,6 +15,9 @@
     amberol
     spotify
 
+    # Streamio
+    stremio
+
     # Twitch
     streamlink-twitch-gui-bin
     chatterino2

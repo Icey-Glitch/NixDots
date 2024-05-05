@@ -9,6 +9,7 @@
   home.packages = with pkgs; [
     keepassxc
     betterbird
+    qbittorrent
     libreoffice
     obsidian
     xournalpp
