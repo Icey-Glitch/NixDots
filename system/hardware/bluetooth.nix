@@ -5,6 +5,7 @@
     settings = {
       # make Xbox Series X controller work
       General = {
+        Enable = "Source,Sink,Media,Socket";
         Class = "0x000100";
         ControllerMode = "bredr";
         FastConnectable = true;
