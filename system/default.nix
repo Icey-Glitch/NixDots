@@ -9,6 +9,7 @@ let
 
     ./network/avahi.nix
     ./network/default.nix
+    ./network/tailscale.nix
 
     ./programs
 

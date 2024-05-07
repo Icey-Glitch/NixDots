@@ -60,9 +60,9 @@ in {
         #ssh.allowedSignersFile = config.home.homeDirectory + "/" + config.xdg.configFile."git/allowed_signers".target;
       };
 
-      credential.helper = "${
-        pkgs.git.override {withLibsecret = true;}
-      }/bin/git-credential-libsecret";
+      #credential.helper = "${
+      #  pkgs.git.override {withLibsecret = true;}
+      #}/bin/git-credential-libsecret";
 
       pull.rebase = true;
     };

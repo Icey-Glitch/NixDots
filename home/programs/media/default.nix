@@ -19,7 +19,7 @@
     stremio
 
     # Twitch
-    streamlink-twitch-gui-bin
+    #streamlink-twitch-gui-bin
     chatterino2
 
     # images
