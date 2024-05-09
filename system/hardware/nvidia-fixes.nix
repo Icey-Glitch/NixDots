@@ -12,6 +12,7 @@
     ## hw decoding
     EGL_PLATFORM = "wayland";
     NVD_BACKEND = "direct";
+    MOZ_DISABLE_RDD_SANDBOX = "1";
 
     # refresh rate
     __GL_GSYNC_ALLOWED = "1";
@@ -24,7 +25,7 @@
       intel-media-driver # LIBVA_DRIVER_NAME=iHD
       intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
       nvidia-vaapi-driver
-      libvdpau-va-gl
+      #libvdpau-va-gl
     ];
   };
 
