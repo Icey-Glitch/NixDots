@@ -1,17 +1,36 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "nvidia";
+    XDG_SESSION_TYPE = "wayland";
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    WLR_NO_HARDWARE_CURSORS = "1";
+
+    ## hw decoding
     EGL_PLATFORM = "wayland";
+    NVD_BACKEND = "direct";
+
+    # refresh rate
     __GL_GSYNC_ALLOWED = "1";
     #__GL_VRR_ALLOWED = "0";
   };
 
-  boot.extraModprobeConfig = ''
-    options nvidia NVreg_RegistryDwords="PowerMizerEnable=0x1; PerfLevelSrc=0x2222; PowerMizerLevel=0x3; PowerMizerDefault=0x3; PowerMizerDefaultAC=0x3"
-  '';
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver # LIBVA_DRIVER_NAME=iHD
+      intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+      nvidia-vaapi-driver
+      libvdpau-va-gl
+    ];
+  };
+
+  #  boot.extraModprobeConfig = ''
+  #    options nvidia NVreg_RegistryDwords="PowerMizerEnable=0x1; PerfLevelSrc=0x2222; PowerMizerLevel=0x3; PowerMizerDefault=0x3; PowerMizerDefaultAC=0x3"
+  #  '';
 
   nixpkgs.overlays = [
     (_: final: {
