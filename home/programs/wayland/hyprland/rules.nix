@@ -6,23 +6,31 @@
         elements = lib.concatStringsSep "|" list;
       in "^(${elements})$";
 
-      ignorealpha = [
-        # ags
-        "calendar"
+      lowopacity = [
+        "bar"
         "notifications"
         "osd"
+        "logout_dialog"
+      ];
+
+      highopacity = [
+        # ags
+        "calendar"
         "system-menu"
 
         "anyrun"
         "logout_dialog"
       ];
 
-      layers = ignorealpha ++ ["bar"];
+      blurred = lib.concatLists [
+        lowopacity
+        highopacity
+      ];
     in [
-      "blur, ${toRegex layers}"
+      "blur, ${toRegex blurred}"
       "xray 1, ${toRegex ["bar"]}"
-      "ignorealpha 0.2, ${toRegex ["bar" "logout_dialog"]}"
-      "ignorealpha 0.5, ${toRegex (ignorealpha ++ ["music"])}"
+      "ignorealpha 0.5, ${toRegex (highopacity ++ ["music"])}"
+      "ignorealpha 0.2, ${toRegex lowopacity}"
     ];
 
     # window rules
@@ -57,6 +65,9 @@
       "rounding 0, xwayland:1"
       "center, class:^(.*jetbrains.*)$, title:^(Confirm Exit|Open Project|win424|win201|splash)$"
       "size 640 400, class:^(.*jetbrains.*)$, title:^(splash)$"
+
+      # don't render hyprbars on tiling windows
+      "plugin:hyprbars:nobar, floating:0"
     ];
   };
 }

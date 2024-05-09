@@ -1,5 +1,5 @@
 {config, ...}: let
-  variant = config.theme.name;
+  variant = "dark";
   c = config.programs.matugen.theme.colors.colors_android.${variant};
   pointer = config.home.pointerCursor;
 in {
@@ -7,6 +7,7 @@ in {
     "$mod" = "SUPER";
     env = [
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+      # "WLR_DRM_NO_ATOMIC,1"
     ];
 
     exec-once = [
@@ -34,10 +35,16 @@ in {
         enabled = true;
         brightness = 1.0;
         contrast = 1.0;
-        noise = 0.02;
+        noise = 0.01;
 
-        passes = 3;
-        size = 10;
+        vibrancy = 0.2;
+        vibrancy_darkness = 0.5;
+
+        passes = 4;
+        size = 7;
+
+        popups = true;
+        popups_ignorealpha = 0.2;
       };
 
       drop_shadow = true;
@@ -108,15 +115,36 @@ in {
     xwayland.force_zero_scaling = true;
 
     debug.disable_logs = false;
-  };
 
-  wayland.windowManager.hyprland.extraConfig = ''
-    plugin {
-      csgo-vulkan-fix {
-        res_w = 1280
-        res_h = 800
-        class = cs2
-      }
-    }
-  '';
+    plugin = {
+      csgo-vulkan-fix = {
+        res_w = 1280;
+        res_h = 800;
+        class = "cs2";
+      };
+
+      hyprbars = {
+        bar_height = 20;
+        bar_precedence_over_border = true;
+
+        # order is right-to-left
+        hyprbars-button = [
+          # close
+          "rgb(ff0000), 15, , hyprctl dispatch killactive"
+          # maximize
+          "rgb(ffff00), 15, , hyprctl dispatch fullscreen 1"
+        ];
+      };
+
+      hyprexpo = {
+        columns = 3;
+        gap_size = 4;
+        bg_col = "rgb(000000)";
+
+        enable_gesture = true;
+        gesture_distance = 300;
+        gesture_positive = false;
+      };
+    };
+  };
 }
