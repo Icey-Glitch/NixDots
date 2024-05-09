@@ -78,21 +78,12 @@ _: {
 
     settings = {
       mainBar = {
-        modules-left = ["hyprland/workspaces" "hyprland/submap"];
+        modules-left = ["hyprland/workspaces"];
         modules-right = ["temperature" "cpu" "memory" "network" "pulseaudio" "clock" "battery" "tray"];
 
         # Define module settings as separate attributes for clarity
         "hyprland/workspaces" = {
-          format = "{name}: {icon}";
-          format-icons = {
-            "1" = "";
-            "2" = "";
-            "3" = "";
-            "4" = "";
-            "5" = "";
-            "active" = "";
-            "default" = "";
-          };
+          format = "{name}";
         };
 
         "custom/nix" = {
@@ -103,7 +94,7 @@ _: {
         "temperature" = {
           critical-threshold = 80;
           format = "<span color='#e88939'>{icon}</span> {temperatureC}°C";
-          format-icons = ["" "" ""];
+          format-icons = ["" "" ""];
         };
 
         "cpu" = {
@@ -159,33 +150,6 @@ _: {
 
         "tray" = {
           spacing = 10;
-        };
-
-        "mpd" = {
-          format = "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ";
-          format-disconnected = "Disconnected ";
-          format-stopped = "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ";
-          unknown-tag = "N/A";
-          interval = 2;
-          consume-icons = {
-            on = " ";
-          };
-          random-icons = {
-            off = "<span color=\"#f53c3c\"></span> ";
-            on = " ";
-          };
-          repeat-icons = {
-            on = " ";
-          };
-          single-icons = {
-            on = "1 ";
-          };
-          state-icons = {
-            paused = "";
-            playing = "";
-          };
-          tooltip-format = "MPD (connected)";
-          tooltip-format-disconnected = "MPD (disconnected)";
         };
       };
     };
