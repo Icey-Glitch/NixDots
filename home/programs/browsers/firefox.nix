@@ -1,11 +1,16 @@
 {
   pkgs,
   lib,
+  config,
+  self,
   ...
 }: let
   firefoxExtensions = pkgs;
   Firefox-custom = pkgs.wrapFirefox pkgs.firefox-unwrapped_nightly {};
 in {
+  imports = [
+    self.nixosModules.cfirefox
+  ];
   programs.firefox = {
     enable = true;
     package = Firefox-custom;
@@ -62,17 +67,10 @@ in {
             nur.repos.rycee.firefox-addons.clearurls
           ];
           # someOption = "value";
-          settings = {
-            #            "media.ffmpeg.vaapi.enabled" = true;
-            #            "media.ffvpx.enabled" = false;
-            #            "media.rdd-ffmpeg.enabled" = false;
-            #            "media.av1.enabled" = false;
-            #            "gfx.webrender.all" = true;
-            #            "layers.gpu-process.enabled" = true;
-            #            "widget.wayland.opaque-region.enabled" = false;
-            #            "gfx.x11-egl.force-enabled" = true;
-            #            "widget.dmabuf.force-enabled" = true;
-          };
+          settings =
+            config.cfirefox.settings
+            // {
+            };
         }
         // (
           let

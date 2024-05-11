@@ -1,8 +1,10 @@
 {
   config,
   pkgs,
+  self,
   ...
 }: {
+  imports = [self.nixosModules.cfirefox];
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "nvidia";
     XDG_SESSION_TYPE = "wayland";
@@ -43,6 +45,18 @@
       });
     })
   ];
+
+  cfirefox.settings = {
+    "media.ffmpeg.vaapi.enabled" = true;
+    "media.ffvpx.enabled" = false;
+    "media.rdd-ffmpeg.enabled" = false;
+    "media.av1.enabled" = false;
+    "gfx.webrender.all" = true;
+    "layers.gpu-process.enabled" = true;
+    "widget.wayland.opaque-region.enabled" = false;
+    "gfx.x11-egl.force-enabled" = true;
+    "widget.dmabuf.force-enabled" = true;
+  };
 
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
