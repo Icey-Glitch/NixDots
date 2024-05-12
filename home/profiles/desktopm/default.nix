@@ -25,8 +25,8 @@
     ../../terminal/emulators/wezterm.nix
   ];
   wayland.windowManager.hyprland.settings = {
-    cursor= {
-    no_hardware_cursors = true;
+    cursor = {
+      no_hardware_cursors = true;
     };
     monitor = [
       "DP-1, preferred, 1920x0, 1"

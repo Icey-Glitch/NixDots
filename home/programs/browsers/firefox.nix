@@ -5,7 +5,6 @@
   self,
   ...
 }: let
-  firefoxExtensions = pkgs;
   Firefox-custom = pkgs.wrapFirefox pkgs.firefox-unwrapped_nightly {};
 in {
   imports = [
@@ -61,10 +60,14 @@ in {
       betterfox =
         {
           isDefault = true;
-          extensions = with firefoxExtensions; [
-            nur.repos.rycee.firefox-addons.ublock-origin
-            nur.repos.rycee.firefox-addons.sponsorblock
-            nur.repos.rycee.firefox-addons.clearurls
+          extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+            ublock-origin
+            sponsorblock
+            clearurls
+            old-reddit-redirect
+            reddit-enhancement-suite
+            darkreader
+            fastforwardteam
           ];
           # someOption = "value";
           settings =

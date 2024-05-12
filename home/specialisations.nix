@@ -1,9 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}: {
+{config, ...}: {
   # light/dark specialisations
   # specialisation = let
   #   colorschemePath = "/org/gnome/desktop/interface/color-scheme";
