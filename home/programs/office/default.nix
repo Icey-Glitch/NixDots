@@ -7,6 +7,7 @@
   ];
 
   home.packages = with pkgs; [
+    maestral
     keepassxc
     hunspell
     hunspellDicts.en_US-large
