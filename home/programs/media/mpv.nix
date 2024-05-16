@@ -24,6 +24,11 @@ in {
     bindings = {
       WHEEL_UP = "seek 10";
       WHEEL_DOWN = "seek -10";
+      # increase subtitle font size
+      "ALT+k" = "add sub-scale +0.1";
+
+      # decrease subtitle font size
+      "ALT+j" = "add sub-scale -0.1";
       "Alt+0" = "set window-scale 0.5";
       "Ctrl+F" = "script-binding quality_menu/video_formats_toggle";
       "Alt+f" = "script-binding quality_menu/audio_formats_toggle";
