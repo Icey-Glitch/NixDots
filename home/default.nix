@@ -11,7 +11,6 @@
     #inputs.betterfox.hmModules.default
     inputs.matugen.nixosModules.default
     inputs.nix-index-db.hmModules.nix-index
-    inputs.hyprlock.homeManagerModules.default
     self.nixosModules.theme
   ];
 
@@ -33,6 +32,7 @@
   programs.home-manager.enable = true;
 
   nixpkgs.overlays = [
+    inputs.hyprlock.overlays
     inputs.nur.overlay
     (_final: prev: {
       lib = prev.lib // {colors = import "${self}/lib/colors" lib;};
