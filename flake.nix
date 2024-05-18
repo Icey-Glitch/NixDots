@@ -169,6 +169,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-compat.follows = "flake-compat";
     };
+    nixos-vfio.url = "github:glanch/nixos-vfio/additional_device_xml";
 
     yazi.url = "github:sxyazi/yazi";
   };

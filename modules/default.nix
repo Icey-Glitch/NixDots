@@ -2,6 +2,6 @@
   flake.nixosModules = {
     theme = import ./theme;
     cfirefox = import ./firefox;
+    virt = import ./virtualisation;
   };
-  # imports = [./virtualisation/vfio.nix ./virtualisation/shmem.nix];
 }

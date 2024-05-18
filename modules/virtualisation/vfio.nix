@@ -2,16 +2,16 @@
   lib,
   config,
   pkgs,
-  nixos-vfio,
+  inputs,
   ...
 }:
 with lib; let
-  cfg = config.custom.virtualisation.vfio;
+  cfg = config.virt.vfio;
 in {
   imports = [
-    nixos-vfio.nixosModules.default
+    inputs.nixos-vfio.nixosModules.default
   ];
-  options.custom.virtualisation.vfio = {
+  options.virt.vfio = {
     enable = mkEnableOption "Enable VFIO";
     vfioDevices = mkOption {
       type = types.listOf types.str;
@@ -36,6 +36,10 @@ in {
 
       users.users.qemu-libvirtd.group = "qemu-libvirtd";
       users.groups.qemu-libvirtd = {};
+
+      boot.kernelModules = ["vfio_pci" "vfio_iommu_type1" "vfio"];
+
+      boot.initrd.kernelModules = ["vfio_pci" "vfio_iommu_type1" "vfio"];
 
       # Add virt-amanger, Looking Glass client and Moonlight
       users.users.icey = {
