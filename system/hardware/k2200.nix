@@ -6,9 +6,9 @@
 }: {
   imports = [self.nixosModules.virt];
   virt.vfio = {
-    enable = true;
+    enable = false;
     blacklistNvidia = false;
-    vfioDevices = [];
+    vfioDevices = ["10de:13ba" "10de:1097" "10de:0fbc"];
   };
 
   users.users.qemu-libvirtd.group = "qemu-libvirtd";

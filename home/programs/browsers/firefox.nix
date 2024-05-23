@@ -68,6 +68,7 @@ in {
             reddit-enhancement-suite
             darkreader
             fastforwardteam
+            violentmonkey
           ];
           # someOption = "value";
           settings =
