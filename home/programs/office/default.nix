@@ -9,6 +9,7 @@
   home.packages = with pkgs; [
     maestral
     keepassxc
+    iaito
     hunspell
     hunspellDicts.en_US-large
     betterbird
