@@ -12,6 +12,7 @@
     pulsemixer
 
     # audio
+    tauon
     amberol
     spotify
 
