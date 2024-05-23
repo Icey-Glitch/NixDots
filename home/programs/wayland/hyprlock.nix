@@ -9,32 +9,28 @@
   font_family = "Inter";
 in {
   programs.hyprlock = {
-    settings = {
-      enable = true;
+    enable = true;
 
+    settings = {
       general = {
         disable_loading_bar = true;
         hide_cursor = false;
         no_fade_in = true;
       };
 
-      backgrounds = [
+      background = [
         {
           monitor = "";
           path = config.theme.wallpaper;
         }
       ];
 
-      input-fields = [
+      input-field = [
         {
-          monitor = "eDP-1";
+          monitor = "";
+          size = "300, 50";
 
-          size = {
-            width = 300;
-            height = 50;
-          };
-
-          outline_thickness = 2;
+          outline_thickness = 1;
 
           outer_color = "rgb(${c.primary})";
           inner_color = "rgb(${c.on_primary_container})";
@@ -43,12 +39,12 @@ in {
           fade_on_empty = false;
           placeholder_text = ''<span font_family="${font_family}" foreground="##${c.primary_container}">Password...</span>'';
 
-          dots_spacing = 0.3;
+          dots_spacing = 0.2;
           dots_center = true;
         }
       ];
 
-      labels = [
+      label = [
         {
           monitor = "";
           text = "$TIME";
@@ -56,10 +52,7 @@ in {
           font_size = 50;
           color = "rgb(${c.primary})";
 
-          position = {
-            x = 0;
-            y = 80;
-          };
+          position = "0, 80";
 
           valign = "center";
           halign = "center";
