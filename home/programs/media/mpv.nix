@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   mpvShaders = {
     FSR = pkgs.fetchurl {
       url = "https://gist.githubusercontent.com/agyild/82219c545228d70c5604f865ce0b0ce5/raw/4ef91348ab4ade0ef74c6c487df27cf31bdc69ae/FSR.glsl";
@@ -12,12 +16,19 @@
       url = "https://raw.githubusercontent.com/AN3223/dotfiles/61d10e7bb50b5813beed72d206d49c6840bd3486/.config/mpv/shaders/hdeband.glsl";
       hash = "sha256-vMoGC1v0bK99rHt0OSvCgXucw9T8X8reSa814rBDKz0=";
     };
+    hdrToys = pkgs.fetchzip {
+      url = "https://github.com/natural-harmonia-gropius/hdr-toys/archive/refs/heads/master.zip";
+      hash = "sha256-cXa4hXJh083vvkgZG1qkHShxfm1ErQ3xahHrhQCfRCc=";
+    };
     # Add more shaders if needed
   };
 in {
   programs.yt-dlp = {
     enable = true;
   };
+
+  xdg.configFile."mpv/shaders/hdr-toys".source =
+    mpvShaders.hdrToys + "/shaders/hdr-toys";
   programs.mpv = {
     enable = true;
     defaultProfiles = ["gpu-hq"];
@@ -88,15 +99,43 @@ in {
       gpu-api = "vulkan";
       hwdec = "auto";
 
+      ###############
+      # Color Space #
+      ###############
+
+      #target-prim = "auto";
+      # target-prim=bt.709 # target Rec.709 for SDR TVs
+      # target-prim=bt.2020 # target Rec.2020 (wide color gamut) for HDR TVs
+      #target-trc = "auto";
+      #vf = "format=colorlevels=full:colormatrix=auto";
+      #video-output-levels = "full";
+
+      ##########
+      # Dither #
+      ##########
+
       dither-depth = "auto";
+      temporal-dither = "yes";
+      dither = "fruit";
+
+      ##########
+      # Deband #
+      ##########
+
       deband = false;
       deband-iterations = 4;
       deband-threshold = 48;
       deband-range = 16;
       deband-grain = 24;
-      scale-antiring = 0.7;
+
+      scale-antiring = 0.6;
       dscale-antiring = 0.7;
       cscale-antiring = 0.7;
+
+      ##########
+      # Interp #
+      ##########
+
       interpolation = false;
       tscale = "oversample";
       interpolation-preserve = true;
@@ -109,12 +148,15 @@ in {
       sigmoid-upscaling = true;
       correct-downscaling = true;
       linear-downscaling = false;
+
       dscale = "lanczos";
       cscale = "lanczos";
 
       # Cache Settings
       demuxer-max-back-bytes = "100MiB";
       demuxer-max-bytes = 104857600;
+
+      include = "${mpvShaders.hdrToys}/hdr-toys.conf";
     };
     scripts = [
       pkgs.mpvScripts.mpris
