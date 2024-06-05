@@ -54,7 +54,7 @@ _:
       Disable_BDPROCHOT: False
 
       # All voltage values are expressed in mV and *MUST* be negative (i.e. undervolt)!
-      [UNDERVOLT.BATTERY]
+      [UNDERVOLT]
       # CPU core voltage offset (mV)
       CORE: -105
       # Integrated GPU voltage offset (mV)
@@ -66,18 +66,7 @@ _:
       # Analog I/O voltage offset (mV)
       ANALOGIO: 0
 
-      # All voltage values are expressed in mV and *MUST* be negative (i.e. undervolt)!
-      [UNDERVOLT.AC]
-      # CPU core voltage offset (mV)
-      CORE: 0
-      # Integrated GPU voltage offset (mV)
-      GPU: 0
-      # CPU cache voltage offset (mV)
-      CACHE: 0
-      # System Agent voltage offset (mV)
-      UNCORE: 0
-      # Analog I/O voltage offset (mV)
-      ANALOGIO: 0
+
       # [ICCMAX.AC]
       # # CPU core max current (A)
       # CORE:
