@@ -9,6 +9,7 @@
     libnotify
 
     # utils
+    aria
     du-dust
     duf
     fd
