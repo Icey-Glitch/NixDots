@@ -20,6 +20,7 @@ in {
     policies = let
       Lists = [
         "https://big.oisd.nl/"
+        "http://sbc.io/hosts/hosts"
         "https://github.com/DandelionSprout/adfilt/raw/master/LegitimateURLShortener.txt"
       ];
     in {
