@@ -4,7 +4,6 @@
     ./home-manager.nix
     ./obs-comp.nix
     # ./qt.nix
-    ./school.nix
     ./xdg.nix
   ];
 
