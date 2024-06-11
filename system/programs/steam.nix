@@ -8,6 +8,7 @@
   ];
   programs.steam = {
     enable = true;
+    gamescopeSession.enable = true;
     platformOptimizations.enable = true;
 
     extraCompatPackages = [
