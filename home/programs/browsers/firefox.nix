@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   self,
   ...
 }: let
@@ -9,9 +10,14 @@
 in {
   imports = [
     self.nixosModules.cfirefox
+    inputs.arkenfox.hmModules.default
   ];
   programs.firefox = {
     enable = true;
+    arkenfox = {
+      enable = true;
+      version = "126.1";
+    };
     package = Firefox-custom;
     #betterfox = {
     #  enable = true;

@@ -63,6 +63,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    arkenfox = {
+      url = "github:dwarfmaster/arkenfox-nixos";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.flake-compat.follows = "flake-compat";
+    };
+
     chaotic = {
       url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
       inputs.home-manager.follows = "hm";
