@@ -35,17 +35,6 @@
   #    options nvidia NVreg_RegistryDwords="PowerMizerEnable=0x1; PerfLevelSrc=0x2222; PowerMizerLevel=0x3; PowerMizerDefault=0x3; PowerMizerDefaultAC=0x3"
   #  '';
 
-  nixpkgs.overlays = [
-    (_: final: {
-      wlroots_0_16 = final.wlroots_0_16.overrideAttrs (_: {
-        patches = [
-          ./patches/wlroots-nvidia.patch
-          #  ./patches/wlroots-screenshare.patch
-        ];
-      });
-    })
-  ];
-
   cfirefox.settings = {
     "media.ffmpeg.vaapi.enabled" = true;
     "media.ffvpx.enabled" = false;
