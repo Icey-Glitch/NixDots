@@ -17,6 +17,7 @@
     qbittorrent
     libreoffice
     obsidian
+    rnote
     xournalpp
   ];
 }
