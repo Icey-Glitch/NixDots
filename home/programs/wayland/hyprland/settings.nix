@@ -2,17 +2,21 @@
   variant = "dark";
   c = config.programs.matugen.theme.colors.colors.${variant};
   pointer = config.home.pointerCursor;
+
+  cursorName = "HyprBibataModernClassicSVG";
 in {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
     env = [
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+      "HYPRCURSOR_THEME,${cursorName}"
+      "HYPRCURSOR_SIZE,${toString pointer.size}"
       # "WLR_DRM_NO_ATOMIC,1"
     ];
 
     exec-once = [
       # set cursor for HL itself
-      "hyprctl setcursor ${pointer.name} ${toString pointer.size}"
+      "hyprctl setcursor ${cursorName} ${toString pointer.size}"
       "waybar"
       "hyprlock"
     ];
