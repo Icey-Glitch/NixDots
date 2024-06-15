@@ -77,7 +77,40 @@ in {
             fastforwardteam
             violentmonkey
           ];
-          # someOption = "value";
+
+          arkenfox = {
+            enable = true;
+            "0000".enable = true;
+            "0100" = {
+              enable = true;
+              "0102"."browser.startup.page".value = 1;
+              "0104"."browser.newtabpage.enabled".value = true;
+            };
+            "0300" = {
+              enable = true;
+            };
+            "2400" = {
+              enable = true;
+            };
+            "2600" = {
+              "2603".enable = true;
+            };
+            "2800" = {
+              "2815".enable = false;
+            };
+            "4000" = {
+              enable = true;
+              "4002".enable = true;
+              "4002"."privacy.fingerprintingProtection.overrides".value = "+AllTargets,-CSSPrefersColorScheme";
+            };
+            "4500" = {
+              enable = false;
+              "4501".enable = true;
+              "4504".enable = false; # letter box
+              "4510"."browser.display.use_system_colors".value = true; # sys color
+              "4520".enable = false; # webgl
+            };
+          };
           settings =
             config.cfirefox.settings
             // {
@@ -104,6 +137,7 @@ in {
               user_pref("privacy.clearOnShutdown.cookies", false);
               user_pref("privacy.clearOnShutdown.offlineApps", false);
               user_pref("browser.sessionstore.privacy_level", 0);
+
 
             '';
           }
