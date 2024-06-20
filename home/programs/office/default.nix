@@ -12,6 +12,7 @@
     keepassxc
     iaito
     hunspell
+    element-desktop
     hunspellDicts.en_US-large
     betterbird
     qbittorrent
