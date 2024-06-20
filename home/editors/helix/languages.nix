@@ -57,10 +57,10 @@
       ++ prettierLangs langs;
 
     language-server = {
-      bash-language-server = {
-        command = "${pkgs.nodePackages.bash-language-server}/bin/bash-language-server";
-        args = ["start"];
-      };
+      #bash-language-server = {
+      #  command = "${pkgs.nodePackages.bash-language-server}/bin/bash-language-server";
+      #  args = ["start"];
+      #};
 
       clangd = {
         command = "${pkgs.clang-tools}/bin/clangd";
