@@ -1,14 +1,10 @@
 # Source: https://gist.github.com/CRTified/43b7ce84cd238673f7f24652c85980b3
 {
   lib,
-  pkgs,
   config,
   ...
 }:
-with lib; let
-  cfg = config.virtualisation;
-  tmpfileEntry = name: f: "f /dev/shm/${name} ${f.mode} ${f.user} ${f.group} -";
-in {
+with lib; {
   options.virtualisation = {
     sharedMemoryFiles = mkOption {
       type = types.attrsOf (types.submodule ({name, ...}: {

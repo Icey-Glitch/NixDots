@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  self,
-  ...
-}: {
+{self, ...}: {
   imports = [self.nixosModules.virt];
   virt.vfio = {
     enable = true;
