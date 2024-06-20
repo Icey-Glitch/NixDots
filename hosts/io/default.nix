@@ -31,7 +31,6 @@
   environment.systemPackages = [pkgs.scx];
 
   hardware = {
-    opentabletdriver.enable = true;
     xpadneo.enable = true;
   };
 
