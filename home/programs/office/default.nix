@@ -11,6 +11,7 @@
     maestral
     keepassxc
     iaito
+    ansel
     hunspell
     element-desktop
     hunspellDicts.en_US-large
