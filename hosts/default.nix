@@ -60,7 +60,6 @@
         ++ [
           ./thinkpad
           "${mod}/programs/gamemode.nix"
-          "${mod}/programs/steam.nix"
           "${mod}/network/spotify.nix"
           "${mod}/programs/hyprland.nix"
           "${mod}/core/lanzaboote.nix"
@@ -87,7 +86,6 @@
           "${mod}/network/spotify.nix"
           "${mod}/programs/hyprland.nix"
 
-          "${mod}/programs/steam.nix"
           "${mod}/services/location.nix"
           "${mod}/services/gnome-services.nix"
           "${mod}/hardware/nvidia-fixes.nix"
