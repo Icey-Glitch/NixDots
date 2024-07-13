@@ -18,6 +18,7 @@
 
     # Streamio
     stremio
+    syncplay
 
     # Twitch
     streamlink-twitch-gui-bin
