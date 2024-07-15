@@ -23,8 +23,8 @@
 
   theme = {
     wallpaper = let
-      url = "https://github.com/saint-13/Linux_Dynamic_Wallpapers/blob/main/Dynamic_Wallpapers/ChromeOSWind/ChromeOSWind-2.png?raw=true";
-      sha256 = "0j4m3azrwgfh3rahmasv4c8pr40x1brbn77nx54hpmg8pb9i67cc";
+      url = "https://drive.usercontent.google.com/download?id=1Kxn8p5jiSO7ihIAG70B_kfyL9HoTYHjB";
+      sha256 = "1mfvhkaw07pm5mh05ggbxdc2hp97iybq7iz4yhj8h7xzhzb87ij8";
       ext = "png";
     in
       builtins.fetchurl {
