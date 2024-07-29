@@ -102,6 +102,7 @@
     hypridle = {
       url = "github:hyprwm/hypridle";
       inputs.hyprlang.follows = "hyprland/hyprlang";
+      inputs.hyprutils.follows = "hyprland/hyprutils";
       inputs.nixpkgs.follows = "hyprland/nixpkgs";
       inputs.systems.follows = "hyprland/systems";
     };
@@ -121,6 +122,7 @@
     hyprlock = {
       url = "github:hyprwm/hyprlock";
       inputs.hyprlang.follows = "hyprland/hyprlang";
+      inputs.hyprutils.follows = "hyprland/hyprutils";
       inputs.nixpkgs.follows = "hyprland/nixpkgs";
       inputs.systems.follows = "hyprland/systems";
     };
@@ -128,6 +130,7 @@
     hyprpaper = {
       url = "github:hyprwm/hyprpaper";
       inputs.hyprlang.follows = "hyprland/hyprlang";
+      inputs.hyprutils.follows = "hyprland/hyprutils";
       inputs.nixpkgs.follows = "hyprland/nixpkgs";
       inputs.systems.follows = "hyprland/systems";
     };
@@ -178,5 +181,10 @@
     nixos-vfio.url = "github:glanch/nixos-vfio/additional_device_xml";
 
     yazi.url = "github:sxyazi/yazi";
+
+    tailray = {
+      url = "github:NotAShelf/tailray";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

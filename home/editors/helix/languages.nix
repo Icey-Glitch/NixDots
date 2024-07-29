@@ -142,9 +142,8 @@
         };
       };
 
-      /*
-         vscode-css-language-server = {
-        command = lib.getExe pkgs.nodePackages.vscode-css-languageserver-bin;
+      vscode-css-language-server = {
+        command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-css-languageserver";
         args = ["--stdio"];
         config = {
           provideFormatter = true;
@@ -152,7 +151,6 @@
           scss.validate.enable = true;
         };
       };
-      */
     };
   };
 }
