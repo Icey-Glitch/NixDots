@@ -16,8 +16,8 @@ in {
     exec-once = [
       # set cursor for HL itself
       "hyprctl setcursor ${cursorName} ${toString pointer.size}"
-      "waybar"
       "hyprlock"
+      "waybar"
     ];
 
     general = {
@@ -127,7 +127,8 @@ in {
         class = "cs2";
       };
 
-      hyprbars = {
+      /*
+         hyprbars = {
         bar_height = 20;
         bar_precedence_over_border = true;
 
@@ -139,6 +140,7 @@ in {
           "rgb(ffff00), 15, , hyprctl dispatch fullscreen 1"
         ];
       };
+      */
 
       hyprexpo = {
         columns = 3;
