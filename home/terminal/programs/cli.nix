@@ -7,6 +7,7 @@
 
     # misc
     libnotify
+    inetutils
 
     # utils
     aria
