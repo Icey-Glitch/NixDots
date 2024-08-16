@@ -1,4 +1,4 @@
-_: {
+{
   # nh default flake
   environment.variables.FLAKE = "/home/icey/Git/newdots/NixDots";
 

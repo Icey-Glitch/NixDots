@@ -12,7 +12,7 @@
     keepassxc
     iaito
     cups
-    ansel
+    #ansel
     hunspell
     element-desktop
     hunspellDicts.en_US-large

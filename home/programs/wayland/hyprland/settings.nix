@@ -3,7 +3,7 @@
   c = config.programs.matugen.theme.colors.colors.${variant};
   pointer = config.home.pointerCursor;
 
-  cursorName = "HyprBibataModernClassicSVG";
+  cursorName = "Bibata-Modern-Classic-Hyprcursor";
 in {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
@@ -105,10 +105,9 @@ in {
 
       # enable variable refresh rate (effective depending on hardware)
       vrr = 1;
-
-      # we do, in fact, want direct scanout
-      no_direct_scanout = false;
     };
+
+    render.direct_scanout = true;
 
     # touchpad gestures
     gestures = {
@@ -135,9 +134,9 @@ in {
         # order is right-to-left
         hyprbars-button = [
           # close
-          "rgb(ff0000), 15, , hyprctl dispatch killactive"
+          "rgb(${c.error}), 15, , hyprctl dispatch killactive"
           # maximize
-          "rgb(ffff00), 15, , hyprctl dispatch fullscreen 1"
+          "rgb(${c.primary}), 15, , hyprctl dispatch fullscreen 1"
         ];
       };
       */

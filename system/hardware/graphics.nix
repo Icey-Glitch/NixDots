@@ -1,9 +1,9 @@
 {pkgs, ...}: {
-  hardware.opengl = {
+  # graphics drivers / HW accel
+  hardware.graphics = {
     enable = true;
 
     extraPackages = with pkgs; [
-      intel-media-driver
       libva
       vaapiVdpau
       libvdpau-va-gl

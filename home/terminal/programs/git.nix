@@ -16,10 +16,10 @@ in {
   programs.git = {
     enable = true;
 
-    delta = {
-      enable = true;
-      options.dark = true;
-    };
+    #delta = {
+    #  enable = true;
+    #  options.dark = true;
+    #};
 
     extraConfig = {
       diff.colorMoved = "default";

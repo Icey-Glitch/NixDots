@@ -32,6 +32,7 @@
 
   hardware = {
     xpadneo.enable = true;
+    sensor.iio.enable = true;
   };
 
   networking.hostName = "io";
