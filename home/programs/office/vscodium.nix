@@ -17,7 +17,7 @@ in {
       # Workbench
       "window.menuBarVisibility" = "toggle";
       "workbench.sideBar.location" = "left";
-      "window.autoDetectColorScheme" = true;
+      "window.autoDetectColorScheme" = false;
       "workbench.list.smoothScrolling" = true;
       "workbench.editor.labelFormat" = "short";
       "workbench.startupEditor" = "newUntitledFile";
