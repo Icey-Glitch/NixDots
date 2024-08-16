@@ -11,6 +11,7 @@
     maestral
     keepassxc
     iaito
+    cups
     ansel
     hunspell
     element-desktop
