@@ -14,5 +14,12 @@ in {
         });
       default = {};
     };
+    extraConfig = lib.mkOption {
+      type = lib.types.lines;
+      default = "";
+      description = ''
+        Extra preferences to add to {file}`user.js`.
+      '';
+    };
   };
 }

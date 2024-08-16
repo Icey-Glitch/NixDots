@@ -16,6 +16,7 @@ let
     ./services
     ./services/greetd.nix
     ./services/pipewire.nix
+    ./services/printing.nix
   ];
 
   laptop =
@@ -23,6 +24,7 @@ let
     ++ [
       ./hardware/bluetooth.nix
 
+      ./programs/Laptop-firefox.nix
       ./services/backlight.nix
       ./services/power.nix
       ./services/power-profiles.nix
