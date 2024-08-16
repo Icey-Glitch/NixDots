@@ -15,6 +15,7 @@
     tauon
     amberol
     spotify
+    nicotine-plus
 
     # Streamio
     stremio
