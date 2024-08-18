@@ -125,8 +125,8 @@ in {
             betterfox = pkgs.fetchFromGitHub {
               owner = "yokoffing";
               repo = "Betterfox";
-              rev = "128.0";
-              hash = "sha256-Xbe9gHO8Kf9C+QnWhZr21kl42rXUQzqSDIn99thO1kE=";
+              rev = "HEAD";
+              hash = "sha256-i8cCSjPV/nuNFEgjhuLJUbdpT6flGxTacaQu78SXZis=";
             };
           in {
             extraConfig = builtins.concatStringsSep "\n" [
