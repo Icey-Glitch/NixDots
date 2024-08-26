@@ -20,7 +20,7 @@
             marksman
             nil
             bash-language-server
-            nodePackages.vscode-langservers-extracted
+            #nodePackages.vscode-langservers-extracted
             shellcheck
           ])
         ];

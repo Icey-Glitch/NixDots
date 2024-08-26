@@ -6,7 +6,7 @@
   imports = [./hardware-configuration.nix];
 
   boot = {
-    kernelPackages = lib.mkForce pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = lib.mkForce pkgs.linuxPackages_xanmod;
     kernelParams = [
       "quiet"
       "loglevel=3"
@@ -23,12 +23,6 @@
     cpu.intel.updateMicrocode = true;
 
     enableRedistributableFirmware = true;
-
-    opengl = {
-      enable = true;
-      #      driSupport = true;
-      #      driSupport32Bit = true;
-    };
   };
 
   networking.hostName = "desktopm";

@@ -14,7 +14,7 @@
     cups
     #ansel
     hunspell
-    element-desktop
+    #element-desktop
     hunspellDicts.en_US-large
     betterbird
     qbittorrent

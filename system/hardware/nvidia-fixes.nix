@@ -21,7 +21,7 @@
     #__GL_VRR_ALLOWED = "0";
   };
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver # LIBVA_DRIVER_NAME=iHD
@@ -35,17 +35,17 @@
   #    options nvidia NVreg_RegistryDwords="PowerMizerEnable=0x1; PerfLevelSrc=0x2222; PowerMizerLevel=0x3; PowerMizerDefault=0x3; PowerMizerDefaultAC=0x3"
   #  '';
 
-  cfirefox.settings = {
-    "media.ffmpeg.vaapi.enabled" = true;
-    "media.ffvpx.enabled" = false;
-    "media.rdd-ffmpeg.enabled" = false;
-    "media.av1.enabled" = false;
-    "gfx.webrender.all" = true;
-    "layers.gpu-process.enabled" = true;
-    "widget.wayland.opaque-region.enabled" = false;
-    "gfx.x11-egl.force-enabled" = true;
-    "widget.dmabuf.force-enabled" = true;
-  };
+  cfirefox.extraConfig = ''
+    user_pref("media.ffmpeg.vaapi.enabled", true);
+    user_pref("media.ffvpx.enabled", false);
+    user_pref("media.rdd-ffmpeg.enabled", false);
+    user_pref("media.av1.enabled", false);
+    user_pref("gfx.webrender.all", true);
+    user_pref("layers.gpu-process.enabled", true);
+    user_pref("widget.wayland.opaque-region.enabled", false);
+    user_pref("gfx.x11-egl.force-enabled", true);
+    user_pref("widget.dmabuf.force-enabled", true);
+  '';
 
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
