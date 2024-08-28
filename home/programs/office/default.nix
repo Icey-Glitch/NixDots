@@ -16,7 +16,7 @@
     hunspell
     #element-desktop
     hunspellDicts.en_US-large
-    betterbird
+    #betterbird
     qbittorrent
     libreoffice
     obsidian
