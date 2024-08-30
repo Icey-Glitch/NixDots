@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ./betterbird.nix
     ./zathura.nix
     ./vscodium.nix
     ./obs.nix
@@ -16,7 +17,6 @@
     hunspell
     #element-desktop
     hunspellDicts.en_US-large
-    #betterbird
     qbittorrent
     libreoffice
     obsidian

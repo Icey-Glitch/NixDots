@@ -10,6 +10,8 @@ in {
     enable = true;
     package = pkgs.vscodium;
     extensions = with extensions; [
+      vscode-marketplace.github.copilot
+      vscode-marketplace.github.copilot-chat
       open-vsx.catppuccin.catppuccin-vsc
       open-vsx.jnoortheen.nix-ide
     ];

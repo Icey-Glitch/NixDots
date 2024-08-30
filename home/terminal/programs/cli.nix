@@ -14,6 +14,7 @@
     du-dust
     duf
     fd
+    jq
     file
     jaq
     ripgrep
