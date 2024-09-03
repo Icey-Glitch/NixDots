@@ -121,7 +121,7 @@
     #       "${mod}/programs/games.nix"
 
     #       "${mod}/services/kanata"
-    #       {home-manager.users.mihai.imports = homeImports."mihai@rog";}
+    #       {home-manager.users.icey.imports = homeImports."icey@rog";}
     #     ];
     # };
 
@@ -135,7 +135,7 @@
         "${mod}/programs/home-manager.nix"
         {
           home-manager = {
-            users.mihai.imports = homeImports.server;
+            users.icey.imports = homeImports.server;
             extraSpecialArgs = specialArgs;
           };
         }
