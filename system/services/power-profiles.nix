@@ -87,7 +87,7 @@ _:
   powerManagement.powertop.enable = true;
   services.tlp = {
     enable = false;
-    Settings = {
+    settings = {
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
     };
