@@ -2,6 +2,7 @@
   config,
   pkgs,
   self,
+  lib,
   ...
 }: {
   imports = [self.nixosModules.cfirefox];
@@ -47,14 +48,36 @@
     user_pref("widget.dmabuf.force-enabled", true);
   '';
 
+  boot = {
+    kernelParams = ["nvidia-drm.fbdev=1"];
+
+    extraModprobeConfig =
+      "options nvidia "
+      + lib.concatStringsSep " " [
+        # nvidia assume that by default your CPU does not support PAT,
+        # but this is effectively never the case in 2023
+        "NVreg_UsePageAttributeTable=1"
+        # This may be a noop, but it's somewhat uncertain
+        "NVreg_EnablePCIeGen3=1"
+        # This is sometimes needed for ddc/ci support, see
+        # https://www.ddcutil.com/nvidia/
+        #
+        # Current monitor does not support it, but this is useful for
+        # the future
+        "NVreg_RegistryDwords=RMUseSwI2c=0x01;RMI2cSpeed=100"
+        # When (if!) I get another nvidia GPU, check for resizeable bar
+        # settings
+      ];
+  };
+
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-      version = "555.58.02";
-      sha256_64bit = "sha256-xctt4TPRlOJ6r5S54h5W6PT6/3Zy2R4ASNFPu8TSHKM=";
-      sha256_aarch64 = "sha256-8hyRiGB+m2hL3c9MDA/Pon+Xl6E788MZ50WrrAGUVuY=";
-      openSha256 = "sha256-8hyRiGB+m2hL3c9MDA/Pon+Xl6E788MZ50WrrAGUVuY=";
-      settingsSha256 = "sha256-ZpuVZybW6CFN/gz9rx+UJvQ715FZnAOYfHn5jt5Z2C8=";
-      persistencedSha256 = "sha256-xctt4TPRlOJ6r5S54h5W6PT6/3Zy2R4ASNFPu8TSHKM=";
+      version = "560.35.03";
+      sha256_64bit = "sha256-8pMskvrdQ8WyNBvkU/xPc/CtcYXCa7ekP73oGuKfH+M=";
+      sha256_aarch64 = "sha256-s8ZAVKvRNXpjxRYqM3E5oss5FdqW+tv1qQC2pDjfG+s=";
+      openSha256 = "sha256-/32Zf0dKrofTmPZ3Ratw4vDM7B+OgpC4p7s+RHUjCrg=";
+      settingsSha256 = "sha256-kQsvDgnxis9ANFmwIwB7HX5MkIAcpEEAHc8IBOLdXvk=";
+      persistencedSha256 = "sha256-E2J2wYYyRu7Kc3MMZz/8ZIemcZg68rkzvqEwFAL3fFs=";
     };
 
     modesetting.enable = true;
