@@ -10,8 +10,8 @@ in {
     enable = true;
     package = pkgs.vscodium;
     extensions = with extensions; [
-      vscode-marketplace.github.copilot
-      vscode-marketplace.github.copilot-chat
+      vscode-marketplace-release.github.copilot
+      vscode-marketplace-release.github.copilot-chat
       open-vsx.catppuccin.catppuccin-vsc
       open-vsx.jnoortheen.nix-ide
     ];
@@ -23,6 +23,17 @@ in {
       "workbench.list.smoothScrolling" = true;
       "workbench.editor.labelFormat" = "short";
       "workbench.startupEditor" = "newUntitledFile";
+
+      # extensions
+      "extensions.autoCheckUpdates" = false;
+      "extensions.autoUpdate" = false;
+      "extensions.experimental.deferredStartupFinishedActivation" = true;
+      "extensions.ignoreRecommendations" = true;
+
+      # Editor
+      "editor.experimental.asyncTokenization" = true;
+      "editor.minimap.enabled" = false;
+
       # Font
       "editor.fontFamily" = "JetBrainsMono Nerd Font Mono";
 
