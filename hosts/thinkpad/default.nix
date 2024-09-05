@@ -7,6 +7,7 @@
 
   boot = {
     kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
+
     kernelParams = [
       "quiet"
       "loglevel=3"
@@ -22,6 +23,9 @@
   networking.hostName = "thinkpad";
 
   security.tpm2.enable = true;
+
+  environment.systemPackages = [pkgs.scx];
+  chaotic.scx.enable = true;
 
   environment.variables.LIBVA_DRIVER_NAME = "iHD";
 

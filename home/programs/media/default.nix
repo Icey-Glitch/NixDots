@@ -12,7 +12,7 @@
     pwvucontrol
 
     # audio
-    #tauon
+    tauon
     amberol
     spotify
     nicotine-plus
