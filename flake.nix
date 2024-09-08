@@ -92,7 +92,7 @@
       inputs.flake-parts.follows = "flake-parts";
     };
 
-    helix.url = "github:SoraTenshi/helix/new-daily-driver";
+    helix.url = "github:helix-editor/helix";
 
     hm = {
       url = "github:nix-community/home-manager";
@@ -138,8 +138,11 @@
     lanzaboote.url = "github:nix-community/lanzaboote";
 
     matugen = {
-      url = "github:InioX/matugen/module";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:InioX/matugen";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
     };
 
     nix-gaming = {
