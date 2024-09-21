@@ -1,14 +1,14 @@
 let
   desktop = [
+    ./core
     ./core/boot.nix
-    ./core/default.nix
 
     ./hardware/fwupd.nix
     ./hardware/yubikey-gpg.nix
     ./hardware/graphics.nix
 
+    ./network
     ./network/avahi.nix
-    ./network/default.nix
     ./network/tailscale.nix
 
     ./programs
