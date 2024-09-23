@@ -11,4 +11,8 @@
     ../.
     ./desktopm
   ];
+  "icey@server" = [
+    ../.
+    ./server
+  ];
 }
