@@ -42,7 +42,7 @@ in {
       cm = "commit --message";
 
       co = "checkout";
-      cb = "checkout --branch";
+      cb = "checkout -b";
       pc = "checkout --patch";
 
       cl = "clone";
