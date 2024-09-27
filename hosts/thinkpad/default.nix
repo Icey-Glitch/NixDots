@@ -16,8 +16,31 @@
     ];
   };
 
+  nixpkgs.config.packageOverrides = pkgs: {
+    intel-vaapi-driver = pkgs.intel-vaapi-driver.override {enableHybridCodec = true;};
+  };
+
   hardware = {
     enableRedistributableFirmware = true;
+
+    graphics = lib.mkForce {
+      enable = true;
+
+      extraPackages = with pkgs; [
+        libva
+        intel-media-driver # LIBVA_DRIVER_NAME=iHD
+        intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+        libvdpau-va-gl
+        vulkan-loader
+        vulkan-validation-layers
+        vulkan-extension-layer
+        vulkan-tools
+      ];
+      extraPackages32 = with pkgs.pkgsi686Linux; [
+        vaapiVdpau
+        libvdpau-va-gl
+      ];
+    };
   };
 
   networking.hostName = "thinkpad";
