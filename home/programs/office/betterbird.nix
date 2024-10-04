@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   programs.thunderbird = {
-    #enable = true;
+    enable = true;
     package = pkgs.betterbird;
     profiles = {
       BetterBird = {
