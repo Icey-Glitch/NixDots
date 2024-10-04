@@ -106,7 +106,7 @@
       inputs.systems.follows = "hyprland/systems";
     };
 
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland.url = "github:hyprwm/hyprland";
 
     hyprland-contrib = {
       url = "github:hyprwm/contrib";
