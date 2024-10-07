@@ -12,6 +12,9 @@ in {
     self.nixosModules.cfirefox
     inputs.arkenfox.hmModules.default
   ];
+
+  home.sessionVariables.DEFAULT_BROWSER = "${Firefox-custom}/bin/firefox";
+
   programs.firefox = {
     enable = true;
     arkenfox = {
