@@ -3,6 +3,7 @@
 {
   imports = [
     ./optimize.nix
+    ./tethering.nix
   ];
 
   networking.networkmanager = {
