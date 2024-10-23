@@ -10,14 +10,14 @@
         args = ["fmt" "-" "--ext" lang];
       };
 
-      prettier = lang: {
-        command = lib.getExe pkgs.nodePackages.prettier;
-        args = ["--parser" lang];
-      };
-      prettierLangs = map (e: {
-        name = e;
-        formatter = prettier e;
-      });
+      #prettier = lang: {
+      #  command = lib.getExe pkgs.nodePackages.prettier;
+      #  args = ["--parser" lang];
+      #};
+      #prettierLangs = map (e: {
+      #  name = e;
+      #  formatter = prettier e;
+      #});
       langs = ["css" "scss" "html"];
     in
       [
@@ -70,7 +70,7 @@
           language-servers = ["dprint" "typescript-language-server"];
         }
       ]
-      ++ prettierLangs langs;
+      ++ langs;
 
     language-server = {
       basedpyright.command = "${pkgs.basedpyright}/bin/basedpyright-langserver";
