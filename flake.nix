@@ -170,6 +170,9 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-qemu = {
+      url = "github:NixOS/nixpkgs?rev=fc38d28b26904c294b33b64cdce0866e778b6bc8";
+    };
 
     nixpkgs-howdy.url = "github:fufexan/nixpkgs/howdy";
 

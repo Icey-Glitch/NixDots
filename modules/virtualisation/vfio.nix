@@ -7,6 +7,10 @@
 }:
 with lib; let
   cfg = config.virt.vfio;
+  qemu-patches = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/fengjixuchui/qemu-anti-detection/refs/heads/main/qemu-8.2.0.patch";
+    sha256 = "sha256-zCF/eb8quODgcNC3Rpcf2zQcriWoTzYTnprCSbh98yo=";
+  };
 in {
   imports = [
     inputs.nixos-vfio.nixosModules.default
@@ -50,15 +54,16 @@ in {
         ];
       };
 
-      # nixpkgs.overlays = [
-      #   (_: final: {
-      #     qemu_kvm = final.qemu_kvm.overrideAttrs (_: {
-      #       patches = [
-      #            qemu-patches
-      #       ];
-      #     });
-      #   })
-      # ];
+      nixpkgs.overlays = [
+        (final: prev: {
+          qemu_pinned = inputs.nixpkgs-qemu.legacyPackages.${final.system}.qemu;
+          qemu_kvm = final.qemu_pinned.overrideAttrs (_: {
+            patches = [
+              qemu-patches
+            ];
+          });
+        })
+      ];
 
       virtualisation.libvirtd = {
         enable = true;
@@ -122,7 +127,7 @@ in {
 
       # Reserve total of 16GiB, 1GiB each, hugepages
       virtualisation.hugepages = {
-        enable = false;
+        enable = true;
         defaultPageSize = "1G";
         pageSize = "1G";
         numPages = 16;
