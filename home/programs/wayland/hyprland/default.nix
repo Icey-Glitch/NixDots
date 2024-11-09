@@ -1,4 +1,5 @@
 {
+  lib,
   inputs,
   pkgs,
   ...
@@ -10,6 +11,7 @@ in {
     ./binds.nix
     ./rules.nix
     ./settings.nix
+    ./smartgaps.nix
   ];
 
   home.packages = [
@@ -30,6 +32,7 @@ in {
     ];
 
     systemd = {
+      enable = false;
       variables = ["--all"];
       extraCommands = [
         "systemctl --user stop graphical-session.target"
@@ -37,4 +40,6 @@ in {
       ];
     };
   };
+
+  systemd.user.targets.tray.Unit.Requires = lib.mkForce ["graphical-session.target"];
 }

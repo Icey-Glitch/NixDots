@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   programs.thunderbird = {
     enable = true;
-    package = pkgs.betterbird;
+    package = pkgs.thunderbird-esr;
     profiles = {
       BetterBird = {
         isDefault = true;

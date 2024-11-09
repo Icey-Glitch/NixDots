@@ -55,7 +55,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    anyrun.url = "github:fufexan/anyrun";
+    anyrun.url = "github:anyrun-org/anyrun";
 
     arrpc = {
       url = "github:notashelf/arrpc-flake";
