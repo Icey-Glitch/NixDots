@@ -49,6 +49,7 @@
 in {
   programs.foot = {
     enable = true;
+    catppuccin.enable = true;
 
     settings = {
       main = {
@@ -85,11 +86,10 @@ in {
         beam-thickness = 1;
       };
 
-      colors =
-        {
-          alpha = 0.9;
-        }
-        // colors.dark;
+      #colors = {
+      #  alpha = 0.9;
+      #};
+      # colors.dark;
     };
   };
 }

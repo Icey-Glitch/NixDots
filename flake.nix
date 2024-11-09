@@ -73,6 +73,8 @@
       inputs.home-manager.follows = "hm";
     };
 
+    catppuccin.url = "github:catppuccin/nix";
+
     flake-compat.url = "github:edolstra/flake-compat";
 
     flake-parts = {

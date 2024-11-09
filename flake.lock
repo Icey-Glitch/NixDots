@@ -146,6 +146,21 @@
         "type": "github"
       }
     },
+    "catppuccin": {
+      "locked": {
+        "lastModified": 1731088327,
+        "narHash": "sha256-Oizjf0wXBTqALipX4fQdGjq9IBSCXz8wwcfCGRK73bI=",
+        "owner": "catppuccin",
+        "repo": "nix",
+        "rev": "7bebd062df3239c005c0d600f5dfd8514f5915f8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "nix",
+        "type": "github"
+      }
+    },
     "chaotic": {
       "inputs": {
         "flake-schemas": "flake-schemas",
@@ -1589,6 +1604,7 @@
         "anyrun": "anyrun",
         "arkenfox": "arkenfox",
         "arrpc": "arrpc",
+        "catppuccin": "catppuccin",
         "chaotic": "chaotic",
         "flake-compat": "flake-compat_2",
         "flake-parts": "flake-parts_2",

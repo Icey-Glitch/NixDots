@@ -9,6 +9,7 @@
     ./terminal
     inputs.nur.hmModules.nur
     #inputs.betterfox.hmModules.default
+    inputs.catppuccin.homeManagerModules.catppuccin
     inputs.nix-index-db.hmModules.nix-index
     inputs.tailray.homeManagerModules.default
     self.nixosModules.theme
@@ -27,6 +28,8 @@
     json.enable = false;
     manpages.enable = false;
   };
+
+  catppuccin.flavor = "macchiato";
 
   # let HM manage itself when in standalone mode
   programs.home-manager.enable = true;

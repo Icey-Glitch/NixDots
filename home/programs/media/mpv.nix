@@ -27,6 +27,7 @@ in {
     mpvShaders.hdrToys + "/shaders/hdr-toys";
   programs.mpv = {
     enable = true;
+    catppuccin.enable = true;
     defaultProfiles = ["gpu-hq"];
     bindings = {
       WHEEL_UP = "seek 10";
@@ -152,7 +153,7 @@ in {
       demuxer-max-back-bytes = "100MiB";
       demuxer-max-bytes = 104857600;
 
-      include = "${mpvShaders.hdrToys}/hdr-toys.conf";
+      #include = "${mpvShaders.hdrToys}/hdr-toys.conf";
     };
     scripts = [
       pkgs.mpvScripts.mpris
