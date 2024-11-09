@@ -1248,17 +1248,17 @@
     },
     "nixpkgs-qemu": {
       "locked": {
-        "lastModified": 1703607124,
-        "narHash": "sha256-I6CZlHJ1ttA7BEuW1MdciAbfa+i+ongVM2x8z6aCR2k=",
+        "lastModified": 1718175523,
+        "narHash": "sha256-jtaEJWqCl2sDzEYuQnL/jM82w/Pg6AkBfqzyPmOnbUI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "fc38d28b26904c294b33b64cdce0866e778b6bc8",
+        "rev": "6db86a5dd01229dfe74281a76a7e50b60cdff297",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "fc38d28b26904c294b33b64cdce0866e778b6bc8",
+        "rev": "6db86a5dd01229dfe74281a76a7e50b60cdff297",
         "type": "github"
       }
     },

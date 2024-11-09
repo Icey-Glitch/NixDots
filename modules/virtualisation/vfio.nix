@@ -8,8 +8,8 @@
 with lib; let
   cfg = config.virt.vfio;
   qemu-patches = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/fengjixuchui/qemu-anti-detection/refs/heads/main/qemu-8.2.0.patch";
-    sha256 = "sha256-zCF/eb8quODgcNC3Rpcf2zQcriWoTzYTnprCSbh98yo=";
+    url = "https://gist.githubusercontent.com/Icey-Glitch/4953628771180decdc2af54ffb44de48/raw/566adf706abce549f766c02485d51eb94e3a07e4/qemu-9.0.1-anti-detection.patch";
+    sha256 = "sha256-zRAm0ZT+xBJNgCuIR78U2GFp6IuQ1A2qd7ml8/EXZS8=";
   };
 in {
   imports = [
