@@ -12,6 +12,8 @@ in {
     extensions = with extensions; [
       vscode-marketplace-release.github.copilot
       vscode-marketplace-release.github.copilot-chat
+      vscode-marketplace.ms-vscode-remote.remote-ssh
+      vscode-marketplace.ms-vscode-remote.remote-ssh-edit
       open-vsx.catppuccin.catppuccin-vsc
       open-vsx.jnoortheen.nix-ide
     ];
