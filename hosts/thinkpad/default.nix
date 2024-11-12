@@ -47,7 +47,6 @@
 
   security.tpm2.enable = true;
 
-  environment.systemPackages = [pkgs.scx];
   chaotic.scx.enable = true;
 
   environment.variables.LIBVA_DRIVER_NAME = "iHD";
