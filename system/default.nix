@@ -4,7 +4,8 @@ let
     ./core/boot.nix
 
     ./hardware/fwupd.nix
-    ./hardware/yubikey-gpg.nix
+    ./hardware/smartcard.nix
+
     ./hardware/graphics.nix
 
     ./network

@@ -11,6 +11,7 @@
 
     # services
     ../../services/waybar
+    ../../services/system/yubikey-gpg.nix
 
     # system services
     ../../services/system/polkit-agent.nix
