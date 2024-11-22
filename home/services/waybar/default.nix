@@ -1,6 +1,10 @@
 _: {
   programs.waybar = {
     enable = true;
+    systemd = {
+      enable = true;
+      target = "graphical.target";
+    };
     # Use the heredoc syntax for better readability
     style = ''
       * {
