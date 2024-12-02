@@ -27,7 +27,7 @@ in {
     mpvShaders.hdrToys + "/shaders/hdr-toys";
   programs.mpv = {
     enable = true;
-    catppuccin.enable = true;
+    catppuccin.enable = false;
     defaultProfiles = ["gpu-hq"];
     bindings = {
       WHEEL_UP = "seek 10";
