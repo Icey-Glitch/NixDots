@@ -8,6 +8,7 @@
     # misc
     libnotify
     inetutils
+    sshfs
 
     # utils
     aria

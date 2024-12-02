@@ -13,7 +13,8 @@
       (google-fonts.override {fonts = ["Inter"];})
 
       # nerdfonts
-      (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
+      nerd-fonts.fira-code
+      nerd-fonts.jetbrains-mono
     ];
 
     # causes more issues than it solves

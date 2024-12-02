@@ -10,7 +10,9 @@
         ./lib
         ./modules
         ./pkgs
+
         ./pre-commit-hooks.nix
+        inputs.agenix-rekey.flakeModule
       ];
 
       perSystem = {
@@ -25,7 +27,9 @@
             pkgs.nil
             pkgs.nodePackages.prettier
             config.packages.repl
+            config.agenix-rekey.package
             pkgs.statix
+            pkgs.rage
           ];
 
           name = "dots";
@@ -50,8 +54,14 @@
       inputs.systems.follows = "systems";
     };
 
+    agenix-rekey = {
+      url = "github:oddlama/agenix-rekey";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     ags = {
-      url = "github:Aylur/ags";
+      # last commit I had before ags switched to astal (thus breaking my config)
+      # TODO: set up quickshell ASAP
+      url = "github:Aylur/ags/60180a184cfb32b61a1d871c058b31a3b9b0743d";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -144,6 +154,11 @@
         nixpkgs.follows = "nixpkgs";
         systems.follows = "hyprland/systems";
       };
+    };
+
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixcord = {
