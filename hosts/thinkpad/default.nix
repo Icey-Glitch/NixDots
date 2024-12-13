@@ -47,11 +47,10 @@
 
   security.tpm2.enable = true;
 
-  chaotic.scx.enable = true;
-
   environment.variables.LIBVA_DRIVER_NAME = "iHD";
 
   services = {
+    scx.enable = true;
     # for SSD/NVME
     fstrim.enable = true;
   };

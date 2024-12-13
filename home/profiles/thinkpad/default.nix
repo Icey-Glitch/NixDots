@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   imports = [
     # editors
     ../../editors/helix
@@ -26,5 +26,9 @@
   ];
 
   wayland.windowManager.hyprland.settings = {
+    misc = {
+      vrr = lib.mkForce 2;
+      vfr = true;
+    };
   };
 }

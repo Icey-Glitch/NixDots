@@ -10,7 +10,7 @@
     ];
 
     overlays = [
-      inputs.nur.overlay
+      inputs.nur.overlays.default
       (_final: prev: {
         lib =
           prev.lib

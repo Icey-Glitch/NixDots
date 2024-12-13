@@ -7,7 +7,7 @@
   imports = [
     ./specialisations.nix
     ./terminal
-    inputs.nur.hmModules.nur
+    inputs.nur.modules.homeManager.default
     #inputs.betterfox.hmModules.default
     inputs.catppuccin.homeManagerModules.catppuccin
     inputs.nix-index-db.hmModules.nix-index
@@ -36,7 +36,7 @@
 
   nixpkgs.overlays = [
     inputs.hyprlock.overlays
-    inputs.nur.overlay
+    inputs.nur.overlays.default
     (_final: prev: {
       lib = prev.lib // {colors = import "${self}/lib/colors" lib;};
     })
