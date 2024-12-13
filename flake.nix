@@ -79,7 +79,7 @@
     };
 
     chaotic = {
-      url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
       inputs.home-manager.follows = "hm";
     };
 
