@@ -8,7 +8,7 @@
   ];
 
   services.spotifyd = {
-    enable = true;
+    enable = false;
     package = pkgs.spotifyd.override {withMpris = true;};
     settings.global = {
       autoplay = true;
