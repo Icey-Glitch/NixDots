@@ -137,7 +137,7 @@
         "${mod}/programs/home-manager.nix"
         {
           home-manager = {
-            users.icey.imports = homeImports.server;
+            users.icey.imports = homeImports."icey@io";
             extraSpecialArgs = specialArgs;
             backupFileExtension = ".hm-backup";
           };
