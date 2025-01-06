@@ -37,6 +37,17 @@
     GPG_TTY = "/dev/tty";
   };
 
+  programs.ssh = {
+    enable = true;
+    #agentPKCS11Whitelist = "${pkgs.opensc}/lib/opensc-pkcs11.so";
+    extraConfig = ''
+      Host *
+        RemoteForward /run/user/1000/gnupg/S.gpg-agent /run/user/1000/gnupg/S.gpg-agent.extra
+        RemoteForward /run/user/1000/gnupg/S.gpg-agent.ssh /run/user/1000/gnupg/S.gpg-agent.ssh
+    '';
+    forwardAgent = true;
+  };
+
   home.packages = with pkgs; [
     gnupg
     # YubiKey management tools

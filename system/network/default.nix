@@ -18,7 +18,11 @@
   services = {
     openssh = {
       enable = true;
-      settings.UseDns = true;
+
+      settings = {
+        StreamLocalBindUnlink = "yes";
+        UseDns = true;
+      };
     };
 
     mullvad-vpn.enable = true;
