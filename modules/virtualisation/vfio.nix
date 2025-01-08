@@ -127,7 +127,7 @@ in {
 
       # Reserve total of 16GiB, 1GiB each, hugepages
       virtualisation.hugepages = {
-        enable = true;
+        enable = false;
         defaultPageSize = "1G";
         pageSize = "1G";
         numPages = 16;

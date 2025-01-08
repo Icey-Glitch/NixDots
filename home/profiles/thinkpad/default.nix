@@ -38,4 +38,7 @@
       shadow.enabled = lib.mkForce false;
     };
   };
+  cfirefox.extraConfig = ''
+    user_pref("layout.css.devPixelsPerPx", "1.5");
+  '';
 }

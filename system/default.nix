@@ -25,7 +25,6 @@ let
     ++ [
       ./hardware/bluetooth.nix
 
-      ./programs/Laptop-firefox.nix
       ./services/backlight.nix
       ./services/power.nix
       ./services/power-profiles.nix

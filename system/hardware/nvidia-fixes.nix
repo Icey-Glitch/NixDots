@@ -5,21 +5,23 @@
   lib,
   ...
 }: {
-  imports = [self.nixosModules.cfirefox];
-  environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "nvidia";
-    XDG_SESSION_TYPE = "wayland";
-    GBM_BACKEND = "nvidia-drm";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+  environment = {
+    systemPackages = [pkgs.libva-utils];
+    sessionVariables = {
+      LIBVA_DRIVER_NAME = "nvidia";
+      XDG_SESSION_TYPE = "wayland";
+      GBM_BACKEND = "nvidia-drm";
+      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
 
-    ## hw decoding
-    EGL_PLATFORM = "wayland";
-    NVD_BACKEND = "direct";
-    MOZ_DISABLE_RDD_SANDBOX = "1";
+      ## hw decoding
+      EGL_PLATFORM = "wayland";
+      NVD_BACKEND = "direct";
+      MOZ_DISABLE_RDD_SANDBOX = "1";
 
-    # refresh rate
-    __GL_GSYNC_ALLOWED = "1";
-    #__GL_VRR_ALLOWED = "0";
+      # refresh rate
+      __GL_GSYNC_ALLOWED = "1";
+      #__GL_VRR_ALLOWED = "0";
+    };
   };
 
   hardware.graphics = {
@@ -35,18 +37,6 @@
   #  boot.extraModprobeConfig = ''
   #    options nvidia NVreg_RegistryDwords="PowerMizerEnable=0x1; PerfLevelSrc=0x2222; PowerMizerLevel=0x3; PowerMizerDefault=0x3; PowerMizerDefaultAC=0x3"
   #  '';
-
-  cfirefox.extraConfig = ''
-    user_pref("media.ffmpeg.vaapi.enabled", true);
-    user_pref("media.ffvpx.enabled", false);
-    user_pref("media.rdd-ffmpeg.enabled", false);
-    user_pref("media.av1.enabled", false);
-    user_pref("gfx.webrender.all", true);
-    user_pref("layers.gpu-process.enabled", true);
-    user_pref("widget.wayland.opaque-region.enabled", false);
-    user_pref("gfx.x11-egl.force-enabled", true);
-    user_pref("widget.dmabuf.force-enabled", true);
-  '';
 
   boot = {
     kernelParams = ["nvidia-drm.fbdev=1"];

@@ -1,4 +1,4 @@
-{
+{self, ...}: {
   imports = [
     # editors
     ../../editors/helix
@@ -37,4 +37,16 @@
       "HDMI-A-1, preferred, -1080x0, 1, transform, 1"
     ];
   };
+
+  cfirefox.extraConfig = ''
+    user_pref("media.ffmpeg.vaapi.enabled", true);
+    user_pref("media.ffvpx.enabled", false);
+    user_pref("media.rdd-ffmpeg.enabled", false);
+    user_pref("media.av1.enabled", false);
+    user_pref("gfx.webrender.all", true);
+    user_pref("layers.gpu-process.enabled", true);
+    user_pref("widget.wayland.opaque-region.enabled", false);
+    user_pref("gfx.x11-egl.force-enabled", true);
+    user_pref("widget.dmabuf.force-enabled", true);
+  '';
 }
