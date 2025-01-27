@@ -1,4 +1,11 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    inputs.slippi.nixosModules.default
+  ];
   programs = {
     gamescope = {
       enable = true;

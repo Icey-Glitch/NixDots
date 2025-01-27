@@ -224,6 +224,14 @@
       };
     };
 
+    slippi = {
+      url = "github:lytedev/slippi-nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "hm";
+      };
+    };
+
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";

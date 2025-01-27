@@ -8,4 +8,13 @@
 
   users.users.qemu-libvirtd.group = "qemu-libvirtd";
   users.groups.qemu-libvirtd = {};
+
+  networking.bridges = {
+    br0 = {
+      interfaces = ["eno2"];
+    };
+  };
+
+  # get address from dhcp
+  networking.interfaces."br0".useDHCP = true;
 }

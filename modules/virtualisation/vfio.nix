@@ -7,10 +7,10 @@
 }:
 with lib; let
   cfg = config.virt.vfio;
-  qemu-patches = pkgs.fetchurl {
-    url = "https://gist.githubusercontent.com/Icey-Glitch/4953628771180decdc2af54ffb44de48/raw/566adf706abce549f766c02485d51eb94e3a07e4/qemu-9.0.1-anti-detection.patch";
-    sha256 = "sha256-zRAm0ZT+xBJNgCuIR78U2GFp6IuQ1A2qd7ml8/EXZS8=";
-  };
+  # qemu-patches = pkgs.fetchurl {
+  #   url = "https://gist.githubusercontent.com/Icey-Glitch/4953628771180decdc2af54ffb44de48/raw/566adf706abce549f766c02485d51eb94e3a07e4/qemu-9.0.1-anti-detection.patch";
+  #   sha256 = "sha256-zRAm0ZT+xBJNgCuIR78U2GFp6IuQ1A2qd7ml8/EXZS8=";
+  # };
 in {
   imports = [
     inputs.nixos-vfio.nixosModules.default
@@ -54,16 +54,16 @@ in {
         ];
       };
 
-      nixpkgs.overlays = [
-        (final: prev: {
-          qemu_pinned = inputs.nixpkgs-qemu.legacyPackages.${final.system}.qemu;
-          qemu_kvm = final.qemu_pinned.overrideAttrs (_: {
-            patches = [
-              qemu-patches
-            ];
-          });
-        })
-      ];
+      # nixpkgs.overlays = [
+      #   (final: prev: {
+      #     qemu_pinned = inputs.nixpkgs-qemu.legacyPackages.${final.system}.qemu;
+      #     qemu_kvm = final.qemu_pinned.overrideAttrs (_: {
+      #       patches = [
+      #         qemu-patches
+      #       ];
+      #     });
+      #   })
+      # ];
 
       virtualisation.libvirtd = {
         enable = true;
@@ -127,10 +127,10 @@ in {
 
       # Reserve total of 16GiB, 1GiB each, hugepages
       virtualisation.hugepages = {
-        enable = false;
+        enable = true;
         defaultPageSize = "1G";
         pageSize = "1G";
-        numPages = 16;
+        numPages = 10;
       };
 
       # Add shmem areas for both scream and looking-glass as a kvmfr backup

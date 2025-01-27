@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   mpvShaders = {
     FSR = pkgs.fetchurl {
       url = "https://gist.githubusercontent.com/agyild/82219c545228d70c5604f865ce0b0ce5/raw/4ef91348ab4ade0ef74c6c487df27cf31bdc69ae/FSR.glsl";
@@ -21,6 +25,26 @@
 in {
   programs.yt-dlp = {
     enable = true;
+
+    settings = {
+      embed-chapters = true; # embed all the things
+      embed-metadata = true;
+      embed-thumbnail = true;
+      convert-thumbnail = "jpg";
+      # so every file manager can show the thumbnail - webp support is not quite universal
+      embed-subs = true;
+      sub-langs = "all";
+      # subtitle files are very small,
+      # and sometimes language names are declared badly,
+      # so worth it to grab them all
+      downloader = "aria2c";
+      downloader-args = "aria2c:'-c -x16 -s16 -k2M'";
+      # -c is resume if interrupted ("continue"),
+      # -x is max connections to a server,
+      # -s is number of connections used for download of a specific file,
+      # -k is size of chunks
+      download-archive = "yt-dlp-archive.txt";
+    };
   };
 
   xdg.configFile."mpv/shaders/hdr-toys".source =
