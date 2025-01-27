@@ -27,7 +27,7 @@
           "${mod}/core/lanzaboote.nix"
 
           "${mod}/programs/gamemode.nix"
-          "${mod}/programs/hyprland.nix"
+          "${mod}/programs/hyprland"
           "${mod}/programs/games.nix"
 
           "${mod}/network/spotify.nix"
@@ -64,7 +64,7 @@
           ./thinkpad
           "${mod}/programs/gamemode.nix"
           "${mod}/network/spotify.nix"
-          "${mod}/programs/hyprland.nix"
+          "${mod}/programs/hyprland"
           "${mod}/core/lanzaboote.nix"
           "${mod}/services/location.nix"
           "${mod}/services/gnome-services.nix"
@@ -88,7 +88,7 @@
           ./desktopm
           "${mod}/programs/gamemode.nix"
           "${mod}/network/spotify.nix"
-          "${mod}/programs/hyprland.nix"
+          "${mod}/programs/hyprland"
           "${mod}/programs/games.nix"
 
           "${mod}/services/location.nix"

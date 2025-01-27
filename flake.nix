@@ -62,7 +62,10 @@
       # last commit I had before ags switched to astal (thus breaking my config)
       # TODO: set up quickshell ASAP
       url = "github:Aylur/ags/60180a184cfb32b61a1d871c058b31a3b9b0743d";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
     };
 
     anyrun.url = "github:fufexan/anyrun/launch-prefix";
@@ -110,6 +113,44 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    lanzaboote.url = "github:nix-community/lanzaboote";
+
+    nix-index-db = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
+    };
+
+    nixpkgs-howdy.url = "github:fufexan/nixpkgs/howdy";
+
+    nix-matlab = {
+      url = "gitlab:doronbehar/nix-matlab";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-compat.follows = "flake-compat";
+      };
+    };
+
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-compat.follows = "flake-compat";
+      };
+    };
+
+    yazi.url = "github:sxyazi/yazi";
+
+    # hyprwm
+    hyprland.url = "github:hyprwm/hyprland";
+
     hypridle = {
       url = "github:hyprwm/hypridle";
       inputs.hyprlang.follows = "hyprland/hyprlang";
@@ -117,8 +158,6 @@
       inputs.nixpkgs.follows = "hyprland/nixpkgs";
       inputs.systems.follows = "hyprland/systems";
     };
-
-    hyprland.url = "github:hyprwm/hyprland";
 
     hyprland-contrib = {
       url = "github:hyprwm/contrib";
@@ -132,10 +171,13 @@
 
     hyprlock = {
       url = "github:hyprwm/hyprlock";
-      inputs.hyprlang.follows = "hyprland/hyprlang";
-      inputs.hyprutils.follows = "hyprland/hyprutils";
-      inputs.nixpkgs.follows = "hyprland/nixpkgs";
-      inputs.systems.follows = "hyprland/systems";
+      inputs = {
+        hyprgraphics.follows = "hyprland/hyprgraphics";
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
+        nixpkgs.follows = "hyprland/nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
     };
 
     hyprpaper = {
@@ -146,12 +188,10 @@
       inputs.systems.follows = "hyprland/systems";
     };
 
-    lanzaboote.url = "github:nix-community/lanzaboote";
-
     matugen = {
       url = "github:InioX/matugen";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
+        nixpkgs.follows = "hyprland/nixpkgs";
         systems.follows = "hyprland/systems";
       };
     };
@@ -163,23 +203,6 @@
 
     nixcord = {
       url = "github:kaylorben/nixcord";
-    };
-
-    nix-gaming = {
-      url = "github:fufexan/nix-gaming";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
-    };
-
-    nix-index-db = {
-      url = "github:Mic92/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-matlab = {
-      url = "gitlab:doronbehar/nix-matlab";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
     };
 
     nix-vscode-extensions = {
@@ -197,18 +220,9 @@
       url = "github:NixOS/nixpkgs?rev=6db86a5dd01229dfe74281a76a7e50b60cdff297";
     };
 
-    nixpkgs-howdy.url = "github:fufexan/nixpkgs/howdy";
-
     nur.url = "github:nix-community/NUR";
 
-    pre-commit-hooks = {
-      url = "github:cachix/pre-commit-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
-    };
     nixos-vfio.url = "github:glanch/nixos-vfio/additional_device_xml";
-
-    yazi.url = "github:sxyazi/yazi";
 
     tailray = {
       url = "github:NotAShelf/tailray";
@@ -219,7 +233,6 @@
       url = "github:nix-community/NixOS-WSL";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
         flake-compat.follows = "flake-compat";
       };
     };

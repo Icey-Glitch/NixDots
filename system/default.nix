@@ -7,6 +7,7 @@ let
     ./hardware/smartcard.nix
 
     ./hardware/graphics.nix
+    ./hardware/tablet.nix
 
     ./network
     ./network/avahi.nix

@@ -3,7 +3,7 @@ _: {
     enable = true;
     systemd = {
       enable = true;
-      target = "multi-user.target";
+      target = "graphical.target";
     };
     # Use the heredoc syntax for better readability
     style = ''

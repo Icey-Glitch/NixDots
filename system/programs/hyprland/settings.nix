@@ -1,21 +1,20 @@
 {config, ...}: let
-  pointer = config.home.pointerCursor;
-
+  # pointer = config.home.pointerCursor;
   cursorName = "Bibata-Modern-Classic-Hyprcursor";
 in {
-  wayland.windowManager.hyprland.settings = {
+  programs.hyprland.settings = {
     "$mod" = "SUPER";
     env = [
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
       "HYPRCURSOR_THEME,${cursorName}"
-      "HYPRCURSOR_SIZE,${toString pointer.size}"
+      "HYPRCURSOR_SIZE,${toString 16}"
     ];
 
     exec-once = [
       # finalize startup
       "uwsm finalize"
       # set cursor for HL itself
-      "hyprctl setcursor ${cursorName} ${toString pointer.size}"
+      "hyprctl setcursor ${cursorName} ${toString 16}"
       "hyprlock"
     ];
 
@@ -112,8 +111,7 @@ in {
     render = {
       direct_scanout = true;
       # Fixes some apps stuttering (xournalpp, hyprlock). Possibly an amdgpu bug
-      explicit_sync = 0;
-      explicit_sync_kms = 0;
+      allow_early_buffer_release = true;
     };
 
     # touchpad gestures
@@ -133,8 +131,7 @@ in {
         class = "cs2";
       };
 
-      /*
-         hyprbars = {
+      hyprbars = {
         bar_height = 20;
         bar_precedence_over_border = true;
 
@@ -146,7 +143,6 @@ in {
           "rgb(b6c4ff), 15, , hyprctl dispatch fullscreen 1"
         ];
       };
-      */
 
       hyprexpo = {
         columns = 3;
