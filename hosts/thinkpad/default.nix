@@ -43,6 +43,20 @@
     };
   };
 
+  programs.hyprland.settings = {
+    misc = {
+      vrr = lib.mkForce 2;
+      vfr = true;
+    };
+    monitor = [
+      "eDP-1, 1920x1080@60.02, 0x0, 1.5"
+    ];
+    decoration = {
+      blur.enabled = lib.mkForce false;
+      shadow.enabled = lib.mkForce false;
+    };
+  };
+
   networking.hostName = "thinkpad";
 
   security.tpm2.enable = true;
