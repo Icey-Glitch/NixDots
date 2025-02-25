@@ -92,6 +92,7 @@ in {
     signing = {
       key = "A984A90CB698A0B5";
       signByDefault = true;
+      #  format = "ssh";
     };
 
     extraConfig = {

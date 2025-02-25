@@ -77,7 +77,6 @@
 
     arkenfox = {
       url = "github:dwarfmaster/arkenfox-nixos";
-      inputs.flake-utils.follows = "flake-utils";
       inputs.flake-compat.follows = "flake-compat";
     };
 
@@ -149,7 +148,7 @@
     yazi.url = "github:sxyazi/yazi";
 
     # hyprwm
-    hyprland.url = "github:hyprwm/hyprland";
+    hyprland.url = "github:hyprwm/hyprland/nix-module";
 
     hypridle = {
       url = "github:hyprwm/hypridle";
