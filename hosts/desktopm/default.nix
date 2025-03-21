@@ -37,6 +37,7 @@
   };
 
   networking.hostName = "desktopm";
+  virtualisation.docker.enable = true;
 
   security.tpm2.enable = true;
 
