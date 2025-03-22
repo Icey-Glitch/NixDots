@@ -19,8 +19,8 @@ in {
     ];
 
     general = {
-      gaps_in = 5;
-      gaps_out = 5;
+      gaps_in = 4;
+      gaps_out = 8;
       border_size = 1;
       "col.active_border" = "rgba(88888888)";
       "col.inactive_border" = "rgba(00000088)";
@@ -107,7 +107,7 @@ in {
     render = {
       direct_scanout = true;
       # Fixes some apps stuttering (xournalpp, hyprlock). Possibly an amdgpu bug
-      allow_early_buffer_release = true;
+      # allow_early_buffer_release = true;
     };
 
     # touchpad gestures

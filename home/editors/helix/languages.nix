@@ -58,11 +58,11 @@
         }
         {
           name = "python";
-          language-servers = ["basedpyright"];
-          formatter = {
-            command = lib.getExe pkgs.black;
-            args = ["-" "--quiet" "--line-length 100"];
-          };
+          auto-format = true;
+          language-servers = [
+            "basedpyright"
+            "ruff"
+          ];
         }
         {
           name = "typescript";
@@ -136,8 +136,12 @@
         };
       };
 
-      /*
-         vscode-css-language-server = {
+      ruff = {
+        command = lib.getExe pkgs.ruff;
+        args = ["server"];
+      };
+
+      vscode-css-language-server = {
         command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-css-languageserver";
         args = ["--stdio"];
         config = {
@@ -146,7 +150,6 @@
           scss.validate.enable = true;
         };
       };
-      */
     };
   };
 
