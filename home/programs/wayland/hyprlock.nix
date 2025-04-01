@@ -17,6 +17,11 @@
         no_fade_in = true;
       };
 
+      animation = [
+        "inputFieldDots, 1, 2, linear"
+        "fadeIn, 0"
+      ];
+
       background = [
         {
           monitor = "";

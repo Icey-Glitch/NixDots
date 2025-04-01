@@ -8,6 +8,8 @@ in {
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
       "HYPRCURSOR_THEME,${cursorName}"
       "HYPRCURSOR_SIZE,${toString 16}"
+      # See https://github.com/hyprwm/contrib/issues/142
+      "GRIMBLAST_NO_CURSOR,0"
     ];
 
     exec-once = [
@@ -104,16 +106,11 @@ in {
       vrr = 1;
     };
 
-    render = {
-      direct_scanout = true;
-      # Fixes some apps stuttering (xournalpp, hyprlock). Possibly an amdgpu bug
-      # allow_early_buffer_release = true;
-    };
+    render.direct_scanout = true;
 
     # touchpad gestures
     gestures = {
-      # Disable because of bug https://github.com/hyprwm/Hyprland/issues/9262
-      # workspace_swipe = true;
+      workspace_swipe = true;
       workspace_swipe_forever = true;
     };
 

@@ -4,7 +4,7 @@
     settings.builders-use-substitutes = true;
     buildMachines = [
       {
-        hostName = "neushore";
+        hostName = "desktopm";
         protocol = "ssh"; # ssh-ng not supported on this machine
         maxJobs = 16;
         speedFactor = 2;

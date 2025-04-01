@@ -6,7 +6,7 @@
   imports = [./hardware-configuration.nix];
 
   boot = {
-    kernelPackages = lib.mkForce pkgs.linuxPackages_xanmod;
+    kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos-lto;
     kernelParams = [
       "quiet"
       "loglevel=3"
@@ -35,6 +35,18 @@
       "HDMI-A-1, preferred, -1080x0, 1, transform, 1"
     ];
   };
+
+  users.users.remotebuild = {
+    isNormalUser = true;
+    createHome = false;
+    group = "remotebuild";
+
+    openssh.authorizedKeys.keyFiles = [../../secrets/yubikey.pub];
+  };
+
+  nix.settings.trusted-users = ["remotebuild"];
+
+  users.groups.remotebuild = {};
 
   networking.hostName = "desktopm";
   virtualisation.docker.enable = true;

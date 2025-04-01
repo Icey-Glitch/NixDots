@@ -1,7 +1,11 @@
+//@ pragma NativeTextRendering
+
 import Quickshell
 import QtQuick
 import QtQuick.Layouts
+import "../utils"
 import "../components/bar"
+import "../components/bar/workspaces"
 
 Scope {
     PanelWindow {
@@ -21,7 +25,7 @@ Scope {
             id: bar
             anchors.fill: parent
 
-            color: "transparent"
+            color: Colors.bgBlur
 
             // left
             RowLayout {
@@ -30,9 +34,10 @@ Scope {
                 anchors.bottom: parent.bottom
                 anchors.left: parent.left
                 anchors.top: parent.top
-                anchors.leftMargin: 5
 
-                spacing: 5
+                anchors.leftMargin: height / 4
+                anchors.rightMargin: height / 4
+                spacing: height / 4
 
                 Workspaces {}
             }
@@ -45,7 +50,9 @@ Scope {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
 
-                spacing: 5
+                anchors.leftMargin: height / 4
+                anchors.rightMargin: height / 4
+                spacing: height / 4
 
                 Mpris {}
             }
@@ -57,13 +64,14 @@ Scope {
                 anchors.bottom: parent.bottom
                 anchors.right: parent.right
                 anchors.top: parent.top
-                anchors.rightMargin: 5
 
-                spacing: 5
+                anchors.leftMargin: height / 4
+                anchors.rightMargin: height / 4
+                spacing: height / 4
 
                 Tray {}
                 Resources {}
-                System {}
+                Battery {}
                 Clock {}
             }
         }

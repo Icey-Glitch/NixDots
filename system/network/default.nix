@@ -16,11 +16,8 @@
   };
 
   programs.ssh.extraConfig = ''
-    Host neushore
-      User builder
-      HostName build.neushore.dev
-      IdentityFile /home/mihai/.ssh/id_ed25519
-      Port 30
+    Host desktopm
+      HostName desktopm.homenet
   '';
 
   services = {
