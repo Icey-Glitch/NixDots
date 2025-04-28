@@ -6,7 +6,7 @@
   imports = [./hardware-configuration.nix];
 
   boot = {
-    kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos-lto;
+    kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
     kernelParams = [
       "quiet"
       "loglevel=3"
@@ -21,6 +21,8 @@
 
   hardware = {
     cpu.intel.updateMicrocode = true;
+
+    xone.enable = true;
 
     enableRedistributableFirmware = true;
   };

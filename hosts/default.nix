@@ -94,7 +94,7 @@
           "${mod}/services/location.nix"
           "${mod}/services/gnome-services.nix"
           "${mod}/hardware/nvidia-fixes.nix"
-          #"${mod}/hardware/k2200.nix"
+          "${mod}/hardware/k2200.nix"
 
           {
             home-manager = {
