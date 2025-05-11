@@ -30,8 +30,6 @@
       };
     };
 
-    mullvad-vpn.enable = true;
-
     # DNS resolver
     resolved = {
       enable = true;

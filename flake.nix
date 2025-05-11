@@ -244,6 +244,14 @@
       };
     };
 
+    uwu-colors = {
+      url = "github:q60/uwu_colors";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        utils.follows = "flake-utils";
+      };
+    };
+
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";

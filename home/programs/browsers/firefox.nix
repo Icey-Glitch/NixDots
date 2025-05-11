@@ -129,7 +129,7 @@ in {
               owner = "yokoffing";
               repo = "Betterfox";
               rev = "HEAD";
-              hash = "sha256-5fD8ffAyIgQYJ0Z/bMEpqf17YghVQNaK+giZ1Tyk6/Q=";
+              hash = "sha256-e/TYnhy7P2Vxqv7QlVZdhXQZFcTX0hRfH2VjlbCO3VE=";
             };
           in {
             extraConfig = builtins.trace "cfirefox extraConfig: ${config.cfirefox.extraConfig}" (
