@@ -23,7 +23,7 @@ _:
       # Max package power for time window #2
       PL2_Tdp_W: 30
       # Time window #2 duration
-      PL2_Duration_S: 0.002
+      PL2_Duration_S: 7
       # Max allowed temperature before throttling
       Trip_Temp_C: 85
       # Set cTDP to normal=0, down=1 or up=2 (EXPERIMENTAL)
@@ -36,15 +36,15 @@ _:
       # Update the registers every this many seconds
       Update_Rate_s: 5
       # Max package power for time window #1
-      PL1_Tdp_W: 44
+      PL1_Tdp_W: 30
       # Time window #1 duration
       PL1_Duration_s: 28
       # Max package power for time window #2
-      PL2_Tdp_W: 44
+      PL2_Tdp_W: 45
       # Time window #2 duration
-      PL2_Duration_S: 0.002
+      PL2_Duration_S: 15
       # Max allowed temperature before throttling
-      Trip_Temp_C: 95
+      Trip_Temp_C: 90
       # Set HWP energy performance hints to 'performance' on high load (EXPERIMENTAL)
       # Uncomment only if you really want to use it
       HWP_Mode: True
@@ -56,11 +56,11 @@ _:
       # All voltage values are expressed in mV and *MUST* be negative (i.e. undervolt)!
       [UNDERVOLT]
       # CPU core voltage offset (mV)
-      CORE: -105
+      CORE: -115
       # Integrated GPU voltage offset (mV)
-      GPU: -85
+      GPU: -90
       # CPU cache voltage offset (mV)
-      CACHE: -105
+      CACHE: -115
       # System Agent voltage offset (mV)
       UNCORE: -85
       # Analog I/O voltage offset (mV)
