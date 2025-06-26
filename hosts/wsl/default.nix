@@ -3,7 +3,7 @@
     inputs.nixos-wsl.nixosModules.default
   ];
   # nh default flake
-  environment.variables.FLAKE = "/home/icey/Documents/code/dotfiles";
+  environment.variables.NH_FLAKE = "/home/icey/Documents/code/dotfiles";
 
   wsl = {
     enable = true;

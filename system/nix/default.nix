@@ -6,7 +6,6 @@
   ...
 }: {
   imports = [
-    ./builders.nix
     ./nh.nix
     ./nixpkgs.nix
     ./substituters.nix
@@ -30,7 +29,7 @@
       auto-optimise-store = true;
 
       builders-use-substitutes = true;
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = ["nix-command" "flakes" "repl-flake"];
       flake-registry = "/etc/nix/registry.json";
 
       # for direnv GC roots
