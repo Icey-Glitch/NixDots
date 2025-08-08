@@ -54,16 +54,16 @@ in {
         ];
       };
 
-      # nixpkgs.overlays = [
-      #   (final: prev: {
-      #     qemu_pinned = inputs.nixpkgs-qemu.legacyPackages.${final.system}.qemu;
-      #     qemu_kvm = final.qemu_pinned.overrideAttrs (_: {
-      #       patches = [
-      #         qemu-patches
-      #       ];
-      #     });
-      #   })
-      # ];
+      nixpkgs.overlays = [
+        (final: prev: {
+          qemu_pinned = inputs.nixpkgs-qemu.legacyPackages.${final.system}.qemu;
+          qemu_kvm = final.qemu_pinned.overrideAttrs (_: {
+            patches = [
+              qemu-patches
+            ];
+          });
+        })
+      ];
 
       virtualisation.libvirtd = {
         enable = true;

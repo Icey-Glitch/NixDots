@@ -54,7 +54,7 @@
     yubikey-manager # CLI tool
     #yubikey-manager-qt # GUI tool
     yubikey-personalization # CLI personalization tool
-    yubikey-personalization-gui
+
     yubico-piv-tool # PIV-related operations
     yubioath-flutter # OATH (2FA) management
 
