@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 # media - control and enjoy audio/video
 {
   imports = [
@@ -19,8 +19,9 @@
     nicotine-plus
 
     # Streamio
-    stremio
+    # stremio
     syncplay
+    supersonic-wayland
 
     # Twitch
     streamlink-twitch-gui-bin

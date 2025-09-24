@@ -21,15 +21,14 @@ let
     ./services/printing.nix
   ];
 
-  laptop =
-    desktop
-    ++ [
-      ./hardware/bluetooth.nix
+  laptop = desktop ++ [
+    ./hardware/bluetooth.nix
 
-      ./services/backlight.nix
-      ./services/power.nix
-      ./services/power-profiles.nix
-    ];
-in {
+    ./services/backlight.nix
+    ./services/power.nix
+    ./services/power-profiles.nix
+  ];
+in
+{
   inherit desktop laptop;
 }

@@ -1,10 +1,11 @@
 {
   pkgs,
   self,
-  # inputs,
+  inputs,
   lib,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware-configuration.nix
     ./hyprland.nix
@@ -18,7 +19,7 @@
   };
 
   boot = {
-    kernelModules = ["i2c-dev"];
+    kernelModules = [ "i2c-dev" ];
     kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
     kernelParams = [
       "amd_pstate=active"
@@ -44,26 +45,26 @@
     # for SSD/NVME
     fstrim.enable = true;
 
-    # howdy = {
-    #   enable = true;
-    #   package = inputs.nixpkgs-howdy.legacyPackages.${pkgs.system}.howdy;
-    #   settings = {
-    #     core = {
-    #       no_confirmation = true;
-    #       abort_if_ssh = true;
-    #     };
-    #     video.dark_threshold = 90;
-    #   };
-    # };
+    howdy = {
+      enable = true;
+      package = inputs.nixpkgs-howdy.legacyPackages.${pkgs.system}.howdy;
+      settings = {
+        core = {
+          no_confirmation = true;
+          abort_if_ssh = true;
+        };
+        video.dark_threshold = 90;
+      };
+    };
 
-    # linux-enable-ir-emitter = {
-    #   enable = true;
-    #   package = inputs.nixpkgs-howdy.legacyPackages.${pkgs.system}.linux-enable-ir-emitter;
-    # };
+    linux-enable-ir-emitter = {
+      enable = true;
+      package = inputs.nixpkgs-howdy.legacyPackages.${pkgs.system}.linux-enable-ir-emitter;
+    };
 
     kanata.keyboards.io = {
       config = builtins.readFile "${self}/system/services/kanata/main.kbd";
-      devices = ["/dev/input/by-path/platform-i8042-serio-0-event-kbd"];
+      devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
     };
   };
 }

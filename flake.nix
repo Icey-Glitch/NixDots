@@ -1,9 +1,10 @@
 {
   description = "fufexan's NixOS and Home-Manager flake";
 
-  outputs = inputs:
-    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = ["x86_64-linux"];
+  outputs =
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
 
       imports = [
         ./hosts
@@ -11,36 +12,34 @@
         ./modules
         ./pkgs
 
-        ./pre-commit-hooks.nix
+        ./fmt-hooks.nix
         inputs.agenix-rekey.flakeModule
       ];
 
-      perSystem = {
-        config,
-        pkgs,
-        ...
-      }: {
-        devShells.default = pkgs.mkShell {
-          packages = [
-            pkgs.alejandra
-            pkgs.git
-            pkgs.nil
-            pkgs.nodePackages.prettier
-            config.packages.repl
-            config.agenix-rekey.package
-            pkgs.statix
-            pkgs.rage
-          ];
+      perSystem =
+        {
+          config,
+          pkgs,
+          ...
+        }:
+        {
+          devShells.default = pkgs.mkShell {
+            packages = [
+              pkgs.git
+              pkgs.nil
+              config.packages.repl
+              config.agenix-rekey.package
+              pkgs.statix
+              pkgs.rage
+            ];
 
-          name = "dots";
-          DIRENV_LOG_FORMAT = "";
-          shellHook = ''
-            ${config.pre-commit.installationScript}
-          '';
+            name = "dots";
+            env.DIRENV_LOG_FORMAT = "";
+            shellHook = ''
+              ${config.pre-commit.installationScript}
+            '';
+          };
         };
-
-        formatter = pkgs.alejandra;
-      };
     };
 
   inputs = {
@@ -59,9 +58,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ags = {
-      # last commit I had before ags switched to astal (thus breaking my config)
+      # use raf's fork of agsv1.
       # TODO: set up quickshell ASAP
-      url = "github:Aylur/ags/60180a184cfb32b61a1d871c058b31a3b9b0743d";
+      url = "github:NotAShelf/rags";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
@@ -136,8 +135,8 @@
 
     nixpkgs-howdy.url = "github:fufexan/nixpkgs/howdy";
 
-    pre-commit-hooks = {
-      url = "github:cachix/pre-commit-hooks.nix";
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-compat.follows = "flake-compat";
@@ -200,7 +199,7 @@
     };
 
     nixcord = {
-      url = "github:kaylorben/nixcord?rev=cae5b4a4c5d91fde75fe32dcca06e77f6ac9c56b";
+      url = "github:kaylorben/nixcord";
     };
 
     nix-vscode-extensions = {
@@ -224,6 +223,11 @@
 
     tailray = {
       url = "github:NotAShelf/tailray";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

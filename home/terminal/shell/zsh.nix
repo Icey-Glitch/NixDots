@@ -2,21 +2,13 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
     autocd = true;
-    dirHashes = {
-      dl = "$HOME/Downloads";
-      docs = "$HOME/Documents";
-      code = "$HOME/Documents/code";
-      dots = "$HOME/Git/newdots/NixDots";
-      pics = "$HOME/Pictures";
-      vids = "$HOME/Videos";
-      nixpkgs = "$HOME/Documents/code/git/nixpkgs";
-    };
-    dotDir = ".config/zsh";
+    dotDir = "${config.xdg.configHome}/zsh";
     history = {
       expireDuplicatesFirst = true;
       path = "${config.xdg.dataHome}/zsh_history";
@@ -74,21 +66,21 @@
 
     '';
 
-    shellAliases =
-      {
-        g = "git";
-        grep = "grep --color";
-        ip = "ip --color";
-        l = "eza -l";
-        la = lib.mkForce "eza -la";
-        md = "mkdir -p";
-        ppc = "powerprofilesctl";
-        pf = "powerprofilesctl launch -p performance";
+    shellAliases = {
+      grep = "grep --color";
+      ip = "ip --color";
+      l = "eza -l";
+      la = "eza -la";
+      md = "mkdir -p";
+      ppc = "powerprofilesctl";
+      pf = "powerprofilesctl launch -p performance";
 
-        us = "systemctl --user"; # mnemonic for user systemctl
-        rs = "sudo systemctl"; # mnemonic for root systemctl
-      }
-      // lib.optionalAttrs config.programs.bat.enable {cat = "bat";};
-    shellGlobalAliases = {eza = "eza --icons --git";};
+      us = "systemctl --user"; # mnemonic for user systemctl
+      rs = "sudo systemctl"; # mnemonic for root systemctl
+    }
+    // lib.optionalAttrs config.programs.bat.enable { cat = "bat"; };
+    shellGlobalAliases = {
+      eza = "eza --icons --git";
+    };
   };
 }

@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   mpvShaders = {
     FSR = pkgs.fetchurl {
       url = "https://gist.githubusercontent.com/agyild/82219c545228d70c5604f865ce0b0ce5/raw/4ef91348ab4ade0ef74c6c487df27cf31bdc69ae/FSR.glsl";
@@ -22,7 +23,8 @@
     };
     # Add more shaders if needed
   };
-in {
+in
+{
   programs.yt-dlp = {
     enable = true;
 
@@ -47,12 +49,11 @@ in {
     };
   };
 
-  xdg.configFile."mpv/shaders/hdr-toys".source =
-    mpvShaders.hdrToys + "/shaders/hdr-toys";
+  xdg.configFile."mpv/shaders/hdr-toys".source = mpvShaders.hdrToys + "/shaders/hdr-toys";
   programs.mpv = {
     enable = true;
     catppuccin.enable = false;
-    defaultProfiles = ["gpu-hq"];
+    defaultProfiles = [ "gpu-hq" ];
     bindings = {
       WHEEL_UP = "seek 10";
       WHEEL_DOWN = "seek -10";
@@ -66,9 +67,12 @@ in {
       "Alt+f" = "script-binding quality_menu/audio_formats_toggle";
       "Ctrl+R" = "script-binding reload/reload";
       "CTRL+b" = "cycle deband";
-      "Ctrl+Shift+F6" = "no-osd change-list glsl-shaders set \"${mpvShaders.HdeDeband}\"; show-text \"Deband: ON\"";
-      "Ctrl+Shift+F7" = "no-osd change-list glsl-shaders set \"${mpvShaders.FSR}\"; show-text \"FSR: ON\"";
-      "Ctrl+Shift+F8" = "no-osd change-list glsl-shaders set \"${mpvShaders.SSimDownscaler}\"; show-text \"SSimDown: ON\"";
+      "Ctrl+Shift+F6" =
+        "no-osd change-list glsl-shaders set \"${mpvShaders.HdeDeband}\"; show-text \"Deband: ON\"";
+      "Ctrl+Shift+F7" =
+        "no-osd change-list glsl-shaders set \"${mpvShaders.FSR}\"; show-text \"FSR: ON\"";
+      "Ctrl+Shift+F8" =
+        "no-osd change-list glsl-shaders set \"${mpvShaders.SSimDownscaler}\"; show-text \"SSimDown: ON\"";
       "Ctrl+Shift+\\" = "no-osd change-list glsl-shaders clr \"\"; show-text \"GLSL shaders cleared\"";
     };
     config = {

@@ -2,8 +2,9 @@
   pkgs,
   lib,
   ...
-}: {
-  imports = [./hardware-configuration.nix];
+}:
+{
+  imports = [ ./hardware-configuration.nix ];
 
   boot = {
     kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
@@ -14,14 +15,14 @@
       "rd.udev.log_level=3"
       "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
     ];
-    blacklistedKernelModules = ["nouveau"];
+    blacklistedKernelModules = [ "nouveau" ];
   };
 
   services.udev.extraRules = ''
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
   '';
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware = {
     cpu.intel.updateMicrocode = true;
@@ -36,9 +37,9 @@
       no_hardware_cursors = true;
     };
     monitor = [
-      "DP-3, preferred, 1920x0, 1"
-      "DP-1, 1920x1080@240, 0x0, 1"
-      "HDMI-A-1, preferred, -1080x0, 1, transform, 1"
+      "DP-3, 1920x1080@240, 0x0, 1"
+      "DP-1, preferred, auto-right, 1"
+      "HDMI-A-1, preferred, auto-left, 1, transform, 1"
     ];
   };
 
@@ -47,12 +48,12 @@
     createHome = false;
     group = "remotebuild";
 
-    openssh.authorizedKeys.keyFiles = [../../secrets/yubikey.pub];
+    openssh.authorizedKeys.keyFiles = [ ../../secrets/yubikey.pub ];
   };
 
-  nix.settings.trusted-users = ["remotebuild"];
+  nix.settings.trusted-users = [ "remotebuild" ];
 
-  users.groups.remotebuild = {};
+  users.groups.remotebuild = { };
 
   networking.hostName = "desktopm";
   virtualisation.docker.enable = true;

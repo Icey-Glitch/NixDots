@@ -34,7 +34,10 @@
     "net.ipv4.tcp_timestamps" = 0;
   };
 
-  boot.kernelModules = ["tcp_bbr" "tls"];
+  boot.kernelModules = [
+    "tcp_bbr"
+    "tls"
+  ];
 
   security = {
     # allow wayland lockers to unlock the screen

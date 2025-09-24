@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   users.users.icey = {
     isNormalUser = true;
     shell = pkgs.zsh;
