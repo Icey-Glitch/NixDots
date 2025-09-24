@@ -77,6 +77,13 @@
 
     arkenfox = {
       url = "github:dwarfmaster/arkenfox-nixos";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "systems";
+    };
+
+    betterfox = {
+      url = "github:HeitorAugustoLN/betterfox-nix";
       inputs.flake-compat.follows = "flake-compat";
     };
 
@@ -193,7 +200,7 @@
     };
 
     nixcord = {
-      url = "github:kaylorben/nixcord";
+      url = "github:kaylorben/nixcord?rev=cae5b4a4c5d91fde75fe32dcca06e77f6ac9c56b";
     };
 
     nix-vscode-extensions = {
