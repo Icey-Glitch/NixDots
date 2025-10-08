@@ -3,6 +3,10 @@
     ../.
     ./thinkpad
   ];
+  "icey@macbook" = [
+    ../.
+    ./macbook
+  ];
   "icey@io" = [
     ../.
     ./io

@@ -4,9 +4,10 @@
   self,
   lib,
   ...
-}: {
+}:
+{
   environment = {
-    systemPackages = [pkgs.libva-utils];
+    systemPackages = [ pkgs.libva-utils ];
     sessionVariables = {
       LIBVA_DRIVER_NAME = "nvidia";
       XDG_SESSION_TYPE = "wayland";
@@ -39,7 +40,7 @@
   #  '';
 
   boot = {
-    kernelParams = ["nvidia-drm.fbdev=1"];
+    kernelParams = [ "nvidia-drm.fbdev=1" ];
 
     extraModprobeConfig =
       "options nvidia "
@@ -65,6 +66,7 @@
   hardware.nvidia = {
     powerManagement.enable = true;
     open = true;
+    nvidiaSettings = true;
     #package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 }

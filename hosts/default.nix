@@ -79,6 +79,28 @@
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
         ];
       };
+
+      macbook = nixosSystem {
+        inherit specialArgs;
+        modules = laptop ++ [
+          ./macbook
+          "${mod}/programs/gamemode.nix"
+          "${mod}/network/spotify.nix"
+          "${mod}/programs/hyprland"
+          "${mod}/services/location.nix"
+          "${mod}/services/gnome-services.nix"
+          "${mod}/programs/games.nix"
+
+          {
+            home-manager = {
+              users.icey.imports = homeImports."icey@thinkpad";
+              extraSpecialArgs = specialArgs;
+            };
+          }
+          inputs.chaotic.nixosModules.default
+          inputs.nixos-hardware.nixosModules.apple-macbook-pro-11-5
+        ];
+      };
       desktopm = nixosSystem {
         inherit specialArgs;
         modules = desktop ++ [
