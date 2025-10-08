@@ -8,11 +8,6 @@
 
   systemd.services.systemd-udev-settle.enable = false;
 
-  # Speed up udev
-  services.udev.extraRules = ''
-    SUBSYSTEM=="thunderbolt", ATTR{authorized}=="0", ATTR{authorized}="1"
-  '';
-
   boot = {
     kernelParams = [
       "nomodeset"
@@ -21,7 +16,7 @@
       "quiet"
       "loglevel=3"
       "systemd.show_status=auto"
-      "systemd.mask=systemd-udev-settle.service "
+      "systemd.mask=systemd-udev-settle.service"
       "rd.udev.log_level=3"
     ];
     loader.systemd-boot.enable = true;
