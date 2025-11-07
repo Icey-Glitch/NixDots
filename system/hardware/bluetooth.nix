@@ -6,6 +6,7 @@
     settings = {
       # make Xbox Series X controller work
       General = {
+        Enable = "Source,Sink,Media,Socket";
         Class = "0x000100";
         ControllerMode = "bredr";
         FastConnectable = true;
@@ -15,6 +16,32 @@
         Experimental = true;
       };
     };
+  };
+
+  services.pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
+    "bluez_monitor.properties" = {
+      "bluez5.enable-sbc-xq" = true;
+      "bluez5.enable-msbc" = true;
+      "bluez5.enable-hw-volume" = true;
+      "bluez5.headset-roles" = [
+        "hsp_hs"
+        "hsp_ag"
+        "hfp_hf"
+        "hfp_ag"
+        "a2dp_sink"
+        "a2dp_source"
+      ];
+    };
+  };
+
+  systemd.user.services.mpris-proxy = {
+    description = "Mpris proxy";
+    after = [
+      "network.target"
+      "sound.target"
+    ];
+    wantedBy = [ "default.target" ];
+    serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
   };
 
   # https://github.com/NixOS/nixpkgs/issues/114222

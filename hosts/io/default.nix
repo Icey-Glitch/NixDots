@@ -13,7 +13,7 @@
 
   age.secrets.spotify = {
     file = "${self}/secrets/spotify.age";
-    owner = "mihai";
+    owner = "icey";
     group = "users";
   };
 
@@ -29,7 +29,7 @@
   };
 
   # nh default flake
-  environment.variables.NH_FLAKE = "/home/mihai/Documents/code/dotfiles";
+  environment.variables.FLAKE = "/home/icey/Documents/code/dotfiles";
 
   hardware = {
     # xpadneo.enable = true;
