@@ -33,8 +33,7 @@
       input-field = [
         {
           monitor = "";
-
-          size = "150, 30";
+          size = "300, 50";
           valign = "bottom";
           position = "0%, 10%";
 

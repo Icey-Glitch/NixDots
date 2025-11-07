@@ -1,10 +1,21 @@
 {
-  "mihai@io" = [
+  "icey@thinkpad" = [
+    ../.
+    ./thinkpad
+  ];
+  "icey@macbook" = [
+    ../.
+    ./macbook
+  ];
+  "icey@io" = [
     ../.
     ./io
   ];
-
-  server = [
+  "icey@desktopm" = [
+    ../.
+    ./desktopm
+  ];
+  "icey@server" = [
     ../.
     ./server
   ];

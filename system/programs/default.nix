@@ -3,6 +3,8 @@
   imports = [
     ./fonts.nix
     ./home-manager.nix
+    ./obs-comp.nix
+    # ./qt.nix
     ./xdg.nix
     ./school.nix
   ];

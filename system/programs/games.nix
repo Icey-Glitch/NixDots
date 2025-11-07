@@ -1,5 +1,12 @@
-{ pkgs, ... }:
 {
+  pkgs,
+  inputs,
+  ...
+}:
+{
+  imports = [
+    inputs.slippi.nixosModules.default
+  ];
   programs = {
     gamescope = {
       enable = true;
@@ -25,6 +32,11 @@
           "--expose-wayland"
         ];
       };
+    };
+
+    nix-ld = {
+      enable = true;
+      libraries = pkgs.steam-run.args.multiPkgs pkgs;
     };
   };
 }

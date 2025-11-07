@@ -10,6 +10,12 @@
     ./powersave.nix
   ];
 
+  age.secrets.spotify = {
+    file = "${self}/secrets/spotify.age";
+    owner = "icey";
+    group = "users";
+  };
+
   boot = {
     kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
     kernelParams = [
@@ -21,7 +27,12 @@
   };
 
   # nh default flake
-  environment.variables.NH_FLAKE = "/home/mihai/Projects/dotfiles";
+  environment.variables.FLAKE = "/home/icey/Documents/code/dotfiles";
+
+  hardware = {
+    # xpadneo.enable = true;
+    sensor.iio.enable = true;
+  };
 
   networking.hostName = "io";
 
