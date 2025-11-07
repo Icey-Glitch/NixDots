@@ -37,7 +37,7 @@
       no_hardware_cursors = true;
     };
     monitor = [
-      "DP-3, 1920x1080@240, 0x0, 1"
+      "DP-2, 1920x1080@240, 0x0, 1"
       "DP-1, preferred, auto-right, 1"
       "HDMI-A-1, preferred, auto-left, 1, transform, 1"
     ];

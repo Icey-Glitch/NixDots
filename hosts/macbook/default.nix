@@ -11,7 +11,6 @@
   boot = {
     kernelParams = [
       "nomodeset"
-      "i915.modeset=0"
       "acpi_osi=Darwin"
       "quiet"
       "loglevel=3"

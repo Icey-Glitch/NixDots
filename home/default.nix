@@ -9,7 +9,7 @@
     ./terminal
     inputs.nur.modules.homeManager.default
     #inputs.betterfox.hmModules.default
-    inputs.catppuccin.homeManagerModules.catppuccin
+    inputs.catppuccin.homeModules.catppuccin
     inputs.nix-index-db.homeModules.nix-index
     inputs.tailray.homeManagerModules.default
     self.nixosModules.theme
