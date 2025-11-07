@@ -4,7 +4,10 @@ let
     ./core/boot.nix
 
     ./hardware/fwupd.nix
+    ./hardware/smartcard.nix
+
     ./hardware/graphics.nix
+    ./hardware/tablet.nix
 
     ./network
     ./network/avahi.nix
@@ -15,6 +18,7 @@ let
     ./services
     ./services/greetd.nix
     ./services/pipewire.nix
+    ./services/printing.nix
   ];
 
   laptop = desktop ++ [
@@ -22,6 +26,7 @@ let
 
     ./services/backlight.nix
     ./services/power.nix
+    ./services/power-profiles.nix
   ];
 in
 {

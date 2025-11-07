@@ -62,6 +62,10 @@ in
       };
     };
 
+    experimental = {
+      xx_color_management_v4 = true;
+    };
+
     animations = {
       enabled = true;
       animation = [
@@ -116,6 +120,10 @@ in
       # Fixes some apps stuttering (xournalpp, hyprlock). Possibly an amdgpu bug
       explicit_sync = 0;
       explicit_sync_kms = 0;
+      send_content_type = true;
+      cm_fs_passthrough = 1;
+      cm_auto_hdr = 1;
+      cm_enable = true;
     };
 
     # touchpad gestures
@@ -135,18 +143,20 @@ in
         class = "cs2";
       };
 
-      hyprbars = {
-        bar_height = 20;
-        bar_precedence_over_border = true;
+      /*
+           hyprbars = {
+          bar_height = 20;
+          bar_precedence_over_border = true;
 
-        # order is right-to-left
-        hyprbars-button = [
-          # close
-          "rgb(ffb4ab), 15, , hyprctl dispatch killactive"
-          # maximize
-          "rgb(b6c4ff), 15, , hyprctl dispatch fullscreen 1"
-        ];
-      };
+          # order is right-to-left
+          hyprbars-button = [
+            # close
+            "rgb(ffb4ab), 15, , hyprctl dispatch killactive"
+            # maximize
+            "rgb(b6c4ff), 15, , hyprctl dispatch fullscreen 1"
+          ];
+        };
+      */
 
       hyprexpo = {
         columns = 3;

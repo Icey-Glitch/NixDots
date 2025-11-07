@@ -13,12 +13,15 @@
     # misc
     chafa
     libnotify
+    inetutils
     sshfs
 
     # utils
+    aria2
     dust
     duf
     fd
+    jq
     file
     jaq
     ripgrep
@@ -43,7 +46,6 @@
           controlPersist = "no";
           dynamicForwards = [ ];
           extraOptions = { };
-          forwardAgent = false;
           forwardX11 = false;
           forwardX11Trusted = false;
           hashKnownHosts = false;

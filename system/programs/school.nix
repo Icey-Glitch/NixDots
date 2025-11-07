@@ -14,7 +14,7 @@
 
   # Allow plugdev group to use Analog Devices' ADALM Pluto devices
   users.groups.plugdev = { };
-  users.users.mihai.extraGroups = [ "plugdev" ];
+  users.users.icey.extraGroups = [ "plugdev" ];
 
   services.udev.packages =
     let

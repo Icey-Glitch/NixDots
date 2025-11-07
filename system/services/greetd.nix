@@ -9,7 +9,7 @@
     let
       session = {
         command = "${lib.getExe config.programs.uwsm.package} start hyprland-uwsm.desktop";
-        user = "mihai";
+        user = "icey";
       };
     in
     {

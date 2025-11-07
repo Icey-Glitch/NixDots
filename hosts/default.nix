@@ -15,7 +15,7 @@
 
       mod = "${self}/system";
       # get the basic config to build on top of
-      inherit (import mod) laptop;
+      inherit (import mod) desktop laptop;
 
       # get these into the module system
       specialArgs = { inherit inputs self; };
@@ -40,7 +40,7 @@
 
           {
             home-manager = {
-              users.mihai.imports = homeImports."mihai@io";
+              users.icey.imports = homeImports."icey@io";
               extraSpecialArgs = specialArgs;
               backupFileExtension = ".hm-backup";
             };
@@ -57,6 +57,95 @@
         ];
       };
 
+      thinkpad = nixosSystem {
+        inherit specialArgs;
+        modules = laptop ++ [
+          ./thinkpad
+          "${mod}/programs/gamemode.nix"
+          "${mod}/network/spotify.nix"
+          "${mod}/programs/hyprland"
+          "${mod}/core/lanzaboote.nix"
+          "${mod}/services/location.nix"
+          "${mod}/services/gnome-services.nix"
+          "${mod}/programs/games.nix"
+
+          {
+            home-manager = {
+              users.icey.imports = homeImports."icey@thinkpad";
+              extraSpecialArgs = specialArgs;
+            };
+          }
+          inputs.chaotic.nixosModules.default
+          inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
+        ];
+      };
+
+      macbook = nixosSystem {
+        inherit specialArgs;
+        modules = laptop ++ [
+          ./macbook
+          "${mod}/programs/gamemode.nix"
+          "${mod}/network/spotify.nix"
+          "${mod}/programs/hyprland"
+          "${mod}/services/location.nix"
+          "${mod}/services/gnome-services.nix"
+          "${mod}/programs/games.nix"
+
+          {
+            home-manager = {
+              users.icey.imports = homeImports."icey@thinkpad";
+              extraSpecialArgs = specialArgs;
+            };
+          }
+          inputs.chaotic.nixosModules.default
+          inputs.nixos-hardware.nixosModules.apple-macbook-pro-11-5
+        ];
+      };
+      desktopm = nixosSystem {
+        inherit specialArgs;
+        modules = desktop ++ [
+          ./desktopm
+          "${mod}/programs/gamemode.nix"
+          "${mod}/network/spotify.nix"
+          "${mod}/programs/hyprland"
+          "${mod}/programs/games.nix"
+
+          "${mod}/services/location.nix"
+          "${mod}/services/gnome-services.nix"
+          "${mod}/hardware/nvidia-fixes.nix"
+          "${mod}/hardware/k2200.nix"
+
+          {
+            home-manager = {
+              users.icey.imports = homeImports."icey@desktopm";
+              extraSpecialArgs = specialArgs;
+            };
+          }
+          inputs.chaotic.nixosModules.default
+          inputs.nixos-hardware.nixosModules.common-pc
+          inputs.nixos-hardware.nixosModules.common-pc-ssd
+          inputs.nixos-hardware.nixosModules.common-cpu-intel
+          #inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
+        ];
+      };
+
+      # rog = nixosSystem {
+      #   inherit specialArgs;
+      #   modules =
+      #     laptop
+      #     ++ [
+      #       ./rog
+      #       "${mod}/core/lanzaboote.nix"
+
+      #       "${mod}/programs/gamemode.nix"
+      #       "${mod}/programs/hyprland.nix"
+      #       "${mod}/programs/games.nix"
+
+      #       "${mod}/services/kanata"
+      #       {home-manager.users.icey.imports = homeImports."icey@rog";}
+      #     ];
+      # };
+
       nixos = nixosSystem {
         inherit specialArgs;
         modules = [
@@ -67,7 +156,7 @@
           "${mod}/programs/home-manager.nix"
           {
             home-manager = {
-              users.mihai.imports = homeImports.server;
+              users.icey.imports = homeImports.server;
               extraSpecialArgs = specialArgs;
               backupFileExtension = ".hm-backup";
             };

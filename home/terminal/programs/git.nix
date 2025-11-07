@@ -2,19 +2,25 @@
   config,
   pkgs,
   ...
-}:
-let
+}: let
   cfg = config.programs.git;
-  key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOq9Gew1rgfdIyuriJ/Ne0B8FE1s8O/U2ajErVQLUDu9 mihai@io";
-in
-{
-  home.packages = [ pkgs.gh ];
+  key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOjRbqTrh6+HfoCy6kwBQFJLcLawY8beWhUWsvcaoDhr Icey";
+in {
+  home.packages = [
+    pkgs.gh
+  ];
 
   # enable scrolling in git diff
   home.sessionVariables.DELTA_PAGER = "less -R";
 
   programs.git = {
     enable = true;
+    lfs.enable = true;
+
+    #delta = {
+    #  enable = true;
+    #  options.dark = true;
+    #};
 
     extraConfig = {
       diff.colorMoved = "default";
@@ -36,77 +42,71 @@ in
     };
 
     settings = {
+      alias = let
+        log = "log --show-notes='*' --abbrev-commit --pretty=format:'%Cred%h %Cgreen(%aD)%Creset -%C(bold red)%d%Creset %s %C(bold blue)<%an>% %Creset' --graph";
+      in {
+        a = "add --patch"; # make it a habit to consciosly add hunks
+        ad = "add";
 
-      alias =
-        let
-          log = "log --show-notes='*' --abbrev-commit --pretty=format:'%Cred%h %Cgreen(%aD)%Creset -%C(bold red)%d%Creset %s %C(bold blue)<%an>% %Creset' --graph";
-        in
-        {
-          a = "add --patch"; # make it a habit to consciosly add hunks
-          ad = "add";
+        b = "branch";
+        ba = "branch -a"; # list remote branches
+        bd = "branch --delete";
+        bdd = "branch -D";
 
-          b = "branch";
-          ba = "branch -a"; # list remote branches
-          bd = "branch --delete";
-          bdd = "branch -D";
+        c = "commit";
+        ca = "commit --amend";
+        cm = "commit --message";
 
-          c = "commit";
-          ca = "commit --amend";
-          cm = "commit --message";
+        co = "checkout";
+        cb = "checkout -b";
+        pc = "checkout --patch";
 
-          co = "checkout";
-          cb = "checkout -b";
-          pc = "checkout --patch";
+        cl = "clone";
 
-          cl = "clone";
+        d = "diff";
+        ds = "diff --staged";
 
-          d = "diff";
-          ds = "diff --staged";
+        h = "show";
+        h1 = "show HEAD^";
+        h2 = "show HEAD^^";
+        h3 = "show HEAD^^^";
+        h4 = "show HEAD^^^^";
+        h5 = "show HEAD^^^^^";
 
-          h = "show";
-          h1 = "show HEAD^";
-          h2 = "show HEAD^^";
-          h3 = "show HEAD^^^";
-          h4 = "show HEAD^^^^";
-          h5 = "show HEAD^^^^^";
+        p = "push";
+        pf = "push --force-with-lease";
 
-          p = "push";
-          pf = "push --force-with-lease";
+        pl = "pull";
 
-          pl = "pull";
+        l = log;
+        lp = "${log} --patch";
+        la = "${log} --all";
 
-          l = log;
-          lp = "${log} --patch";
-          la = "${log} --all";
+        r = "rebase";
+        ra = "rebase --abort";
+        rc = "rebase --continue";
+        ri = "rebase --interactive";
 
-          r = "rebase";
-          ra = "rebase --abort";
-          rc = "rebase --continue";
-          ri = "rebase --interactive";
+        rs = "reset";
+        rsh = "reset --hard";
 
-          rs = "reset";
-          rsh = "reset --hard";
+        s = "status --short --branch";
+        ss = "status";
 
-          s = "status --short --branch";
-          ss = "status";
+        st = "stash";
+        stc = "stash clear";
+        sth = "stash show --patch";
+        stl = "stash list";
+        stp = "stash pop";
 
-          st = "stash";
-          stc = "stash clear";
-          sth = "stash show --patch";
-          stl = "stash list";
-          stp = "stash pop";
-
-          forgor = "commit --amend --no-edit";
-          oops = "checkout --";
-        };
-
-      user = {
-        email = "mihai@fufexan.net";
-        name = "Mihai Fufezan";
+        forgor = "commit --amend --no-edit";
+        oops = "checkout --";
       };
 
-      gpg.ssh.allowedSignersFile =
-        config.home.homeDirectory + "/" + config.xdg.configFile."git/allowed_signers".target;
+      user = {
+        email = "Icey-Glitch@riseup.net";
+        name = "Icey-Glitch";
+      };
 
       pull.rebase = true;
     };

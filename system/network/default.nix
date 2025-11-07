@@ -1,32 +1,34 @@
 # networking configuration
-{ pkgs, ... }:
 {
-  networking = {
-    # use quad9 with DNS over TLS
-    nameservers = [ "9.9.9.9#dns.quad9.net" ];
+  lib,
+  pkgs,
+  ...
+}:
+{
+  imports = [
+    ./optimize.nix
+    ./tethering.nix
+  ];
 
-    networkmanager = {
-      enable = true;
-      dns = "systemd-resolved";
-      wifi.powersave = true;
-      plugins = [
-        pkgs.networkmanager-openvpn
-      ];
-    };
+  networking.networkmanager = {
+    enable = true;
+    dns = "systemd-resolved";
+    wifi.powersave = true;
   };
 
   programs.ssh.extraConfig = ''
-    Host neushore
-      User builder
-      HostName build.neushore.dev
-      IdentityFile /home/mihai/.ssh/id_ed25519
-      Port 30
+    Host desktopm
+      HostName desktopm.homenet
   '';
 
   services = {
     openssh = {
       enable = true;
-      settings.UseDns = true;
+
+      settings = {
+        StreamLocalBindUnlink = "yes";
+        UseDns = true;
+      };
     };
 
     # DNS resolver

@@ -13,8 +13,19 @@
     helvum
 
     # audio
+    tauon
     amberol
     spotify
+    nicotine-plus
+
+    # Streamio
+    # stremio
+    syncplay
+    supersonic-wayland
+
+    # Twitch
+    streamlink-twitch-gui-bin
+    chatterino2
 
     # images
     loupe

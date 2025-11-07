@@ -32,8 +32,7 @@
 
       input-field = [
         {
-          monitor = "eDP-1";
-
+          monitor = "";
           size = "300, 50";
           valign = "bottom";
           position = "0%, 10%";

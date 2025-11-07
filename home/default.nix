@@ -7,14 +7,17 @@
   imports = [
     ./specialisations.nix
     ./terminal
+    inputs.nur.modules.homeManager.default
+    #inputs.betterfox.hmModules.default
+    inputs.catppuccin.homeModules.catppuccin
     inputs.nix-index-db.homeModules.nix-index
     inputs.tailray.homeManagerModules.default
     self.nixosModules.theme
   ];
 
   home = {
-    username = "mihai";
-    homeDirectory = "/home/mihai";
+    username = "icey";
+    homeDirectory = "/home/icey";
     stateVersion = "23.11";
     extraOutputsToInstall = [
       "doc"
@@ -28,6 +31,8 @@
     json.enable = false;
     manpages.enable = false;
   };
+
+  catppuccin.flavor = "macchiato";
 
   # let HM manage itself when in standalone mode
   programs.home-manager.enable = true;

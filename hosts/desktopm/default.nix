@@ -1,0 +1,80 @@
+{
+  pkgs,
+  lib,
+  ...
+}:
+{
+  imports = [ ./hardware-configuration.nix ];
+
+  boot = {
+    kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos-lto;
+    kernelParams = [
+      "quiet"
+      "loglevel=3"
+      "systemd.show_status=auto"
+      "rd.udev.log_level=3"
+      "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+    ];
+    blacklistedKernelModules = [ "nouveau" ];
+  };
+
+  services.udev.extraRules = ''
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+  '';
+
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+  hardware = {
+    cpu.intel.updateMicrocode = true;
+
+    xone.enable = true;
+
+    enableRedistributableFirmware = true;
+  };
+
+  programs.hyprland.settings = {
+    cursor = {
+      no_hardware_cursors = true;
+    };
+    monitor = [
+      "HDMI-A-1, 2560x1440@280, 0x0, 1, bitdepth, 10, cm, hdr, sdrbrightness, 1, sdrsaturation, 0.98, vrr, 3"
+      "DP-2, preferred, auto-left, 1, transform, 1, vrr, 0"
+      "DP-1, 1920x1080@240, auto-right, 1, vrr, 2"
+    ];
+  };
+
+  users.users.remotebuild = {
+    isNormalUser = true;
+    createHome = false;
+    group = "remotebuild";
+
+    openssh.authorizedKeys.keyFiles = [ ../../secrets/yubikey.pub ];
+  };
+
+  nix.settings.trusted-users = [ "remotebuild" ];
+
+  users.groups.remotebuild = { };
+
+  networking.hostName = "desktopm";
+  virtualisation.docker.enable = true;
+
+  security.tpm2.enable = true;
+
+  services = {
+    pcscd.enable = true;
+
+    # for SSD/NVME
+    fstrim.enable = true;
+  };
+
+  fileSystems."/mnt/more" = {
+    device = "/dev/disk/by-uuid/df92131a-70a2-46b4-a3f5-34953b2c321e";
+    fsType = "ext4";
+    options = [
+      # If you don't have this options attribute, it'll default to "defaults"
+      # boot options for fstab. Search up fstab mount options you can use
+      "users" # Allows any user to mount and unmount
+      "nofail" # Prevent system from failing if this drive doesn't mount
+    ];
+  };
+}

@@ -33,8 +33,8 @@ in
   home.packages = [
     pkgs.qt6Packages.qtstyleplugin-kvantum
     pkgs.qt6Packages.qt6ct
-    pkgs.libsForQt5.qtstyleplugin-kvantum
-    pkgs.libsForQt5.qt5ct
+    #pkgs.libsForQt5.qtstyleplugin-kvantum
+    #pkgs.libsForQt5.qt5ct
   ];
 
   xdg.configFile = {
