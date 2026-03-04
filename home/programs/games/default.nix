@@ -11,8 +11,8 @@
     (inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.osu-lazer-bin.override {
       pipewire_latency = "128/48000";
     })
-    #inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin
-    #inputs.nix-gaming.packages.${pkgs.system}.viper # installs a package
+    #inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.osu-lazer-bin
+    #inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.viper # installs a package
     gamescope
     prismlauncher
     tetrio-desktop

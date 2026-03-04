@@ -3,6 +3,7 @@
   lib,
   config,
   inputs,
+  stdenv,
   ...
 }:
 let

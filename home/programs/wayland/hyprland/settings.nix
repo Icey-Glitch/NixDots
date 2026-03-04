@@ -121,8 +121,8 @@ in
       explicit_sync = 0;
       explicit_sync_kms = 0;
       send_content_type = true;
-      cm_fs_passthrough = 1;
-      cm_auto_hdr = 1;
+      cm_fs_passthrough = 0;
+      cm_auto_hdr = 0;
       cm_enable = true;
     };
 

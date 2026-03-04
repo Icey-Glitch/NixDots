@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  stdenv,
   ...
 }:
 {
@@ -8,7 +9,7 @@
     inputs.nixcord.homeModules.nixcord
   ];
   home.packages = [
-    inputs.arrpc.packages.${pkgs.system}.arrpc
+    inputs.arrpc.packages.${pkgs.stdenv.hostPlatform.system}.arrpc
   ];
 
   programs.nixcord = {

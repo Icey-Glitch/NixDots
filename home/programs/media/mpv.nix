@@ -26,7 +26,6 @@ in
 {
   programs.yt-dlp = {
     enable = true;
-
     settings = {
       embed-chapters = true;
       embed-metadata = true;
@@ -44,8 +43,7 @@ in
 
   programs.mpv = {
     enable = true;
-    catppuccin.enable = false;
-    defaultProfiles = [ "gpu-hq" ];
+    defaultProfiles = [ "high-quality" ];
 
     bindings = {
       WHEEL_UP = "seek 10";
@@ -67,7 +65,7 @@ in
     };
 
     config = {
-      # General Settings
+      # General
       keep-open = true;
       snap-window = true;
       cursor-autohide = 100;
@@ -77,138 +75,82 @@ in
       msg-module = true;
       video-sync = "display-resample";
 
-      # OSC/OSD Settings
+      # OSD
       osc = false;
       osd-bar = false;
       osd-font = "'Inter Tight Medium'";
       osd-font-size = 30;
       osd-color = "#CCFFFFFF";
       osd-border-color = "#DD322640";
-      osd-bar-align-y = -1;
       osd-border-size = 2;
-      osd-bar-h = 1;
-      osd-bar-w = 60;
 
-      # Subtitles Settings
-      slang = "eng,en,und";
-      sub-auto = "fuzzy";
-      subs-with-matching-audio = false;
-      demuxer-mkv-subtitle-preroll = true;
-      sub-fix-timing = false;
-
-      # Audio Settings
+      # Audio
       ao = "pipewire";
       af = "acompressor=ratio=4,loudnorm";
-      audio-stream-silence = true;
-      audio-file-auto = "fuzzy";
       audio-pitch-correction = true;
-      alang = "jpn,jp,eng,en,enUS,en-US";
 
-      # Video Settings
+      # Video backend
       vo = "gpu-next";
       gpu-api = "vulkan";
       gpu-context = "waylandvk";
-
-      # CRITICAL: Use nvdec-copy to preserve YUV color space for HDR
       hwdec = "nvdec-copy";
+      target-colorspace-hint = "yes";
 
-      # Remove the vf line - it's not the issue
-      video-output-levels = "full";
-
-      # GPU settings
+      # Vulkan
+      vulkan-swap-mode = "fifo";
       gpu-shader-cache-dir = "~/.cache/mpv/shadercache";
 
-      ###############
-      # Color Space #
-      ###############
-
-      # CRITICAL: Disable target color space hints - let Wayland handle everything
-      target-colorspace-hint = false;
-
-      # Force Vulkan to use the right colorspace
-      vulkan-swap-mode = "fifo";
-
-      # Disable ICC profile to prevent color space interference
+      # Disable color interference globally
       icc-profile-auto = false;
 
-      ##########
-      # Dither #
-      ##########
-
+      # Dither / scaling (safe for HDR)
       dither-depth = "auto";
       temporal-dither = "yes";
       dither = "fruit";
 
-      ##########
-      # Deband #
-      ##########
-
       deband = false;
-      deband-iterations = 4;
-      deband-threshold = 48;
-      deband-range = 16;
-      deband-grain = 24;
-
       scale-antiring = 0.6;
       dscale-antiring = 0.7;
       cscale-antiring = 0.7;
 
-      ##########
-      # Interp #
-      ##########
-
       interpolation = false;
-      tscale = "oversample";
-      interpolation-preserve = true;
-
-      # Scaling Settings
       linear-upscaling = true;
       sigmoid-upscaling = true;
       correct-downscaling = true;
-      linear-downscaling = false;
 
       dscale = "lanczos";
       cscale = "lanczos";
 
-      # Cache Settings
       demuxer-max-back-bytes = "100MiB";
       demuxer-max-bytes = 104857600;
     };
 
     profiles = {
-      # HDR passthrough profile - let compositor handle tone mapping
-      "hdr-passthrough" = {
-        profile-desc = "HDR passthrough for HDR content";
-        profile-cond = ''p["video-params/sig-peak"] and p["video-params/sig-peak"] > 1'';
-        profile-restore = "copy";
+      "hdr-force" = {
+        # Force HDR output
+        target-prim = "bt.2020";
+        target-trc = "pq";
 
-        # Ensure nvdec-copy is used for HDR
-        hwdec = "nvdec-copy";
+        # Declare HDR mastering / peak
+        hdr-compute-peak = "yes";
+        hdr-peak-percentile = 99.9;
+        hdr-peak-decay-rate = 20;
 
-        # Passthrough HDR metadata to compositor
-        target-colorspace-hint = true;
-        target-prim = "auto";
-        target-trc = "auto";
-
-        # Let Hyprland handle HDR
+        # Do NOT tone-map (we want HDR passthrough)
         tone-mapping = "auto";
-        hdr-compute-peak = "auto";
 
-        video-output-levels = "full";
-        icc-profile-auto = false;
-      };
+        # Ensure 10-bit path
+        dither-depth = 10;
 
-      # SDR profile for non-HDR content
-      "sdr" = {
-        profile-desc = "SDR content";
-        profile-cond = ''not (p["video-params/sig-peak"] and p["video-params/sig-peak"] > 1)'';
-        profile-restore = "copy";
+        # Vulkan / Wayland stability
+        vulkan-swap-mode = "mailbox";
 
-        target-peak = 203;
-        target-prim = "bt.709";
-        target-trc = "bt.1886";
-        video-output-levels = "full";
-        icc-profile-auto = false;
+        # Prevent mpv from second-guessing
+        target-colorspace-hint = "no";
+        icc-profile-auto = "no";
+
+        # Debug (optional but useful)
+        msg-level = "vo=trace,gpu=trace";
       };
     };
 

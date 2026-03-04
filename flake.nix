@@ -1,9 +1,10 @@
 {
   description = "fufexan's NixOS and Home-Manager flake";
 
-  outputs = inputs:
-    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = ["x86_64-linux"];
+  outputs =
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
 
       imports = [
         ./hosts
@@ -15,28 +16,30 @@
         inputs.agenix-rekey.flakeModule
       ];
 
-      perSystem = {
-        config,
-        pkgs,
-        ...
-      }: {
-        devShells.default = pkgs.mkShell {
-          packages = [
-            pkgs.git
-            pkgs.nil
-            config.packages.repl
-            config.agenix-rekey.package
-            pkgs.statix
-            pkgs.rage
-          ];
+      perSystem =
+        {
+          config,
+          pkgs,
+          ...
+        }:
+        {
+          devShells.default = pkgs.mkShell {
+            packages = [
+              pkgs.git
+              pkgs.nil
+              config.packages.repl
+              config.agenix-rekey.package
+              pkgs.statix
+              pkgs.rage
+            ];
 
-          name = "dots";
-          env.DIRENV_LOG_FORMAT = "";
-          shellHook = ''
-            ${config.pre-commit.installationScript}
-          '';
+            name = "dots";
+            env.DIRENV_LOG_FORMAT = "";
+            shellHook = ''
+              ${config.pre-commit.installationScript}
+            '';
+          };
         };
-      };
     };
 
   inputs = {
@@ -70,7 +73,7 @@
     };
 
     arkenfox = {
-      url = "github:dwarfmaster/arkenfox-nixos";
+      url = "github:dwarfmaster/arkenfox-nixos/update_action";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -224,7 +227,7 @@
 
     nur.url = "github:nix-community/NUR";
 
-    nixos-vfio.url = "github:glanch/nixos-vfio/additional_device_xml";
+    nixos-vfio.url = "github:j-brn/nixos-vfio";
 
     tailray = {
       url = "github:NotAShelf/tailray";

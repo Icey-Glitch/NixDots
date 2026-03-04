@@ -11,7 +11,7 @@ let
 in
 {
   imports = [
-    self.nixosModules.cfirefox
+    self.modules.cfirefox
     inputs.arkenfox.hmModules.default
     inputs.betterfox.modules.homeManager.betterfox
   ];
@@ -21,10 +21,10 @@ in
   programs.firefox = {
     enable = true;
     arkenfox = {
-      enable = true;
-      version = "140.0";
+      enable = false;
+      version = "master";
     };
-    package = Firefox-custom;
+    package = pkgs.librewolf;
     #betterfox = {
     #  enable = true;
     #  version = "master";

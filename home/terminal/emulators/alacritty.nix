@@ -2,7 +2,7 @@
 {
   programs.alacritty = {
     enable = true;
-    catppuccin.enable = true;
+    #catppuccin.enable = true;
     settings = {
       window = {
         decorations = "none";

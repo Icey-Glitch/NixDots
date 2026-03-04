@@ -34,7 +34,7 @@
       no_hardware_cursors = true;
     };
     monitor = [
-      "HDMI-A-1, 2560x1440@280, 0x0, 1, bitdepth, 10, cm, hdr, sdrbrightness, 1, sdrsaturation, 0.98, vrr, 3"
+      "HDMI-A-1, 2560x1440@280, 0x0, 1, bitdepth, 10, cm, hdr, vrr, 3"
       "DP-2, preferred, auto-left, 1, transform, 1, vrr, 0"
       "DP-1, 1920x1080@240, auto-right, 1, vrr, 2"
     ];

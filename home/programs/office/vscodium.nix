@@ -1,24 +1,17 @@
 {
   pkgs,
   inputs,
+  stdenv,
   ...
 }:
 let
-  extensions = inputs.nix-vscode-extensions.extensions.${pkgs.system};
+  extensions = inputs.nix-vscode-extensions.extensions.${pkgs.stdenv.hostPlatform.system};
 in
 {
   home.sessionVariables.NIXOS_OZONE_WL = "1";
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
-    extensions = with extensions; [
-      vscode-marketplace-release.github.copilot
-      vscode-marketplace-release.github.copilot-chat
-      vscode-marketplace.ms-vscode-remote.remote-ssh
-      vscode-marketplace.ms-vscode-remote.remote-ssh-edit
-      open-vsx.catppuccin.catppuccin-vsc
-      open-vsx.jnoortheen.nix-ide
-    ];
     userSettings = {
       # Workbench
       "window.menuBarVisibility" = "toggle";
