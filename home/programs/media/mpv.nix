@@ -40,6 +40,7 @@ in
     };
   };
 
+  # Source HDR toys to the standard location
   xdg.configFile."mpv/shaders/hdr-toys".source = mpvShaders.hdrToys + "/shaders/hdr-toys";
 
   programs.mpv = {
@@ -48,167 +49,103 @@ in
     defaultProfiles = [ "gpu-hq" ];
 
     bindings = {
+      # Mouse and Scale
       WHEEL_UP = "seek 10";
       WHEEL_DOWN = "seek -10";
       "ALT+k" = "add sub-scale +0.1";
       "ALT+j" = "add sub-scale -0.1";
       "Alt+0" = "set window-scale 0.5";
-      "Ctrl+F" = "script-binding quality_menu/video_formats_toggle";
+
+      # Quality & Reload
+      "Ctrl+f" = "script-binding quality_menu/video_formats_toggle";
       "Alt+f" = "script-binding quality_menu/audio_formats_toggle";
-      "Ctrl+R" = "script-binding reload/reload";
+      "Ctrl+r" = "script-binding reload/reload";
+
+      # Shaders Toggles
       "CTRL+b" = "cycle deband";
       "Ctrl+Shift+F6" =
         "no-osd change-list glsl-shaders set \"${mpvShaders.HdeDeband}\"; show-text \"Deband: ON\"";
       "Ctrl+Shift+F7" =
-        "no-osd change-list glsl-shaders set \"${mpvShaders.FSR}\"; show-text \"FSR: ON\"";
+        "no-osd change-list glsl-shaders set \"${mpvShaders.FSR}\"; show-text \"AMD FSR: ON\"";
       "Ctrl+Shift+F8" =
-        "no-osd change-list glsl-shaders set \"${mpvShaders.SSimDownscaler}\"; show-text \"SSimDown: ON\"";
+        "no-osd change-list glsl-shaders set \"${mpvShaders.SSimDownscaler}\"; show-text \"SSimDownscaler: ON\"";
       "Ctrl+Shift+\\" = "no-osd change-list glsl-shaders clr \"\"; show-text \"GLSL shaders cleared\"";
+
+      # UOSC Menu (Useful since you have uosc installed)
+      "m" = "script-binding uosc/menu";
+      "s" = "script-binding uosc/subtitles";
+      "a" = "script-binding uosc/audio";
     };
 
     config = {
-      # General Settings
-      keep-open = true;
-      snap-window = true;
-      cursor-autohide = 100;
+      # --- General ---
+      keep-open = "yes";
       save-position-on-quit = true;
       autofit = "85%x85%";
-      border = false;
-      msg-module = true;
-      video-sync = "display-resample";
+      cursor-autohide = 100;
+      border = "no";
+      msg-module = "yes";
 
-      # OSC/OSD Settings
-      osc = false;
-      osd-bar = false;
-      osd-font = "'Inter Tight Medium'";
-      osd-font-size = 30;
-      osd-color = "#CCFFFFFF";
-      osd-border-color = "#DD322640";
-      osd-bar-align-y = -1;
-      osd-border-size = 2;
-      osd-bar-h = 1;
-      osd-bar-w = 60;
-
-      # Subtitles Settings
-      slang = "eng,en,und";
-      sub-auto = "fuzzy";
-      subs-with-matching-audio = false;
-      demuxer-mkv-subtitle-preroll = true;
-      sub-fix-timing = false;
-
-      # Audio Settings
-      ao = "pipewire";
-      af = "acompressor=ratio=4,loudnorm";
-      audio-stream-silence = true;
-      audio-file-auto = "fuzzy";
-      audio-pitch-correction = true;
-      alang = "jpn,jp,eng,en,enUS,en-US";
-
-      # Video Settings
+      # --- Video Backend (Modern gpu-next) ---
       vo = "gpu-next";
       gpu-api = "vulkan";
-      gpu-context = "waylandvk";
+      gpu-context = "auto"; # Better for multi-monitor/HDR negotiation
+      hwdec = "nvdec"; # Native hardware decoding (fixes invalid format error)
 
-      # CRITICAL: Use nvdec-copy to preserve YUV color space for HDR
-      hwdec = "nvdec-copy";
-
-      # Remove the vf line - it's not the issue
-      video-output-levels = "full";
-
-      # GPU settings
-      gpu-shader-cache-dir = "~/.cache/mpv/shadercache";
-
-      ###############
-      # Color Space #
-      ###############
-
-      # CRITICAL: Disable target color space hints - let Wayland handle everything
-      target-colorspace-hint = false;
-
-      # Force Vulkan to use the right colorspace
-      vulkan-swap-mode = "fifo";
-
-      # Disable ICC profile to prevent color space interference
-      icc-profile-auto = false;
-
-      ##########
-      # Dither #
-      ##########
-
+      # --- HDR & Color Management ---
+      target-colorspace-hint = "yes"; # Crucial for HDR passthrough to Wayland
+      icc-profile-auto = "no"; # Let mpv handle color matching if profile exists
       dither-depth = "auto";
       temporal-dither = "yes";
       dither = "fruit";
 
-      ##########
-      # Deband #
-      ##########
+      # --- Smooth Motion (Interpolation) ---
+      video-sync = "display-resample";
+      interpolation = "yes";
+      tscale = "oversample"; # Reduces stutter on 60Hz screens
 
-      deband = false;
-      deband-iterations = 4;
-      deband-threshold = 48;
-      deband-range = 16;
-      deband-grain = 24;
+      # --- Scaling Filters ---
+      # ewa_lanczossharp (Jinc) is the best all-rounder for gpu-next
+      scale = "ewa_lanczossharp";
+      dscale = "mitchell"; # Smoother for downscaling
+      cscale = "spline36"; # High quality chroma scaling
 
-      scale-antiring = 0.6;
-      dscale-antiring = 0.7;
-      cscale-antiring = 0.7;
+      linear-upscaling = "yes";
+      sigmoid-upscaling = "yes";
+      correct-downscaling = "yes";
 
-      ##########
-      # Interp #
-      ##########
+      # --- OSD & UI (Optimized for uosc) ---
+      osc = "no"; # Required for uosc
+      osd-bar = "no"; # Required for uosc
+      osd-font = "Inter Tight Medium";
+      osd-font-size = 30;
 
-      interpolation = false;
-      tscale = "oversample";
-      interpolation-preserve = true;
+      # --- Audio ---
+      ao = "pipewire";
+      af = "acompressor=ratio=4,loudnorm";
+      audio-pitch-correction = "yes";
 
-      # Scaling Settings
-      linear-upscaling = true;
-      sigmoid-upscaling = true;
-      correct-downscaling = true;
-      linear-downscaling = false;
-
-      dscale = "lanczos";
-      cscale = "lanczos";
-
-      # Cache Settings
-      demuxer-max-back-bytes = "100MiB";
-      demuxer-max-bytes = 104857600;
+      # --- Performance ---
+      vulkan-swap-mode = "mailbox"; # Lower latency than FIFO
+      gpu-shader-cache-dir = "~/.cache/mpv/shadercache";
+      demuxer-max-bytes = "150MiB";
     };
 
     profiles = {
-      # HDR passthrough profile - let compositor handle tone mapping
-      "hdr-passthrough" = {
-        profile-desc = "HDR passthrough for HDR content";
-        profile-cond = ''p["video-params/sig-peak"] and p["video-params/sig-peak"] > 1'';
-        profile-restore = "copy";
-
-        # Ensure nvdec-copy is used for HDR
-        hwdec = "nvdec-copy";
-
-        # Passthrough HDR metadata to compositor
-        target-colorspace-hint = true;
-        target-prim = "auto";
-        target-trc = "auto";
-
-        # Let Hyprland handle HDR
-        tone-mapping = "auto";
-        hdr-compute-peak = "auto";
-
-        video-output-levels = "full";
-        icc-profile-auto = false;
+      # Auto-apply settings for 4K content
+      "4k-content" = {
+        profile-cond = "width >= 3840";
+        vd-lavc-threads = 0; # Use all cores for 4K decode
+        # Disable heavy shaders for 4K to save power
+        glsl-shaders = "";
       };
 
-      # SDR profile for non-HDR content
-      "sdr" = {
-        profile-desc = "SDR content";
-        profile-cond = ''not (p["video-params/sig-peak"] and p["video-params/sig-peak"] > 1)'';
-        profile-restore = "copy";
-
-        target-peak = 203;
-        target-prim = "bt.709";
-        target-trc = "bt.1886";
-        video-output-levels = "full";
-        icc-profile-auto = false;
+      "hdr-force" = {
+        # Used when you want to force PQ/BT2020 output
+        target-prim = "dci-p3";
+        target-trc = "srgb";
+        tone-mapping = "bt.2446a"; # Modern tone mapping algorithm
+        hdr-compute-peak = "yes";
       };
     };
 

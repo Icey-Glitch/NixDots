@@ -7,7 +7,7 @@
   imports = [ ./hardware-configuration.nix ];
 
   boot = {
-    kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
+    kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
 
     kernelParams = [
       "quiet"
@@ -17,9 +17,9 @@
     ];
   };
 
-  nixpkgs.config.packageOverrides = pkgs: {
-    intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
-  };
+  #nixpkgs.config.packageOverrides = pkgs: {
+  #  intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
+  #};
 
   hardware = {
     enableRedistributableFirmware = true;
@@ -38,7 +38,7 @@
         vulkan-tools
       ];
       extraPackages32 = with pkgs.pkgsi686Linux; [
-        vaapiVdpau
+        libva-vdpau-driver
         libvdpau-va-gl
       ];
     };
@@ -47,7 +47,6 @@
   programs.hyprland.settings = {
     misc = {
       vrr = lib.mkForce 2;
-      vfr = true;
     };
     monitor = [
       "eDP-1, 1920x1080@60.02, 0x0, 1.5"

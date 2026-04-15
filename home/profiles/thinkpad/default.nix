@@ -9,6 +9,7 @@
     ../../programs
     ../../programs/games
     ../../programs/wayland
+    ../../services/quickshell
 
     # services
     ../../services/waybar
@@ -29,7 +30,6 @@
   wayland.windowManager.hyprland.settings = {
     misc = {
       vrr = lib.mkForce 2;
-      vfr = true;
     };
     monitor = [
       "eDP-1, 1920x1080@60.02, 0x0, 1.5"

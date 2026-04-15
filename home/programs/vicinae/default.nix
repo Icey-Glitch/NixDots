@@ -6,6 +6,33 @@
     enable = true;
     systemd.enable = true;
 
+    settings = {
+      close_on_focus_loss = true;
+      theme = {
+        light = {
+          name = "vicinae-light";
+          icon_theme = "default";
+        };
+        dark = {
+          name = "vicinae-dark";
+          icon_theme = "default";
+        };
+      };
+
+      launcher_window = {
+        opacity = 0.5;
+      };
+
+      providers = {
+
+        "applications" = {
+          preferences = {
+            launchPrefix = "uwsm app -- ";
+          };
+        };
+      };
+    };
+
     extensions = with inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system}; [
       # bluetooth
       nix
