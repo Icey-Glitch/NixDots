@@ -6,9 +6,6 @@
   self,
   ...
 }:
-let
-  Firefox-custom = pkgs.wrapFirefox pkgs.firefox-unwrapped_nightly { };
-in
 {
   imports = [
     self.modules.cfirefox
@@ -16,7 +13,7 @@ in
     inputs.betterfox.modules.homeManager.betterfox
   ];
 
-  home.sessionVariables.DEFAULT_BROWSER = "${Firefox-custom}/bin/firefox";
+  #home.sessionVariables.DEFAULT_BROWSER = "${Firefox-custom}/bin/firefox";
 
   programs.firefox = {
     enable = true;
@@ -24,7 +21,7 @@ in
       enable = false;
       version = "master";
     };
-    package = pkgs.librewolf;
+    #package = pkgs.librewolf;
     #betterfox = {
     #  enable = true;
     #  version = "master";

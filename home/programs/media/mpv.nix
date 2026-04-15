@@ -39,6 +39,7 @@ in
     };
   };
 
+  # Source HDR toys to the standard location
   xdg.configFile."mpv/shaders/hdr-toys".source = mpvShaders.hdrToys + "/shaders/hdr-toys";
 
   programs.mpv = {
@@ -46,111 +47,103 @@ in
     defaultProfiles = [ "high-quality" ];
 
     bindings = {
+      # Mouse and Scale
       WHEEL_UP = "seek 10";
       WHEEL_DOWN = "seek -10";
       "ALT+k" = "add sub-scale +0.1";
       "ALT+j" = "add sub-scale -0.1";
       "Alt+0" = "set window-scale 0.5";
-      "Ctrl+F" = "script-binding quality_menu/video_formats_toggle";
+
+      # Quality & Reload
+      "Ctrl+f" = "script-binding quality_menu/video_formats_toggle";
       "Alt+f" = "script-binding quality_menu/audio_formats_toggle";
-      "Ctrl+R" = "script-binding reload/reload";
+      "Ctrl+r" = "script-binding reload/reload";
+
+      # Shaders Toggles
       "CTRL+b" = "cycle deband";
       "Ctrl+Shift+F6" =
         "no-osd change-list glsl-shaders set \"${mpvShaders.HdeDeband}\"; show-text \"Deband: ON\"";
       "Ctrl+Shift+F7" =
-        "no-osd change-list glsl-shaders set \"${mpvShaders.FSR}\"; show-text \"FSR: ON\"";
+        "no-osd change-list glsl-shaders set \"${mpvShaders.FSR}\"; show-text \"AMD FSR: ON\"";
       "Ctrl+Shift+F8" =
-        "no-osd change-list glsl-shaders set \"${mpvShaders.SSimDownscaler}\"; show-text \"SSimDown: ON\"";
+        "no-osd change-list glsl-shaders set \"${mpvShaders.SSimDownscaler}\"; show-text \"SSimDownscaler: ON\"";
       "Ctrl+Shift+\\" = "no-osd change-list glsl-shaders clr \"\"; show-text \"GLSL shaders cleared\"";
+
+      # UOSC Menu (Useful since you have uosc installed)
+      "m" = "script-binding uosc/menu";
+      "s" = "script-binding uosc/subtitles";
+      "a" = "script-binding uosc/audio";
     };
 
     config = {
-      # General
-      keep-open = true;
-      snap-window = true;
-      cursor-autohide = 100;
+      # --- General ---
+      keep-open = "yes";
       save-position-on-quit = true;
       autofit = "85%x85%";
-      border = false;
-      msg-module = true;
-      video-sync = "display-resample";
+      cursor-autohide = 100;
+      border = "no";
+      msg-module = "yes";
 
-      # OSD
-      osc = false;
-      osd-bar = false;
-      osd-font = "'Inter Tight Medium'";
-      osd-font-size = 30;
-      osd-color = "#CCFFFFFF";
-      osd-border-color = "#DD322640";
-      osd-border-size = 2;
-
-      # Audio
-      ao = "pipewire";
-      af = "acompressor=ratio=4,loudnorm";
-      audio-pitch-correction = true;
-
-      # Video backend
+      # --- Video Backend (Modern gpu-next) ---
       vo = "gpu-next";
       gpu-api = "vulkan";
-      gpu-context = "waylandvk";
-      hwdec = "nvdec-copy";
-      target-colorspace-hint = "yes";
+      gpu-context = "auto"; # Better for multi-monitor/HDR negotiation
+      hwdec = "nvdec"; # Native hardware decoding (fixes invalid format error)
 
-      # Vulkan
-      vulkan-swap-mode = "fifo";
-      gpu-shader-cache-dir = "~/.cache/mpv/shadercache";
-
-      # Disable color interference globally
-      icc-profile-auto = false;
-
-      # Dither / scaling (safe for HDR)
+      # --- HDR & Color Management ---
+      target-colorspace-hint = "yes"; # Crucial for HDR passthrough to Wayland
+      icc-profile-auto = "no"; # Let mpv handle color matching if profile exists
       dither-depth = "auto";
       temporal-dither = "yes";
       dither = "fruit";
 
-      deband = false;
-      scale-antiring = 0.6;
-      dscale-antiring = 0.7;
-      cscale-antiring = 0.7;
+      # --- Smooth Motion (Interpolation) ---
+      video-sync = "display-resample";
+      interpolation = "yes";
+      tscale = "oversample"; # Reduces stutter on 60Hz screens
 
-      interpolation = false;
-      linear-upscaling = true;
-      sigmoid-upscaling = true;
-      correct-downscaling = true;
+      # --- Scaling Filters ---
+      # ewa_lanczossharp (Jinc) is the best all-rounder for gpu-next
+      scale = "ewa_lanczossharp";
+      dscale = "mitchell"; # Smoother for downscaling
+      cscale = "spline36"; # High quality chroma scaling
 
-      dscale = "lanczos";
-      cscale = "lanczos";
+      linear-upscaling = "yes";
+      sigmoid-upscaling = "yes";
+      correct-downscaling = "yes";
 
-      demuxer-max-back-bytes = "100MiB";
-      demuxer-max-bytes = 104857600;
+      # --- OSD & UI (Optimized for uosc) ---
+      osc = "no"; # Required for uosc
+      osd-bar = "no"; # Required for uosc
+      osd-font = "Inter Tight Medium";
+      osd-font-size = 30;
+
+      # --- Audio ---
+      ao = "pipewire";
+      af = "acompressor=ratio=4,loudnorm";
+      audio-pitch-correction = "yes";
+
+      # --- Performance ---
+      vulkan-swap-mode = "mailbox"; # Lower latency than FIFO
+      gpu-shader-cache-dir = "~/.cache/mpv/shadercache";
+      demuxer-max-bytes = "150MiB";
     };
 
     profiles = {
+      # Auto-apply settings for 4K content
+      "4k-content" = {
+        profile-cond = "width >= 3840";
+        vd-lavc-threads = 0; # Use all cores for 4K decode
+        # Disable heavy shaders for 4K to save power
+        glsl-shaders = "";
+      };
+
       "hdr-force" = {
-        # Force HDR output
-        target-prim = "bt.2020";
-        target-trc = "pq";
-
-        # Declare HDR mastering / peak
+        # Used when you want to force PQ/BT2020 output
+        target-prim = "dci-p3";
+        target-trc = "srgb";
+        tone-mapping = "bt.2446a"; # Modern tone mapping algorithm
         hdr-compute-peak = "yes";
-        hdr-peak-percentile = 99.9;
-        hdr-peak-decay-rate = 20;
-
-        # Do NOT tone-map (we want HDR passthrough)
-        tone-mapping = "auto";
-
-        # Ensure 10-bit path
-        dither-depth = 10;
-
-        # Vulkan / Wayland stability
-        vulkan-swap-mode = "mailbox";
-
-        # Prevent mpv from second-guessing
-        target-colorspace-hint = "no";
-        icc-profile-auto = "no";
-
-        # Debug (optional but useful)
-        msg-level = "vo=trace,gpu=trace";
       };
     };
 

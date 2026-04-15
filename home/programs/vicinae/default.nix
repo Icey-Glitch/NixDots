@@ -24,11 +24,7 @@
       };
 
       providers = {
-        "@Gelei/bluetooth-0" = {
-          preferences = {
-            connectionToggleable = true;
-          };
-        };
+
         "applications" = {
           preferences = {
             launchPrefix = "uwsm app -- ";

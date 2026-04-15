@@ -116,13 +116,12 @@ in
     };
 
     render = {
-      direct_scanout = true;
-      # Fixes some apps stuttering (xournalpp, hyprlock). Possibly an amdgpu bug
-      explicit_sync = 0;
-      explicit_sync_kms = 0;
+      direct_scanout = false;
+      explicit_sync = 1;
+      explicit_sync_kms = 1;
       send_content_type = true;
-      cm_fs_passthrough = 0;
-      cm_auto_hdr = 0;
+      cm_fs_passthrough = 1;
+      cm_auto_hdr = 1;
       cm_enable = true;
     };
 

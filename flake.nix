@@ -186,19 +186,9 @@
     matugen = {
       url = "github:InioX/matugen";
       inputs = {
-        aquamarine.follows = "hyprland/aquamarine";
-        hyprgraphics.follows = "hyprland/hyprgraphics";
-        hyprlang.follows = "hyprland/hyprlang";
-        hyprutils.follows = "hyprland/hyprutils";
-        hyprwire.follows = "hyprland/hyprwire";
         nixpkgs.follows = "hyprland/nixpkgs";
         systems.follows = "hyprland/systems";
       };
-    };
-
-    fancontrol-gui = {
-      url = "github:JaysFreaky/fancontrol-gui";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     quickshell = {
@@ -247,19 +237,18 @@
       };
     };
 
-    slippi = {
-      url = "github:lytedev/slippi-nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "hm";
-      };
-    };
+    #slippi = {
+    #  url = "github:lytedev/slippi-nix";
+    #  inputs = {
+    #    nixpkgs.follows = "nixpkgs";
+    #    home-manager.follows = "hm";
+    #  };
+    #};
 
     uwu-colors = {
       url = "github:q60/uwu_colors";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        utils.follows = "flake-utils";
       };
     };
 

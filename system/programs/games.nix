@@ -5,7 +5,7 @@
 }:
 {
   imports = [
-    inputs.slippi.nixosModules.default
+    #inputs.slippi.nixosModules.default
   ];
   programs = {
     gamescope = {
