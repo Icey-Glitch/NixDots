@@ -2231,6 +2231,7 @@
         "uwu-colors": "uwu-colors",
         "vicinae": "vicinae",
         "vicinae-extensions": "vicinae-extensions",
+        "xen-drakvuf-nix": "xen-drakvuf-nix",
         "yazi": "yazi",
         "zen-browser": "zen-browser"
       }
@@ -2594,6 +2595,23 @@
         "owner": "hyprwm",
         "repo": "xdg-desktop-portal-hyprland",
         "type": "github"
+      }
+    },
+    "xen-drakvuf-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1789163939,
+        "narHash": "sha256-XGFcJQrvO3F6BqgHDquPV3Q5CIrK8V9ipWENAEj/F4w=",
+        "path": "/home/icey/Git/xen-drakvuf-nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/icey/Git/xen-drakvuf-nix",
+        "type": "path"
       }
     },
     "yazi": {

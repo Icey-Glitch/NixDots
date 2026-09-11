@@ -206,6 +206,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # DRAKVUF (core + Sandbox UI), packaged for xenhost. Absolute path, same
+    # reasoning as elsewhere in this flake: a git-tracked flake gets copied
+    # into the store before evaluation, so a relative path: input would
+    # resolve against that store copy, not the real filesystem.
+    xen-drakvuf-nix = {
+      url = "path:/home/icey/Git/xen-drakvuf-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-qemu = {
       url = "github:NixOS/nixpkgs?rev=6db86a5dd01229dfe74281a76a7e50b60cdff297";
