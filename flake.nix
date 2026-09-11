@@ -1,9 +1,10 @@
 {
   description = "fufexan's NixOS and Home-Manager flake";
 
-  outputs = inputs:
-    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = ["x86_64-linux"];
+  outputs =
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
 
       imports = [
         ./hosts
@@ -15,28 +16,30 @@
         inputs.agenix-rekey.flakeModule
       ];
 
-      perSystem = {
-        config,
-        pkgs,
-        ...
-      }: {
-        devShells.default = pkgs.mkShell {
-          packages = [
-            pkgs.git
-            pkgs.nil
-            config.packages.repl
-            config.agenix-rekey.package
-            pkgs.statix
-            pkgs.rage
-          ];
+      perSystem =
+        {
+          config,
+          pkgs,
+          ...
+        }:
+        {
+          devShells.default = pkgs.mkShell {
+            packages = [
+              pkgs.git
+              pkgs.nil
+              config.packages.repl
+              config.agenix-rekey.package
+              pkgs.statix
+              pkgs.rage
+            ];
 
-          name = "dots";
-          env.DIRENV_LOG_FORMAT = "";
-          shellHook = ''
-            ${config.pre-commit.installationScript}
-          '';
+            name = "dots";
+            env.DIRENV_LOG_FORMAT = "";
+            shellHook = ''
+              ${config.pre-commit.installationScript}
+            '';
+          };
         };
-      };
     };
 
   inputs = {
@@ -196,6 +199,12 @@
     };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    # For xenhost's declarative disk partitioning (nixos-anywhere deploy).
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-qemu = {
