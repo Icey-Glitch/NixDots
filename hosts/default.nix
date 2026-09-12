@@ -162,6 +162,15 @@
         modules = [
           ./xenhost
           inputs.disko.nixosModules.disko
+          "${mod}/programs/zsh.nix"
+          "${mod}/programs/home-manager.nix"
+
+          {
+            home-manager = {
+              users.icey.imports = homeImports."icey@xenhost";
+              extraSpecialArgs = specialArgs;
+            };
+          }
         ];
       };
 
