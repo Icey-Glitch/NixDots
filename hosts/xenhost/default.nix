@@ -29,6 +29,13 @@
     package = inputs.xen-drakvuf-nix.packages.x86_64-linux.drakvuf;
   };
 
+  # qemu-xen with VM-fingerprint strings patched out (ACPI OEM ID, disk/USB
+  # vendor strings) -- see xen-drakvuf-nix's qemu-anti-detection.patch for
+  # what's patched and why, and drakvuf-sandbox.nix's cfg.template for the
+  # complementary xl.cfg-level anti-detection (cpuid=, smbios=,
+  # device_model_args_hvm=) that needed no qemu patch at all.
+  virtualisation.xen.package-qemu = inputs.xen-drakvuf-nix.packages.x86_64-linux.qemu-xen-stealth;
+
   environment.systemPackages = [
     inputs.xen-drakvuf-nix.packages.x86_64-linux.drakvuf
   ];

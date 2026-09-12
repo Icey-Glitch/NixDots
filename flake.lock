@@ -2604,8 +2604,8 @@
         ]
       },
       "locked": {
-        "lastModified": 1789163939,
-        "narHash": "sha256-XGFcJQrvO3F6BqgHDquPV3Q5CIrK8V9ipWENAEj/F4w=",
+        "lastModified": 1789245263,
+        "narHash": "sha256-nd+r//C1B29R95/G7ctLadClaZZNXbnxs0CBilh9Vts=",
         "path": "/home/icey/Git/xen-drakvuf-nix",
         "type": "path"
       },
