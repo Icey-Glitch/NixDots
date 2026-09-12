@@ -1,12 +1,19 @@
 # Dedicated Xen dom0 + DRAKVUF (hypervisor-level VMI tracing) research box.
 # See ~/Git/xen-drakvuf-nix for the project this supports. Headless -- no
 # desktop/Hyprland profile, unlike desktopm/io/etc.
-{ self, inputs, ... }:
+{
+  self,
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
 {
   imports = [
     ./disko.nix
     ./hardware-configuration.nix
     "${self}/modules/virtualisation/xen-dom0.nix"
+    "${self}/system/nix"
     inputs.xen-drakvuf-nix.nixosModules.drakvuf-sandbox
   ];
 
@@ -35,12 +42,29 @@
     isNormalUser = true;
     extraGroups = [ "wheel" ];
     openssh.authorizedKeys.keyFiles = [ ../../secrets/yubikey.pub ];
+    # home-manager's programs.zsh (home/profiles/xenhost) configures zsh
+    # itself, but doesn't touch the actual account shell -- that's this,
+    # same as every other host (system/core/users.nix), which xenhost
+    # doesn't import (its extraGroups are desktop/GUI-oriented and not
+    # relevant here).
+    shell = pkgs.zsh;
   };
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  # nix-command/flakes and everything else (auto-optimise-store,
+  # substituters, programs.nh's 30-day store cleanup) now come from
+  # system/nix (imported above) -- every other host gets this already;
+  # xenhost previously hand-rolled just the two experimental-features flags
+  # and got none of the rest.
+  #
+  # Except distributedBuilds: system/nix points that at ganymede, but the
+  # root-to-ganymede SSH trust that makes it actually work is set up
+  # per-host (e.g. io's networking.extraHosts/ssh client config), not
+  # provided by system/nix itself -- xenhost doesn't have it. Nix would just
+  # silently fall back to building locally on an unreachable builder, but
+  # disabling it explicitly here is clearer than relying on that fallback.
+  nix.distributedBuilds = lib.mkForce false;
+
+  boot.loader.systemd-boot.configurationLimit = 10;
 
   system.stateVersion = "26.05";
 }
