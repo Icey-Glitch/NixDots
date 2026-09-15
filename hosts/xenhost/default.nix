@@ -45,6 +45,36 @@
   services.openssh.enable = true;
 
   users.users.root.openssh.authorizedKeys.keyFiles = [ ../../secrets/yubikey.pub ];
+
+  # Temporary account for a Claude Code session doing live VMI instrumentation
+  # against the DRAKVUF sandbox (lifting-meows devirt work -- see
+  # ~/Git/lifting-meows/devirt/RECON_NOTES.md). Ephemeral key, generated
+  # for this session only. Remove this whole block (and its
+  # security.sudo.extraRules entry below) once that work is done.
+  users.users.claude = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+    shell = pkgs.bash;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAB2gEr1D1WGIKdcHfECAMvwZHyE0DN1Lvtd7tHTjltQ claude-devirt-session-ephemeral"
+    ];
+  };
+  # xenhost doesn't import system/core (security.nix's wheelNeedsPassword =
+  # false), so wheel membership alone still prompts for a password icey
+  # doesn't have to give it non-interactively -- scope passwordless sudo
+  # to just this temporary account rather than changing that host-wide.
+  security.sudo.extraRules = [
+    {
+      users = [ "claude" ];
+      commands = [
+        {
+          command = "ALL";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
+
   users.users.icey = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
