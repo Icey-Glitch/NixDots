@@ -99,6 +99,7 @@
 
           "${mod}/services/location.nix"
           "${mod}/services/gnome-services.nix"
+          "${mod}/hardware/fancontrol.nix"
           "${mod}/hardware/nvidia-fixes.nix"
           "${mod}/hardware/k2200.nix"
           "${mod}/hardware/virt.nix"
@@ -135,22 +136,25 @@
       desktopm-xen = desktopm.extendModules {
         modules = [
           "${self}/modules/virtualisation/xen-dom0.nix"
-          ({ lib, ... }: {
-            # Xen has to own VT-x/EPT/IOMMU as the base hypervisor --
-            # incompatible with the existing KVM/VFIO GPU-passthrough
-            # gaming-VM setup (system/hardware/virt.nix, plain `= true`
-            # assignment, hence mkForce to win). Only disabled here;
-            # `desktopm`'s own config and default are untouched.
-            virt.vfio.enable = lib.mkForce false;
+          (
+            { lib, ... }:
+            {
+              # Xen has to own VT-x/EPT/IOMMU as the base hypervisor --
+              # incompatible with the existing KVM/VFIO GPU-passthrough
+              # gaming-VM setup (system/hardware/virt.nix, plain `= true`
+              # assignment, hence mkForce to win). Only disabled here;
+              # `desktopm`'s own config and default are untouched.
+              virt.vfio.enable = lib.mkForce false;
 
-            # xen-dom0.nix's defaults are sized for a small dedicated box
-            # (xenhost); desktopm has far more headroom (16 cores/46GiB).
-            virtualisation.xen.dom0Resources = {
-              maxVCPUs = lib.mkForce 4;
-              memory = lib.mkForce 8192;
-              maxMemory = lib.mkForce 8192;
-            };
-          })
+              # xen-dom0.nix's defaults are sized for a small dedicated box
+              # (xenhost); desktopm has far more headroom (16 cores/46GiB).
+              virtualisation.xen.dom0Resources = {
+                maxVCPUs = lib.mkForce 4;
+                memory = lib.mkForce 8192;
+                maxMemory = lib.mkForce 8192;
+              };
+            }
+          )
         ];
       };
 

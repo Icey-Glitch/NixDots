@@ -4,10 +4,13 @@
   ...
 }:
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ./hyprland.nix
+  ];
 
   boot = {
-    kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos-lto;
+    kernelPackages = lib.mkForce pkgs.linuxPackages_zen;
     kernelParams = [
       "quiet"
       "loglevel=3"
@@ -35,19 +38,6 @@
   programs.hyprland.settings = {
     cursor = {
       no_hardware_cursors = true;
-    };
-    monitor = [
-      "DP-2, preferred, auto-left, 1, transform, 1, vrr, 0"
-      "DP-1, 1920x1080@240, auto-right, 1, vrr, 2"
-    ];
-    "monitorv2[desc:Dell Inc. AW2725D CC19584]" = {
-      mode = "2560x1440@280";
-      position = "0x0";
-      scale = 1;
-      bitdepth = 10;
-      # cm = "auto";
-      # supports_wide_color = 1;
-      vrr = 0;
     };
   };
 

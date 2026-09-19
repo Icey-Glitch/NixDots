@@ -6,7 +6,6 @@
 {
   programs.foot = {
     enable = true;
-    catppuccin.enable = true;
 
     settings =
       let

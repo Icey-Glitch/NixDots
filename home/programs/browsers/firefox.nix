@@ -8,7 +8,7 @@
 }:
 {
   imports = [
-    self.nixosModules.cfirefox
+    self.modules.cfirefox
     inputs.arkenfox.hmModules.default
     inputs.betterfox.modules.homeManager.betterfox
   ];

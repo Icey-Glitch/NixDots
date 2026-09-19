@@ -10,7 +10,6 @@
   programs = {
     gamescope = {
       enable = true;
-      enableWsi = true;
       capSysNice = true;
       args = [
         "--rt"

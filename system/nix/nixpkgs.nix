@@ -9,6 +9,7 @@
     config.permittedInsecurePackages = [
       "electron-25.9.0"
       "qtwebengine-5.15.19"
+      "olm-3.2.16"
     ];
 
     overlays = [

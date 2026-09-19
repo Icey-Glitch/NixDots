@@ -9,8 +9,8 @@ with lib;
 let
   cfg = config.virt.vfio;
   qemu-patches = pkgs.fetchurl {
-    url = "https://gist.githubusercontent.com/Icey-Glitch/4953628771180decdc2af54ffb44de48/raw/566adf706abce549f766c02485d51eb94e3a07e4/qemu-9.0.1-anti-detection.patch";
-    sha256 = "sha256-zRAm0ZT+xBJNgCuIR78U2GFp6IuQ1A2qd7ml8/EXZS8=";
+    url = "https://raw.githubusercontent.com/AICodo/qemu-emu-realpc/refs/heads/main/qemu-11.0.0.patch";
+    sha256 = "sha256-9j1dDHclSY8yIG0QyuJDb296WL1CUbCrdPzRbyUvJPU=";
   };
 in
 {
@@ -68,16 +68,27 @@ in
       ];
     };
 
-    # nixpkgs.overlays = [
-    #   (final: prev: {
-    #     qemu_pinned = inputs.nixpkgs-qemu.legacyPackages.${final.system}.qemu;
-    #     qemu_kvm = final.qemu_pinned.overrideAttrs (_: {
-    #       patches = [
-    #         qemu-patches
-    #       ];
-    #     });
-    #   })
-    # ];
+    nixpkgs.overlays = [
+      (final: prev: {
+        qemu_kvm = prev.qemu.overrideAttrs (old: {
+          version = "11.0.0";
+          src = final.fetchurl {
+            url = "https://download.qemu.org/qemu-11.0.0.tar.xz";
+            hash = "sha256-wEyjYBJlPzLRHGdNNwz1KnEOfT8Ywti2PkkyBSpIVNY=";
+          };
+          patches = [
+            qemu-patches
+          ];
+          # qemu 11's release tarball no longer vendors setuptools/wheel, and
+          # mkvenv has no network inside the sandbox. The 10.2.2 derivation this
+          # overrides doesn't pull them in, so add them explicitly.
+          nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [
+            final.python3Packages.setuptools
+            final.python3Packages.wheel
+          ];
+        });
+      })
+    ];
 
     virtualisation.libvirtd = {
       enable = true;

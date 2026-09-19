@@ -29,9 +29,5 @@
     wineWow64Packages.wayland
 
     zotero
-
-    inputs.nix-matlab.packages.${pkgs.stdenv.hostPlatform.system}.matlab
   ];
-
-  xdg.configFile."matlab/nix.sh".text = "INSTALL_DIR=$XDG_DATA_HOME/matlab/installation_2025b";
 }

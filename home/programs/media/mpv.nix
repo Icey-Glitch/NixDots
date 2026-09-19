@@ -45,7 +45,6 @@ in
 
   programs.mpv = {
     enable = true;
-    catppuccin.enable = false;
     defaultProfiles = [ "gpu-hq" ];
 
     bindings = {

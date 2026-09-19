@@ -35,7 +35,7 @@
       enable = true;
       enableDefaultConfig = false;
 
-      settings = {
+      matchBlocks = {
         # default ssh config
         "*" = {
           addKeysToAgent = "no";

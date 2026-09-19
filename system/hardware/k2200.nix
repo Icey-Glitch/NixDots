@@ -1,6 +1,6 @@
 { self, ... }:
 {
-  imports = [ self.nixosModules.virt ];
+  imports = [ self.modules.virt ];
   virt.vfio = {
     enable = true;
     blacklistNvidia = false;

@@ -20,7 +20,7 @@
     # Streamio
     # stremio
     syncplay
-    supersonic-wayland
+    supersonic
 
     # Twitch
     streamlink-twitch-gui-bin
