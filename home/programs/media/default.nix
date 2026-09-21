@@ -23,7 +23,7 @@
     supersonic
 
     # Twitch
-    streamlink-twitch-gui-bin
+    # streamlink-twitch-gui-bin removed from nixpkgs 2026-09-02 (insecure electron)
     chatterino2
 
     # images
