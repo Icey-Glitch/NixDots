@@ -16,8 +16,8 @@
     # own extra module -- see hosts/default.nix.
     dom0Resources = {
       maxVCPUs = 2;
-      memory = 4096; # MiB
-      maxMemory = 4096;
+      memory = 6144; # MiB
+      maxMemory = 6144;
     };
 
     # Required by DRAKVUF itself, not optional tuning -- these are upstream
